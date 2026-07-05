@@ -1,0 +1,941 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<!-- Google tag --><script async src="https://www.googletagmanager.com/gtag/js?id=AW-18291318384"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","AW-18291318384");</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AGENTE PRONTO — Monte Agentes de IA no WhatsApp para o Comércio do Seu Bairro</title>
+<meta name="description" content="Aprenda a montar agente de IA no WhatsApp para negócios locais, sem saber programar — e o caminho até o primeiro cliente. Método dos 4 M's em ebook + 5 bônus por R$ 37, com 7 dias de garantia incondicional. Renda com IA sem aparecer, estudando 1 hora por noite.">
+<meta property="og:title" content="AGENTE PRONTO — Agente de IA no WhatsApp para o Comércio Local">
+<meta property="og:description" content="Método dos 4 M's: monte agentes de IA no WhatsApp sem código e aprenda o caminho ao primeiro cliente. Ebook + 5 bônus por R$ 37, garantia de 7 dias.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_BR">
+<style>
+/* ============ RESET & TOKENS ============ */
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+
+:root{
+  --graphite:#101418;
+  --graphite-soft:#171d24;
+  --graphite-line:#26303a;
+  --panel:#131920;
+  --gold:#d4af37;
+  --gold-soft:#e6c964;
+  --gold-deep:#b8942a;
+  --paper:#f4f1ea;
+  --paper-soft:#e9e4d6;
+  --text:#dfe4ea;
+  --text-soft:#9aa4af;
+  --text-dim:#6f7a85;
+  --circuit:#3aa0a0;
+  --serif:Georgia,"Palatino Linotype","Book Antiqua","Times New Roman",serif;
+  --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+}
+
+html{ scroll-behavior:smooth; -webkit-text-size-adjust:100%; }
+@media (prefers-reduced-motion: reduce){ html{ scroll-behavior:auto; } }
+
+body{
+  font-family:var(--sans);
+  font-size:17px;
+  line-height:1.7;
+  color:var(--text);
+  background:var(--graphite);
+  background-image:
+    radial-gradient(ellipse at 15% 8%, rgba(212,175,55,.05) 0%, transparent 55%),
+    radial-gradient(ellipse at 85% 92%, rgba(58,160,160,.04) 0%, transparent 55%);
+  overflow-x:hidden;
+}
+
+img,svg{ max-width:100%; height:auto; }
+h1,h2,h3,p{ overflow-wrap:break-word; }
+
+.col{ max-width:680px; margin:0 auto; padding:0 20px; }
+
+h1,h2,h3{ font-family:var(--serif); line-height:1.25; }
+h2{ font-size:clamp(1.5rem,5vw,2rem); color:var(--paper); margin-bottom:1.2rem; }
+h3{ font-size:clamp(1.15rem,4vw,1.35rem); color:var(--paper); margin-bottom:.6rem; }
+p{ margin-bottom:1.1rem; }
+em{ font-style:italic; }
+section{ padding:56px 0; }
+
+.eyebrow{
+  font-size:.75rem; font-weight:800; letter-spacing:.2em; text-transform:uppercase;
+  color:var(--gold); margin-bottom:10px;
+}
+
+/* ============ CTA (Johnson Box) ============ */
+.cta{
+  display:block; width:100%;
+  background:linear-gradient(180deg,var(--gold-soft) 0%,var(--gold) 45%,var(--gold-deep) 100%);
+  color:#1a1509; text-decoration:none; text-align:center;
+  font-family:var(--sans); font-weight:800;
+  font-size:clamp(1rem,4vw,1.2rem); letter-spacing:.02em;
+  padding:20px 24px; border-radius:14px;
+  box-shadow:0 8px 24px rgba(212,175,55,.28), inset 0 1px 0 rgba(255,255,255,.35);
+  transition:transform .15s ease, box-shadow .15s ease;
+  text-transform:uppercase;
+  min-height:56px;
+}
+.cta:hover,.cta:focus{ transform:translateY(-2px); box-shadow:0 12px 32px rgba(212,175,55,.4), inset 0 1px 0 rgba(255,255,255,.35); }
+.cta:active{ transform:translateY(0); }
+.cta:focus-visible{ outline:3px solid var(--paper); outline-offset:3px; }
+.cta-note{
+  text-align:center; font-size:.84rem; color:var(--text-soft);
+  margin-top:12px; margin-bottom:0;
+}
+.cta-wrap{ margin:32px 0 8px; }
+.pay-icons{
+  display:flex; justify-content:center; align-items:center; gap:14px;
+  margin-top:12px; flex-wrap:wrap;
+  font-size:.78rem; color:var(--text-soft);
+}
+.pay-icons span{ display:inline-flex; align-items:center; gap:5px; }
+.pay-icons svg{ flex-shrink:0; }
+
+/* ============ HERO ============ */
+.hero{
+  background:radial-gradient(ellipse at 50% -10%, #1c2530 0%, var(--graphite) 62%), var(--graphite);
+  color:var(--text);
+  padding:40px 0 56px;
+  position:relative; overflow:hidden;
+  border-bottom:1px solid var(--graphite-line);
+}
+.hero .kicker{
+  display:inline-block; font-size:.72rem; font-weight:700; letter-spacing:.16em;
+  text-transform:uppercase; color:var(--gold);
+  border:1px solid rgba(212,175,55,.45); border-radius:999px;
+  padding:6px 16px; margin-bottom:20px;
+}
+.chip-wrap{ text-align:center; margin-bottom:10px; }
+.hero h1{
+  font-size:clamp(1.5rem,6vw,2.4rem); color:var(--paper);
+  margin-bottom:16px; letter-spacing:-.01em;
+}
+.hero h1 strong{ color:var(--gold-soft); font-weight:700; }
+.hero .subhead{
+  font-family:var(--serif); font-style:italic;
+  font-size:clamp(1.02rem,4.2vw,1.28rem); color:var(--gold);
+  margin-bottom:20px;
+}
+.hero .lead-hero{
+  font-size:clamp(.96rem,3.8vw,1.06rem); color:var(--text-soft);
+  margin-top:26px; margin-bottom:0;
+}
+.hero .lead-hero strong{ color:var(--text); }
+.hero .cta-note{ color:var(--text-dim); }
+
+/* ============ TRUST STRIP ============ */
+.trust-strip{
+  background:var(--graphite-soft);
+  border-bottom:1px solid var(--graphite-line);
+  padding:14px 0;
+}
+.trust-strip ul{
+  list-style:none; display:flex; flex-wrap:wrap; justify-content:center;
+  gap:8px 22px; font-size:.82rem; color:var(--text-soft); font-weight:600;
+}
+.trust-strip li{ }
+
+/* ============ DOR ============ */
+.quote-pain{
+  font-family:var(--serif); font-style:italic; font-size:1.15rem; color:var(--paper);
+  border-left:4px solid var(--gold); padding:14px 20px; margin:24px 0;
+  background:var(--graphite-soft); border-radius:0 10px 10px 0;
+}
+.callout{
+  background:var(--graphite-soft); border:1px solid var(--graphite-line);
+  border-radius:14px; padding:22px 24px; margin:24px 0;
+}
+.callout p:last-child{ margin-bottom:0; }
+.pain-list{ list-style:none; margin:0 0 22px; }
+.pain-list li{
+  padding:10px 0 10px 34px; position:relative;
+  border-bottom:1px dashed var(--graphite-line);
+}
+.pain-list li::before{
+  content:"\2717"; position:absolute; left:4px; top:10px;
+  color:var(--gold); font-weight:800;
+}
+.pain-list li:last-child{ border-bottom:none; }
+.pain-list li strong{ color:var(--paper); }
+
+/* ============ MECANISMO (painel) ============ */
+.panel-section{
+  background:linear-gradient(180deg,var(--graphite) 0%,#0c1013 100%);
+}
+.panel-section .eyebrow{ color:var(--gold); }
+.layer-card{
+  background:var(--panel); border:1px solid var(--graphite-line);
+  border-left:4px solid var(--gold); border-radius:14px;
+  padding:24px; margin-bottom:18px;
+}
+.layer-card .layer-tag{
+  display:inline-block; font-size:.72rem; font-weight:800; letter-spacing:.14em;
+  text-transform:uppercase; color:var(--gold); margin-bottom:8px;
+}
+.layer-card h3{ font-size:1.2rem; margin-bottom:10px; }
+.layer-card p{ margin-bottom:0; color:var(--text-soft); }
+.layer-card p strong,.panel-section strong{ color:var(--paper); }
+.mini-insight{
+  border:1px dashed var(--gold); border-radius:12px;
+  background:rgba(212,175,55,.07); padding:18px 20px;
+  font-size:.94rem; margin:26px 0;
+}
+.mini-insight p{ margin-bottom:0; }
+
+/* ============ CAPÍTULOS ============ */
+.chapter{
+  background:var(--graphite-soft); border:1px solid var(--graphite-line); border-radius:14px;
+  padding:22px 24px; margin-bottom:16px;
+  box-shadow:0 2px 8px rgba(0,0,0,.25);
+}
+.chapter h3{ font-size:1.08rem; display:flex; gap:10px; align-items:baseline; }
+.chapter h3 .chap-num{
+  flex-shrink:0; font-family:var(--serif); color:var(--gold);
+  font-size:.95rem; font-weight:700; white-space:nowrap;
+}
+.chapter p{ margin:10px 0 0; font-size:.95rem; color:var(--text-soft); }
+.chapter p strong{ color:var(--text); }
+.digital-note{
+  font-size:.85rem; color:var(--text-soft); font-style:italic;
+  text-align:center; margin-top:18px;
+}
+
+/* ============ CONFIANÇA ============ */
+.trust-list{ list-style:none; margin:20px 0; }
+.trust-list li{
+  background:var(--graphite-soft); border:1px solid var(--graphite-line); border-radius:12px;
+  padding:16px 18px 16px 48px; margin-bottom:12px; position:relative; font-size:.96rem;
+}
+.trust-list li::before{
+  content:"\25C9"; position:absolute; left:18px; top:15px;
+  color:var(--gold); font-size:1.05rem;
+}
+.trust-list li strong{ color:var(--paper); }
+
+/* ============ BÔNUS ============ */
+.bonus-card{
+  background:var(--panel); border:1px solid var(--graphite-line); border-radius:14px;
+  padding:22px 24px; margin-bottom:16px;
+  box-shadow:0 2px 8px rgba(0,0,0,.25);
+}
+.bonus-card .bonus-head{
+  display:flex; justify-content:space-between; align-items:baseline;
+  gap:12px; flex-wrap:wrap; margin-bottom:8px;
+}
+.bonus-card h3{ font-size:1.05rem; margin-bottom:0; }
+.bonus-card .bonus-price{ font-weight:800; color:var(--gold); font-size:.95rem; white-space:nowrap; }
+.bonus-card p{ font-size:.95rem; color:var(--text-soft); margin-bottom:10px; }
+.bonus-card p:last-child{ margin-bottom:0; }
+.bonus-card .kills{
+  font-size:.88rem; font-style:italic; color:var(--gold-soft);
+  background:rgba(212,175,55,.06); border-radius:8px; padding:8px 14px; margin-bottom:0;
+}
+.honest-notice{
+  border:1px dashed var(--gold); background:rgba(212,175,55,.06); border-radius:12px;
+  padding:18px 20px; font-size:.93rem; margin-top:24px;
+}
+.honest-notice p{ margin-bottom:0; }
+.honest-notice strong{ color:var(--gold-soft); }
+
+/* ============ CUSTO DA INAÇÃO ============ */
+.inaction-card{
+  background:var(--graphite-soft); border:1px solid var(--graphite-line); border-radius:14px;
+  padding:24px; margin:24px 0;
+}
+.inaction-card ul{ list-style:none; }
+.inaction-card li{
+  display:flex; justify-content:space-between; gap:14px;
+  padding:10px 0; border-bottom:1px dashed var(--graphite-line); font-size:.94rem;
+}
+.inaction-card li:last-child{ border-bottom:none; font-weight:700; color:var(--paper); }
+.inaction-card .val{ white-space:nowrap; font-weight:700; color:var(--gold); }
+
+/* ============ STACK ============ */
+.stack-card{
+  background:radial-gradient(ellipse at 50% 0%, #1e2833 0%, var(--graphite) 72%), var(--graphite);
+  color:var(--text); border-radius:20px; padding:36px 28px;
+  box-shadow:0 20px 50px rgba(0,0,0,.5);
+  border:1px solid var(--gold-deep);
+}
+.stack-card h3{ color:var(--paper); text-align:center; font-size:1.3rem; margin-bottom:24px; }
+.stack-list{ list-style:none; margin-bottom:22px; }
+.stack-list li{
+  display:flex; justify-content:space-between; gap:14px;
+  padding:12px 0; border-bottom:1px solid var(--graphite-line); font-size:.93rem;
+}
+.stack-list li:first-child{ font-weight:700; color:var(--paper); }
+.stack-list .item-price{ white-space:nowrap; color:var(--gold); font-weight:700; }
+.stack-total{ text-align:center; font-size:1.15rem; color:var(--text-soft); margin-bottom:6px; }
+.stack-total s{ text-decoration:line-through; text-decoration-color:var(--gold); text-decoration-thickness:2px; }
+.stack-today{ text-align:center; font-family:var(--serif); color:var(--paper); margin-bottom:4px; }
+.stack-today .price{
+  font-size:clamp(3rem,14vw,4.2rem); font-weight:700; color:#fff;
+  line-height:1.1; display:block;
+}
+.stack-today .terms{
+  display:block; font-family:var(--sans); font-size:.95rem;
+  color:var(--gold); margin-top:4px; margin-bottom:14px;
+}
+.johnson-pre{
+  text-align:center; font-size:.88rem; color:var(--text-soft); margin-bottom:14px;
+}
+.per-day{ text-align:center; font-size:.92rem; color:var(--text-soft); margin-top:20px; margin-bottom:0; }
+.per-day strong{ color:var(--paper); }
+.stack-guarantee-ribbon{
+  display:flex; align-items:center; justify-content:center; gap:10px;
+  font-size:.85rem; color:var(--gold); margin-top:16px; margin-bottom:0;
+}
+
+/* ============ GARANTIA ============ */
+.guarantee-box{
+  background:var(--graphite-soft); border:2px solid var(--gold); border-radius:20px;
+  padding:34px 26px; text-align:left;
+  box-shadow:0 8px 30px rgba(212,175,55,.12);
+}
+.guarantee-box .seal{ text-align:center; margin-bottom:18px; }
+.guarantee-box h3{ text-align:center; font-size:1.35rem; }
+.guarantee-box p{ font-size:.97rem; color:var(--text-soft); }
+.guarantee-box p strong{ color:var(--paper); }
+.guarantee-box .last-word{ font-family:var(--serif); font-style:italic; color:var(--gold-soft); margin-bottom:0; }
+
+/* ============ FAQ ============ */
+details{
+  background:var(--graphite-soft); border:1px solid var(--graphite-line); border-radius:12px;
+  margin-bottom:12px; overflow:hidden;
+}
+details summary{
+  cursor:pointer; list-style:none; padding:18px 46px 18px 20px;
+  font-weight:700; color:var(--paper); font-size:.98rem;
+  position:relative; user-select:none;
+}
+details summary:focus-visible{ outline:3px solid var(--gold); outline-offset:-3px; border-radius:12px; }
+details summary::-webkit-details-marker{ display:none; }
+details summary::after{
+  content:"+"; position:absolute; right:18px; top:50%; transform:translateY(-50%);
+  font-family:var(--serif); font-size:1.5rem; color:var(--gold);
+}
+details[open] summary::after{ content:"\2013"; }
+details .faq-body{ padding:0 20px 18px; font-size:.94rem; color:var(--text-soft); }
+details .faq-body p:last-child{ margin-bottom:0; }
+details .faq-body strong{ color:var(--text); }
+
+/* ============ OBJEÇÕES ============ */
+.objection{ margin-bottom:26px; }
+.objection h3{ font-size:1.08rem; color:var(--gold-soft); font-style:italic; }
+.objection p{ font-size:.96rem; color:var(--text-soft); margin-bottom:0; }
+.objection p strong{ color:var(--text); }
+
+/* ============ CLOSE ============ */
+.close-section{ padding-bottom:72px; }
+.recap{
+  background:var(--panel); border:1px solid var(--graphite-line);
+  border-radius:14px; padding:22px 24px; font-size:.97rem;
+  margin-bottom:28px; color:var(--text-soft);
+}
+.recap p{ margin-bottom:0; }
+.recap strong{ color:var(--paper); }
+.two-paths p{ margin-bottom:16px; }
+.future-pace{
+  border-left:4px solid var(--gold); background:rgba(212,175,55,.07);
+  border-radius:0 12px 12px 0; padding:18px 22px; margin:26px 0;
+  font-size:.98rem;
+}
+.future-pace p{ margin-bottom:0; }
+.future-pace strong{ color:var(--paper); }
+.ps-block{
+  border-top:1px solid var(--graphite-line); margin-top:40px; padding-top:26px;
+  font-size:.92rem; color:var(--text-soft);
+}
+.ps-block p{ margin-bottom:16px; }
+.ps-block strong{ color:var(--gold); }
+
+/* ============ FOOTER ============ */
+footer{
+  background:#0b0e11; color:var(--text-dim);
+  padding:44px 0 120px; font-size:.8rem; line-height:1.7;
+  border-top:1px solid var(--graphite-line);
+}
+footer .disclaimer{
+  font-style:italic; border:1px solid var(--graphite-line); border-radius:12px;
+  padding:20px 22px; margin-bottom:24px;
+}
+footer .foot-note{ text-align:center; color:var(--text-dim); margin-bottom:6px; }
+
+/* ============ STICKY CTA (mobile) ============ */
+.sticky-bar{
+  position:fixed; left:0; right:0; bottom:0; z-index:100;
+  background:rgba(16,20,24,.97);
+  border-top:1px solid var(--gold-deep);
+  padding:10px 14px calc(10px + env(safe-area-inset-bottom));
+  display:flex; align-items:center; justify-content:center; gap:12px;
+  transform:translateY(110%);
+  transition:transform .28s ease;
+  box-shadow:0 -6px 24px rgba(0,0,0,.45);
+}
+.sticky-bar.visible{ transform:translateY(0); }
+.sticky-bar .sb-price{
+  color:var(--paper); font-size:.8rem; line-height:1.3; text-align:left; flex-shrink:0;
+}
+.sticky-bar .sb-price strong{ display:block; font-size:1.05rem; color:var(--gold); }
+.sticky-bar .sb-btn{
+  flex:1; max-width:280px; display:block; text-align:center;
+  background:linear-gradient(180deg,var(--gold-soft) 0%,var(--gold) 45%,var(--gold-deep) 100%);
+  color:#1a1509; text-decoration:none; font-weight:800; font-size:.92rem;
+  text-transform:uppercase; letter-spacing:.02em;
+  padding:14px 16px; border-radius:12px; min-height:48px;
+  box-shadow:0 4px 14px rgba(212,175,55,.35);
+}
+.sticky-bar .sb-btn:focus-visible{ outline:3px solid var(--paper); outline-offset:2px; }
+@media (min-width:768px){ .sticky-bar{ display:none; } }
+@media (max-width:767px){
+  body{ padding-bottom:calc(76px + env(safe-area-inset-bottom)); }
+}
+
+/* ============ MOBILE FINO ============ */
+@media (max-width:420px){
+  body{ font-size:16px; }
+  section{ padding:44px 0; }
+  .stack-card{ padding:28px 18px; }
+  .hero{ padding:30px 0 48px; }
+}
+</style>
+<style id="mobfix">
+html{overflow-x:hidden}
+html,body{box-sizing:border-box;max-width:100%;overflow-x:hidden}
+body{width:100%}
+*{min-width:0}
+img,svg{max-width:100%;height:auto}
+@media(max-width:640px){
+  h1{font-size:1.6rem!important;line-height:1.3!important;overflow-wrap:break-word}
+  h2{overflow-wrap:break-word}
+  section,.hero,header,footer{padding-left:16px!important;padding-right:16px!important}
+}
+</style></head>
+<body>
+
+<!-- ==================== 1. PRIMEIRA DOBRA ==================== -->
+<header class="hero">
+  <div class="col">
+    <div class="chip-wrap" aria-hidden="true">
+      <!-- Chip / circuito de IA (combina com a capa do ebook) -->
+      <svg width="104" height="104" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Chip de inteligência artificial com trilhas de circuito">
+        <defs>
+          <linearGradient id="chipGrad" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#1c2530"/>
+            <stop offset="1" stop-color="#0c1013"/>
+          </linearGradient>
+        </defs>
+        <!-- trilhas -->
+        <g stroke="#3aa0a0" stroke-width="3" fill="none" opacity="0.55" stroke-linecap="round">
+          <path d="M62 20 v18 M100 20 v18 M138 20 v18"/>
+          <path d="M62 180 v-18 M100 180 v-18 M138 180 v-18"/>
+          <path d="M20 62 h18 M20 100 h18 M20 138 h18"/>
+          <path d="M180 62 h-18 M180 100 h-18 M180 138 h-18"/>
+        </g>
+        <g fill="#3aa0a0" opacity="0.55">
+          <circle cx="62" cy="20" r="3.5"/><circle cx="100" cy="20" r="3.5"/><circle cx="138" cy="20" r="3.5"/>
+          <circle cx="62" cy="180" r="3.5"/><circle cx="100" cy="180" r="3.5"/><circle cx="138" cy="180" r="3.5"/>
+          <circle cx="20" cy="62" r="3.5"/><circle cx="20" cy="100" r="3.5"/><circle cx="20" cy="138" r="3.5"/>
+          <circle cx="180" cy="62" r="3.5"/><circle cx="180" cy="100" r="3.5"/><circle cx="180" cy="138" r="3.5"/>
+        </g>
+        <!-- corpo do chip -->
+        <rect x="44" y="44" width="112" height="112" rx="16" fill="url(#chipGrad)" stroke="#d4af37" stroke-width="3"/>
+        <!-- circuito interno dourado -->
+        <g stroke="#d4af37" stroke-width="2.4" fill="none" opacity="0.85" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M70 100 h20 v-20 h20"/>
+          <path d="M130 100 h-14 v22 h-18"/>
+        </g>
+        <circle cx="70" cy="100" r="4" fill="#d4af37"/>
+        <circle cx="130" cy="100" r="4" fill="#d4af37"/>
+        <circle cx="110" cy="80" r="4" fill="#e6c964"/>
+        <!-- núcleo -->
+        <rect x="86" y="86" width="28" height="28" rx="6" fill="#171d24" stroke="#d4af37" stroke-width="2.4"/>
+        <text x="100" y="106" text-anchor="middle" font-family="Georgia, serif" font-size="15" font-weight="bold" fill="#e6c964">IA</text>
+      </svg>
+    </div>
+    <div style="text-align:center;"><span class="kicker">Agente Pronto · Método dos 4 M's</span></div>
+    <h1>Monte agentes de IA no WhatsApp para o comércio do seu bairro — <strong>mesmo que você nunca tenha escrito uma linha de código</strong></h1>
+    <p class="subhead">A habilidade que padarias, clínicas, lojas e salões da sua cidade já estão precisando.</p>
+    <div class="cta-wrap" style="margin-top:24px;">
+      <a class="cta" href="#CHECKOUT">Quero meu acesso agora</a>
+      <p class="cta-note">Pix ou cartão · Acesso imediato no e-mail · Garantia incondicional de 7 dias</p>
+    </div>
+    <p class="lead-hero">O passo a passo completo em ebook — da ferramenta <strong>sem código</strong> ao script de prospecção palavra por palavra — para você aprender a montar, oferecer e entregar esse serviço. <strong>Sem aparecer, sem audiência e estudando 1 hora por noite.</strong></p>
+  </div>
+</header>
+
+<!-- ==================== 2. TRUST STRIP ==================== -->
+<div class="trust-strip" role="complementary" aria-label="Selos de confiança">
+  <div class="col">
+    <ul>
+      <li>🔒 Compra 100% segura</li>
+      <li>⚡ Acesso imediato por e-mail</li>
+      <li>✔ Garantia incondicional de 7 dias</li>
+      <li>📱 Pague no Pix e receba na hora</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ==================== 3. DOR E IDENTIFICAÇÃO ==================== -->
+<section>
+  <div class="col">
+    <p class="eyebrow">Isso aqui é pra você?</p>
+    <h2>Você já conhece essa rotina de cor</h2>
+
+    <ul class="pain-list">
+      <li>Sai do trabalho, chega em casa e ainda abre o celular procurando <strong>"como ganhar dinheiro com inteligência artificial"</strong> — e só encontra promessa milagrosa que cheira a golpe.</li>
+      <li>Já assistiu 50 vídeos de ChatGPT, já testou prompt, já fez curso gratuito — e continua exatamente no mesmo lugar: <strong>sem o primeiro cliente</strong>.</li>
+      <li>O salário acaba antes do mês. E a única "solução" que te oferecem é virar influencer, aparecer em vídeo ou apostar em esquema que você sabe que não termina bem.</li>
+      <li>Você não quer aparecer, não tem audiência, não tem capital pra investir — e tem, no máximo, <strong>1 hora por noite</strong> depois do trabalho.</li>
+    </ul>
+
+    <p><strong>Se você se reconheceu em qualquer linha acima, continua lendo.</strong></p>
+
+    <p>Eu sei que isso parece só mais uma página de internet — e você tem razão em desconfiar. Esse mercado está cheio de curso-cilada. Por isso, deixa eu ser direto:</p>
+
+    <div class="quote-pain">Esta página não promete dinheiro rápido, não promete renda garantida e não promete que a IA vai trabalhar sozinha por você. Nada disso existe.</div>
+
+    <div class="callout">
+      <p>O que existe é isto: todo mundo te ensinou a <strong>USAR</strong> a ferramenta. <strong>Ninguém te ensinou a VENDER o serviço.</strong> E é exatamente essa a diferença entre quem assiste vídeo de IA e quem presta serviço de IA.</p>
+    </div>
+
+    <div class="cta-wrap">
+      <a class="cta" href="#CHECKOUT">Quero aprender a vender o serviço</a>
+      <p class="cta-note">Pix ou cartão · Acesso imediato · Garantia de 7 dias</p>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== 4. SOLUÇÃO + MECANISMO ==================== -->
+<section class="panel-section">
+  <div class="col">
+    <p class="eyebrow">O mecanismo</p>
+    <h2>Enquanto você lê isto, tem um balcão sem ninguém atendendo</h2>
+
+    <p>Pensa na padaria perto da sua casa. Na clínica, no salão, no petshop, na loja de roupa. Todos eles atendem cliente pelo WhatsApp — e todos eles <strong>perdem venda todo dia</strong> pelo mesmo motivo: o cliente chama às 21h, ninguém responde, e a venda vai para o concorrente que respondeu primeiro.</p>
+
+    <p>Um agente de IA no WhatsApp resolve isso: é um atendente digital que responde na hora, 24 horas por dia, com as informações do negócio — cardápio, preço, horário, agendamento — e passa a conversa para o dono quando precisa. Não é robô mágico. É um serviço real, que hoje se monta <strong>sem escrever código</strong>, com ferramenta de blocos e template pronto.</p>
+
+    <p>O detalhe que quase ninguém percebeu: <strong>a demanda por esse serviço cresceu, e quase ninguém está oferecendo isso para o pequeno comércio.</strong> Não falta tecnologia. Falta alguém do bairro que saiba montar, oferecer e entregar.</p>
+
+    <p>É aqui que entra o método.</p>
+
+    <h3 style="text-align:center; font-size:1.5rem; margin:30px 0 22px;">⚙️ O Método dos 4 M's</h3>
+
+    <div class="layer-card">
+      <span class="layer-tag">1 — Montar</span>
+      <p>Você monta seu primeiro agente de IA no WhatsApp <strong>em uma tarde</strong>, com ferramenta sem código e o template pronto que vem no material. Sem programar uma linha.</p>
+    </div>
+
+    <div class="layer-card">
+      <span class="layer-tag">2 — Mirar</span>
+      <p>Você aprende a escolher o alvo certo: os tipos de comércio local que mais perdem cliente por demora no WhatsApp — e monta sua <strong>lista de 20 negócios reais</strong> da sua cidade.</p>
+    </div>
+
+    <div class="layer-card">
+      <span class="layer-tag">3 — Mensagem</span>
+      <p>Você prospecta pelo próprio WhatsApp com <strong>script palavra por palavra</strong>: primeiro contato, follow-up e fechamento. Sem aparecer, sem audiência, sem parecer spam.</p>
+    </div>
+
+    <div class="layer-card">
+      <span class="layer-tag">4 — Monetizar</span>
+      <p>Você precifica do jeito que o mercado já pratica (taxa de implantação + mensalidade), apresenta uma <strong>proposta de 1 página</strong> e formaliza com contrato simples.</p>
+    </div>
+
+    <p>Percebe que não tem mágica aqui? Cada passo existe por um motivo e prepara o seguinte. É por isso que quem tenta "no improviso" — monta o agente mas não sabe pra quem oferecer, ou aborda o comércio sem saber quanto cobrar — trava no meio do caminho. <strong>O método é a ordem.</strong></p>
+
+    <div class="mini-insight">
+      <p>🎁 <strong>Um presente antes de você decidir qualquer coisa</strong> (aplique hoje, mesmo sem comprar): o <strong>teste do cliente oculto</strong>. Escolha 3 comércios do seu bairro e mande uma pergunta simples pelo WhatsApp deles às 20h30 ("vocês entregam? até que horas?"). Cronometre. Se a resposta demorar mais de 15 minutos — ou não vier — você acabou de encontrar, com seus próprios olhos, um negócio perdendo venda e um problema que este método te ensina a resolver.</p>
+    </div>
+
+    <div class="cta-wrap">
+      <a class="cta" href="#CHECKOUT">Quero o método completo</a>
+      <p class="cta-note">Pix ou cartão · Acesso imediato · Garantia de 7 dias</p>
+    </div>
+  </div>
+</section>
+
+<!-- SEÇÃO FUNDADORA — omitida nesta versão: o Blueprint exige foto REAL, nome completo e perfil verificável. Enquanto o autor público não estiver definido (foto + @perfil ativo + fatos verificáveis), inserir aqui o bloco "Quem escreve" antes de rodar tráfego. Página sem rosto converte pior — pendente de dado real, não opcional. -->
+
+<!-- ==================== 5. O QUE VOCÊ RECEBE ==================== -->
+<section>
+  <div class="col">
+    <p class="eyebrow">O que você recebe</p>
+    <h2>O ebook AGENTE PRONTO, capítulo a capítulo</h2>
+
+    <p>8 capítulos com o passo a passo exato de cada etapa — <strong>menus e botões indicados por nome</strong>, pra você ler no celular e aplicar em seguida:</p>
+
+    <div class="chapter">
+      <h3><span class="chap-num">Cap. 1</span>O Balcão que Ninguém Atende</h3>
+      <p>A oportunidade real do comércio local em uma página — o modelo de negócio completo (você monta, implanta e cobra implantação + mensalidade), o que você precisa ter (celular, notebook, 1h/dia) e o cronograma honesto do zero ao primeiro cliente.</p>
+    </div>
+
+    <div class="chapter">
+      <h3><span class="chap-num">Cap. 2</span>A Caixa de Ferramentas Sem Código</h3>
+      <p>Você escolhe a ferramenta certa e cria as contas passo a passo — com cada menu e botão indicados por nome, incluindo os <strong>custos reais</strong> para começar e manter, sem surpresa no fim do mês.</p>
+    </div>
+
+    <div class="chapter">
+      <h3><span class="chap-num">Cap. 3</span>MONTAR</h3>
+      <p>Você termina o capítulo com um agente <strong>funcional respondendo no seu próprio WhatsApp</strong> — template-base pronto para copiar, colar e adaptar, checklist de teste e o protocolo de transbordo para humano (a pergunta nº 1 de todo dono de negócio).</p>
+    </div>
+
+    <div class="chapter">
+      <h3><span class="chap-num">Cap. 4</span>MIRAR</h3>
+      <p>Você sai com uma <strong>lista de 20 negócios reais</strong> do seu bairro, priorizada por chance de fechar — usando Google Maps, Instagram local e o teste do cliente oculto.</p>
+    </div>
+
+    <div class="chapter">
+      <h3><span class="chap-num">Cap. 5</span>MENSAGEM</h3>
+      <p>A prospecção sem vergonha — o script de primeiro contato <strong>palavra por palavra</strong>, a demonstração de 10 minutos que vale mais que mil argumentos, a cadência de follow-up de 3 toques e a resposta pronta para as 7 objeções do dono de negócio ("já tenho menina que responde", "IA vai falar besteira"…).</p>
+    </div>
+
+    <div class="chapter">
+      <h3><span class="chap-num">Cap. 6</span>MONETIZAR</h3>
+      <p>Quanto cobrar (taxa de implantação + mensalidade, do jeito que o mercado pratica), a proposta de 1 página, o contrato simples e o caminho do <strong>MEI e da nota fiscal</strong> sem drama.</p>
+    </div>
+
+    <div class="chapter">
+      <h3><span class="chap-num">Cap. 7</span>ENTREGAR</h3>
+      <p>O roteiro de implantação em 7 dias, o treinamento do dono e da equipe, a manutenção mensal que segura o cliente e os <strong>limites de LGPD</strong> que protegem você e o contrato.</p>
+    </div>
+
+    <div class="chapter">
+      <h3><span class="chap-num">Cap. 8</span>Depois do Primeiro Cliente</h3>
+      <p>Transformar 1 cliente em sistema — o caso documentado, a máquina de indicação, quantos clientes cabem na sua 1h/dia e o mapa do que vem depois.</p>
+    </div>
+
+    <p class="digital-note">📱 Produto 100% digital: nada chega pela transportadora — o acesso chega no seu e-mail, na hora, pra ler no celular, tablet ou computador.</p>
+
+    <div class="cta-wrap">
+      <a class="cta" href="#CHECKOUT">Quero receber tudo no meu e-mail</a>
+      <p class="cta-note">Pix ou cartão · Acesso imediato · Garantia de 7 dias</p>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== 6. PROVA & CONFIANÇA ==================== -->
+<section class="panel-section" style="padding-top:0;">
+  <div class="col">
+    <p class="eyebrow">Prova &amp; confiança</p>
+    <h2>Este material é novo — e eu não vou fingir o contrário</h2>
+    <p>Em vez de encher esta página de elogios que você não teria como verificar, te dou o que você pode <strong>conferir agora</strong>:</p>
+    <ul class="trust-list">
+      <li><strong>A promessa é honesta:</strong> nenhuma promessa de dinheiro rápido garantido nesta página. Esse é justamente o sinal clássico de golpe — e ele não está aqui.</li>
+      <li><strong>Você aprende uma habilidade real:</strong> montar, oferecer e entregar um serviço que o comércio da sua cidade já procura e que quase ninguém oferece.</li>
+      <li><strong>Sem depoimento fabricado:</strong> quando os primeiros relatos reais chegarem — com nome e autorização — eles entram aqui. Antes disso, nada de história inventada.</li>
+      <li><strong>O risco é meu:</strong> 7 dias de reembolso incondicional, processado pela própria Kiwify — não depende da minha boa vontade.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ==================== 7. OS 5 BÔNUS ==================== -->
+<section>
+  <div class="col">
+    <p class="eyebrow">Bônus de lançamento</p>
+    <h2>Os 5 bônus (cada um mata uma objeção)</h2>
+    <p>Junto com o ebook, você recebe hoje — sem pagar nada a mais:</p>
+
+    <div class="bonus-card">
+      <div class="bonus-head">
+        <h3>🧠 Bônus 1 — Arsenal de Prompts do Agente Pronto</h3>
+        <span class="bonus-price">R$ 67</span>
+      </div>
+      <p>Prompts e instruções prontos por nicho — padaria, clínica, loja de roupa, salão, petshop. Copiar, colar e adaptar.</p>
+      <p class="kills">Mata a objeção: "não sei escrever prompt, não sou técnico".</p>
+    </div>
+
+    <div class="bonus-card">
+      <div class="bonus-head">
+        <h3>🧮 Bônus 2 — Tabela de Precificação de Serviços de IA</h3>
+        <span class="bonus-price">R$ 47</span>
+      </div>
+      <p>As faixas de preço praticadas por tipo de serviço e porte de cliente + o modelo de proposta de 1 página.</p>
+      <p class="kills">Mata a objeção: "não sei quanto cobrar, tenho medo de cobrar errado".</p>
+    </div>
+
+    <div class="bonus-card">
+      <div class="bonus-head">
+        <h3>📄 Bônus 3 — Contrato-Modelo Simplificado</h3>
+        <span class="bonus-price">R$ 37</span>
+      </div>
+      <p>Contrato de prestação de serviço em linguagem simples + termo básico de uso de dados (LGPD), prontos para preencher.</p>
+      <p class="kills">Mata a objeção: "e se o cliente não pagar? Isso é sério mesmo?".</p>
+    </div>
+
+    <div class="bonus-card">
+      <div class="bonus-head">
+        <h3>📲 Bônus 4 — Roteiro de Prospecção no WhatsApp — 30 dias</h3>
+        <span class="bonus-price">R$ 57</span>
+      </div>
+      <p>Os scripts palavra por palavra (primeiro contato, follow-up, fechamento) organizados em um plano de 30 dias de 1 hora por noite.</p>
+      <p class="kills">Mata a objeção: "tenho vergonha de vender" ou "não tenho tempo".</p>
+    </div>
+
+    <div class="bonus-card">
+      <div class="bonus-head">
+        <h3>✅ Bônus 5 — Checklist de Entrega &amp; Onboarding do Cliente</h3>
+        <span class="bonus-price">R$ 37</span>
+      </div>
+      <p>O passo a passo de implantação + o mini-manual de treinamento do dono, prontos para entregar.</p>
+      <p class="kills">Mata a objeção: "e depois que eu vender? Tenho medo de fazer feio na entrega".</p>
+    </div>
+
+    <div class="honest-notice">
+      <p>⏳ <strong>Aviso honesto sobre os bônus:</strong> o ebook é digital e não "esgota" — dizer o contrário seria mentira. O que expira de verdade: os 5 bônus saem desta oferta na próxima versão do produto, a preço maior. Sem timer falso, sem "restam 3 unidades" — é só o motivo real. Depois disso a página continua no ar, sem eles.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== 8. CUSTO DA INAÇÃO ==================== -->
+<section class="panel-section">
+  <div class="col">
+    <p class="eyebrow">A conta que ninguém faz</p>
+    <h2>Quanto custa continuar exatamente como está?</h2>
+
+    <p>"Não decidir" parece de graça. Não é. Coloca na ponta do lápis o que o problema já cobra de você — com números conservadores, que você mesmo pode conferir:</p>
+
+    <div class="inaction-card">
+      <ul>
+        <li><span>Mais um mês do salário que não sobra</span><span class="val">todo mês, de novo</span></li>
+        <li><span>Cada noite pesquisando "como ganhar dinheiro com IA" e vendo mais um vídeo solto</span><span class="val">1 hora sem sair do lugar</span></li>
+        <li><span>Curso-cilada que promete renda garantida e não entrega método</span><span class="val">R$ 200 a R$ 2.000 por tentativa</span></li>
+        <li><span>A janela aberta: hoje quase ninguém oferece esse serviço no bairro</span><span class="val">terreno sem dono</span></li>
+        <li><span>O AGENTE PRONTO — pago UMA vez, seu pra sempre</span><span class="val">R$ 37</span></li>
+      </ul>
+    </div>
+
+    <p>E a janela é real: <strong>terreno sem dono não fica sem dono para sempre.</strong> Quando a padaria da sua rua já tiver contratado alguém, esse alguém terá sido a pessoa que começou antes.</p>
+    <p style="font-family:Georgia,serif; font-style:italic; color:var(--gold-soft); font-size:1.1rem;">O "não" também tem preço. Ele só não aparece na fatura.</p>
+  </div>
+</section>
+
+<!-- ==================== 9. STACK / INVESTIMENTO ==================== -->
+<section id="oferta" style="padding-top:8px;">
+  <div class="col">
+    <p class="eyebrow">O investimento</p>
+    <h2>Colocando tudo na mesa, com valores reais de mercado:</h2>
+
+    <div class="stack-card">
+      <h3>Tudo o que você leva hoje</h3>
+      <ul class="stack-list">
+        <li><span>📕 Ebook AGENTE PRONTO — Método dos 4 M's (8 capítulos, passo a passo detalhado)</span><span class="item-price">R$ 97</span></li>
+        <li><span>🧠 Bônus 1 — Arsenal de Prompts por nicho</span><span class="item-price">R$ 67</span></li>
+        <li><span>📲 Bônus 4 — Roteiro de Prospecção 30 dias</span><span class="item-price">R$ 57</span></li>
+        <li><span>🧮 Bônus 2 — Tabela de Precificação + proposta de 1 página</span><span class="item-price">R$ 47</span></li>
+        <li><span>📄 Bônus 3 — Contrato-Modelo + termo LGPD</span><span class="item-price">R$ 37</span></li>
+        <li><span>✅ Bônus 5 — Checklist de Entrega &amp; Onboarding</span><span class="item-price">R$ 37</span></li>
+      </ul>
+      <p class="stack-total">Total somado: <s>R$ 342</s></p>
+      <p class="stack-today">
+        Hoje:
+        <span class="price">R$ 37</span>
+        <span class="terms">à vista no Pix — ou parcelado no cartão</span>
+      </p>
+      <p class="johnson-pre">Acesso imediato após a confirmação · Garantia incondicional de 7 dias</p>
+      <a class="cta" href="#CHECKOUT">Quero garantir tudo por R$ 37</a>
+      <p class="cta-note" style="color:var(--text-soft);">Pix confirma na hora · Acesso imediato no e-mail · Garantia de 7 dias</p>
+      <div class="pay-icons" style="color:var(--text-soft);">
+        <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="2" aria-hidden="true"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg> Compra segura</span>
+        <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="2" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg> Cartão parcelado</span>
+        <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="2" aria-hidden="true"><rect x="5" y="5" width="14" height="14" rx="3" transform="rotate(45 12 12)"/></svg> Pix na hora</span>
+      </div>
+      <p class="per-day">Coloca na ponta do lápis: dá <strong>menos de R$ 1,25 por dia</strong> ao longo de um mês — o preço de um café para aprender uma habilidade real que o comércio da sua cidade já procura e que quase ninguém oferece.</p>
+      <p class="stack-guarantee-ribbon">🛡️ Protegido pela garantia incondicional de 7 dias — reembolso pela própria Kiwify</p>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== 10. GARANTIA ==================== -->
+<section style="padding-top:8px;">
+  <div class="col">
+    <div class="guarantee-box">
+      <div class="seal" aria-hidden="true">
+        <!-- Selo de garantia 7 dias -->
+        <svg width="130" height="140" viewBox="0 0 130 140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Selo: garantia incondicional de 7 dias">
+          <path d="M65 6 L118 24 v40 c0 34 -24 56 -53 68 C36 120 12 98 12 64 V24 Z" fill="#131920" stroke="#d4af37" stroke-width="3"/>
+          <circle cx="65" cy="62" r="36" fill="none" stroke="#3aa0a0" stroke-width="4" stroke-dasharray="200 26" stroke-linecap="round" transform="rotate(-60 65 62)"/>
+          <text x="65" y="60" text-anchor="middle" font-family="Georgia, serif" font-size="30" font-weight="bold" fill="#f4f1ea">7</text>
+          <text x="65" y="80" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" letter-spacing="2" fill="#d4af37">DIAS</text>
+          <text x="65" y="132" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" letter-spacing="1" fill="#6f7a85">INCONDICIONAL</text>
+        </svg>
+      </div>
+      <h3>🛡️ Garantia Primeiro Passo — 7 dias, incondicional</h3>
+      <p><strong>Você não precisa decidir agora. Decida com o material na mão.</strong></p>
+      <p>Entre hoje, baixe tudo, leia o ebook e monte seu primeiro agente com o Capítulo 3. Se em 7 dias você achar que não valeu cada centavo — por qualquer motivo, até "mudei de ideia" — mande <strong>UM e-mail</strong> para o suporte e devolvo <strong>100% do valor em até 24h</strong>. Sem pergunta, sem formulário, sem burocracia.</p>
+      <p>E tem mais: o reembolso é <strong>processado pela própria Kiwify</strong> — você não depende da minha boa vontade. É um botão dentro do seu e-mail de compra. Golpista não te dá 7 dias pra devolver o dinheiro.</p>
+      <p class="last-word">O risco da decisão é meu. O seu único risco é continuar exatamente onde está.</p>
+    </div>
+    <div class="cta-wrap">
+      <a class="cta" href="#CHECKOUT">Quero começar com risco zero</a>
+      <p class="cta-note">Pix ou cartão · Acesso imediato · Garantia incondicional de 7 dias</p>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== 11. FAQ ==================== -->
+<section>
+  <div class="col">
+    <p class="eyebrow">Perguntas frequentes</p>
+    <h2>O que você ainda quer saber</h2>
+
+    <details>
+      <summary>1. Isso é golpe? Como sei que é confiável?</summary>
+      <div class="faq-body"><p>Ótimo instinto — desconfie mesmo, esse mercado está cheio de cilada. Checagem que você pode fazer agora: o pagamento é processado pela <strong>Kiwify</strong> (plataforma com CNPJ e reembolso garantido por lei), o CNPJ e o contato do produtor estão no rodapé, a política de reembolso está escrita em uma frase — e você não encontra aqui <strong>nenhuma promessa de dinheiro rápido garantido</strong>, que é o sinal clássico de golpe. Golpista não te dá 7 dias para devolver o dinheiro.</p></div>
+    </details>
+
+    <details>
+      <summary>2. Preciso saber programar?</summary>
+      <div class="faq-body"><p>Não. O método inteiro usa ferramenta <strong>sem código</strong> (arrastar, clicar, colar texto), com template pronto incluído e cada etapa descrita botão a botão. Se você usa WhatsApp e consegue preencher uma planilha, consegue montar o agente do Capítulo 3.</p></div>
+    </details>
+
+    <details>
+      <summary>3. Quanto vou ganhar com isso?</summary>
+      <div class="faq-body"><p><strong>Nenhum valor é garantido — e desconfie de quem garantir.</strong> O que o material mostra são faixas de preço praticadas no mercado para serviços de IA — referências para você pesquisar, validar na sua região e montar a sua própria tabela. O seu resultado depende da sua execução: da lista que você montar, das mensagens que enviar, das propostas que apresentar. Este é um produto educacional, não uma promessa de renda.</p></div>
+    </details>
+
+    <details>
+      <summary>4. Em quanto tempo vejo resultado?</summary>
+      <div class="faq-body"><p>Prazo honesto: o <strong>agente funcional você monta em uma tarde</strong> com o Capítulo 3. O <strong>primeiro cliente vem em semanas de execução</strong> consistente — não "da noite pro dia". Quem te prometer o contrário está mentindo. O Roteiro de 30 dias (Bônus 4) existe exatamente para organizar essa execução em 1h por noite.</p></div>
+    </details>
+
+    <details>
+      <summary>5. Não acho tudo isso de graça no YouTube?</summary>
+      <div class="faq-body"><p>Acha — espalhado em dezenas de vídeos que se contradizem, quase todos ensinando a FERRAMENTA e nenhum ensinando a VENDER e ENTREGAR o serviço. O que você está comprando é a ORDEM: o método completo, os scripts palavra por palavra, a tabela de precificação e o contrato — num lugar só. <strong>Você não paga por informação; paga para parar de se perder nela.</strong></p></div>
+    </details>
+
+    <details>
+      <summary>6. E se eu não gostar?</summary>
+      <div class="faq-body"><p>Garantia incondicional de <strong>7 dias</strong>: um e-mail para o suporte (ou o botão no seu e-mail de compra da Kiwify) e 100% do valor volta em até 24h. Sem justificar, sem formulário.</p></div>
+    </details>
+
+    <details>
+      <summary>7. O suporte some depois da compra?</summary>
+      <div class="faq-body"><p>Não. O canal de suporte fica escrito aqui, no seu e-mail de compra e dentro do material, com prazo de resposta informado. Suporte que evapora é uma das maiores reclamações desse mercado — por aqui, o canal é público.</p></div>
+    </details>
+
+    <details>
+      <summary>8. Como recebo o acesso? Funciona no celular? E se eu só tiver 1 hora por dia?</summary>
+      <div class="faq-body"><p>O acesso chega no seu e-mail <strong>imediatamente</strong> após a confirmação do pagamento (Pix confirma na hora) e funciona no celular, tablet e computador. E sim: o método foi desenhado para caber <strong>das 21h às 22h</strong> — capítulos diretos, templates prontos e o plano de 30 dias em blocos de 1 hora. Você não precisa de mais tempo; precisa de um plano que caiba no tempo que você já tem.</p></div>
+    </details>
+  </div>
+</section>
+
+<!-- ==================== 12. ANTES QUE VOCÊ PERGUNTE ==================== -->
+<section class="panel-section" style="padding-top:0;">
+  <div class="col">
+    <p class="eyebrow">Antes que você pergunte</p>
+    <h2>As últimas dúvidas, respondidas de frente</h2>
+
+    <div class="objection">
+      <h3>"Parece bom demais pra ser verdade."</h3>
+      <p>Ótimo instinto — desconfie mesmo. Repare que esta página não prometeu dinheiro rápido nem resultado garantido: prometeu um MÉTODO, e te mostrou o COMO (o Método dos 4 M's, passo por passo) antes de pedir qualquer coisa. Releia a seção do mecanismo. Aqui não tem "confia em mim" — <strong>tem caminho, script e contrato</strong>.</p>
+    </div>
+
+    <div class="objection">
+      <h3>"Eu acho tudo isso de graça no YouTube."</h3>
+      <p>Acha mesmo — espalhado em dezenas de vídeos que se contradizem, quase todos ensinando a ferramenta e nenhum ensinando a vender e entregar. O que você não acha de graça é a ORDEM: o que fazer primeiro, os scripts palavra por palavra, a tabela de preço e o contrato num lugar só. <strong>Você não paga por informação. Paga pra parar de se perder nela.</strong></p>
+    </div>
+
+    <div class="objection">
+      <h3>"Já tentei de tudo com IA e nada saiu do lugar."</h3>
+      <p>Se você já tentou "de tudo", provavelmente tentou táticas soltas — um prompt aqui, um vídeo ali. Tática solta sem método é exatamente o que trava no primeiro cliente. O que faltou não foi você. Foi a estrutura. <strong>Desta vez, a estrutura vem pronta.</strong></p>
+    </div>
+
+    <div class="objection">
+      <h3>"Vou pensar e volto depois."</h3>
+      <p>Pode voltar — a página continua aqui. Só leva em conta duas coisas: os 5 bônus saem desta oferta na próxima versão do produto (motivo real, sem drama); e cada semana "pensando" é mais uma semana pesquisando sem sair do lugar, enquanto o terreno do bairro segue sem dono. <strong>Adiar também é uma decisão.</strong></p>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== 13. CLOSE ==================== -->
+<section class="close-section" id="cta-final">
+  <div class="col">
+    <p class="eyebrow">A decisão</p>
+    <h2>Como pode ser a sua próxima semana</h2>
+
+    <div class="future-pace">
+      <p>🌅 <strong>Imagina a cena — porque ela é possível já esta semana:</strong> sábado à tarde, você abre o ebook no celular, segue o Capítulo 3 e monta o agente da "Padaria do Bairro" — o exercício-âncora do método. Domingo, ele está respondendo no seu próprio WhatsApp, e você mostra pra alguém da sua casa. Na segunda, você começa a lista dos 20 alvos. Sem largar o emprego, sem aparecer, uma hora por noite. Você não está mais adivinhando — está seguindo um plano.</p>
+    </div>
+
+    <div class="recap">
+      <p>📕 O <strong>AGENTE PRONTO</strong> completo (8 capítulos + Método dos 4 M's) + 🧠 Arsenal de Prompts + 🧮 Tabela de Precificação + 📄 Contrato-Modelo + 📲 Roteiro de 30 dias + ✅ Checklist de Entrega — tudo somando <s style="text-decoration-color:var(--gold); text-decoration-thickness:2px;">R$ 342</s>, por <strong style="font-size:1.2em;">R$ 37</strong> (Pix ou parcelado no cartão), com acesso imediato no e-mail e <strong>7 dias de garantia incondicional</strong>.</p>
+    </div>
+
+    <div class="two-paths">
+      <p>Você tem dois caminhos agora.</p>
+      <p>O primeiro: fechar esta página e continuar no improviso — mais vídeos soltos, mais uma noite pesquisando, o mesmo lugar daqui a 3 meses. Você já sabe onde esse caminho dá, porque já está nele.</p>
+      <p>O segundo: investir R$ 37, testar por 7 dias com risco zero e finalmente seguir um mapa com começo, meio e fim — <strong>Montar, Mirar, Mensagem, Monetizar</strong>.</p>
+      <p style="font-family:Georgia,serif; font-style:italic; font-size:1.2rem; color:var(--paper);">As duas são escolhas. Só uma muda alguma coisa.</p>
+    </div>
+
+    <div class="cta-wrap">
+      <a class="cta" href="#CHECKOUT">Sim, quero começar hoje — R$ 37</a>
+      <p class="cta-note">R$ 37 no Pix · parcelado no cartão · Garantia incondicional de 7 dias</p>
+    </div>
+
+    <div class="ps-block">
+      <p><strong>P.S.</strong> — Rolou direto até aqui? Resumo em 3 linhas: o <strong>AGENTE PRONTO</strong> é o ebook-método que te ensina a montar agentes de IA no WhatsApp para o comércio do seu bairro e a oferecer esse serviço com script, tabela de preço e contrato prontos — sem saber programar. Custa <strong>R$ 37</strong>, o acesso chega no e-mail em segundos e você tem <strong>7 dias de garantia incondicional</strong> para decidir com o material na mão. O botão está logo acima.</p>
+      <p><strong>P.P.S.</strong> — Um aviso honesto, sem drama de última hora: os <strong>5 bônus</strong> (Arsenal de Prompts, Tabela de Precificação, Contrato-Modelo, Roteiro de 30 dias e Checklist de Entrega) saem desta oferta na próxima versão do produto, a preço maior. Depois disso a página continua no ar — mas sem eles. O ebook é digital e não "esgota"; os bônus, sim. Se eles importam pra você, o momento é agora.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== RODAPÉ / DISCLAIMER ==================== -->
+<footer>
+  <div class="col">
+    <div class="disclaimer">
+      Este é um produto educacional. O AGENTE PRONTO ensina uma habilidade técnica (criação de agentes de IA para WhatsApp) e um processo comercial (prospecção, precificação e entrega de serviço). Nenhum resultado financeiro é prometido ou garantido. Os valores citados no material referem-se a faixas de preço praticadas no mercado por prestadores de serviço e não representam promessa de ganho. Resultados dependem de fatores individuais como dedicação, execução e contexto de mercado. Este produto não é consultoria financeira nem recomendação de investimento. Garantia incondicional de 7 dias conforme o Código de Defesa do Consumidor (art. 49).
+    </div>
+    <p class="foot-note">Produto 100% digital — o acesso chega por e-mail após a confirmação do pagamento.</p>
+    <p class="foot-note">🔒 Compra segura · Pagamento processado pela Kiwify · Pix ou cartão</p>
+    <!-- RODAPÉ TÉCNICO: inserir Política de Privacidade · Termos de Uso · Contato/Suporte · CNPJ antes de rodar tráfego -->
+    <p class="foot-note">Resultados variam de pessoa para pessoa.</p>
+    <p class="foot-note">AGENTE PRONTO · © 2026</p>
+  </div>
+</footer>
+
+<!-- ==================== STICKY CTA MOBILE ==================== -->
+<div class="sticky-bar" id="sticky-bar" aria-hidden="true">
+  <div class="sb-price"><strong>R$ 37</strong>ebook + 5 bônus</div>
+  <a class="sb-btn" href="#CHECKOUT">Quero meu acesso</a>
+</div>
+
+<script>
+(function(){
+  var bar = document.getElementById('sticky-bar');
+  if (!bar || !('IntersectionObserver' in window)) return;
+
+  var heroGone = false;
+  var zoneVisible = new Map();
+
+  function update(){
+    var anyZone = false;
+    zoneVisible.forEach(function(v){ if (v) anyZone = true; });
+    var show = heroGone && !anyZone;
+    bar.classList.toggle('visible', show);
+    bar.setAttribute('aria-hidden', show ? 'false' : 'true');
+  }
+
+  var hero = document.querySelector('.hero');
+  if (hero) {
+    new IntersectionObserver(function(entries){
+      heroGone = !entries[0].isIntersecting;
+      update();
+    }, { threshold: 0 }).observe(hero);
+  }
+
+  var zones = [document.getElementById('oferta'), document.getElementById('cta-final'), document.querySelector('footer')];
+  var zo = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){ zoneVisible.set(en.target, en.isIntersecting); });
+    update();
+  }, { threshold: 0.05 });
+  zones.forEach(function(z){ if (z) zo.observe(z); });
+})();
+</script>
+
+</body>
+</html>
