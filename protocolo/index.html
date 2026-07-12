@@ -408,6 +408,36 @@ footer .foot-note{ text-align:center; color:#6b6758; margin-bottom:6px; }
   .stack-card{ padding:28px 18px; }
   .hero{ padding:32px 0 48px; }
 }
+
+/* ============ VISUAL 2026 (50ms test: contraste+profundidade+foco) ============ */
+/* P1: hero com mesh-gradient de iluminacao (0KB de imagem) */
+.hero{background:
+  radial-gradient(ellipse 80% 55% at 22% 8%, rgba(230,201,100,.15), transparent 60%),
+  radial-gradient(ellipse 65% 50% at 85% 90%, rgba(120,150,255,.14), transparent 62%),
+  radial-gradient(ellipse 40% 32% at 70% 20%, rgba(230,201,100,.15), transparent 70%),
+  linear-gradient(168deg,#141a33 0%,#1d2749 55%,#25315c 100%) !important}
+/* headline = elemento dominante da dobra */
+.hero h1{font-size:clamp(2.1rem,7vw,3.3rem)!important;line-height:1.14!important;letter-spacing:-.01em;
+  text-shadow:0 2px 24px rgba(0,0,0,.35)}
+/* P3: CTA com shine-sweep + pulse de glow (saliencia por luminancia) */
+.cta{position:relative;overflow:hidden;animation:v26pulse 3s ease-in-out infinite}
+.cta::after{content:"";position:absolute;top:0;left:-80%;width:45%;height:100%;
+  background:linear-gradient(105deg,transparent,rgba(255,255,255,.42),transparent);
+  transform:skewX(-18deg);animation:v26shine 4.2s ease-in-out infinite}
+@keyframes v26shine{0%,55%{left:-80%}75%,100%{left:130%}}
+@keyframes v26pulse{0%,100%{box-shadow:0 6px 20px #e6c96459,inset 0 1px 0 rgba(255,255,255,.5)}
+  50%{box-shadow:0 6px 34px #e6c964a6,inset 0 1px 0 rgba(255,255,255,.5)}}
+@media (prefers-reduced-motion:reduce){.cta,.cta::after{animation:none!important}}
+/* P2: profundidade em camadas nos cards-chave */
+.stack-card,.garantia-card,.bonus-card,.dia1-bloco,.autoria,.custo-card,.ps-bloco{
+  border-radius:16px;box-shadow:0 1px 3px rgba(0,0,0,.08),0 14px 38px #1d27492b;
+  border-top:3px solid #e6c964;background-clip:padding-box}
+/* P4: mockup/svg do hero com halo + tilt 3D */
+.hero svg{filter:drop-shadow(0 24px 44px rgba(0,0,0,.5)) drop-shadow(0 0 34px #e6c96440);
+  transform:perspective(900px) rotateY(-7deg) rotateX(2deg);transition:transform .4s ease}
+.hero svg:hover{transform:perspective(900px) rotateY(-2deg)}
+/* P5: respiro cirurgico no bloco de decisao */
+.cta-wrap,.preco-final{padding:10px 0 4px}
 </style>
 <script type="text/javascript">
 (function(c,l,a,r,i,t,y){
