@@ -438,6 +438,13 @@ footer .foot-note{ text-align:center; color:#6b6758; margin-bottom:6px; }
 .hero svg:hover{transform:perspective(900px) rotateY(-2deg)}
 /* P5: respiro cirurgico no bloco de decisao */
 .cta-wrap,.preco-final{padding:10px 0 4px}
+
+/* CAPA REAL com presenca de produto */
+.capa-wrap{text-align:center;margin:26px 0 6px}
+.capa-wrap img{width:min(240px,62vw);height:auto;border-radius:10px;filter:drop-shadow(0 26px 46px rgba(0,0,0,.55)) drop-shadow(0 0 36px rgba(230,201,100,.35));transform:perspective(900px) rotateY(-7deg) rotateX(1.5deg);transition:transform .4s ease}
+.capa-wrap img:hover{transform:perspective(900px) rotateY(-2deg)}
+/* enso volta a ficar reto (tilt so na capa) */
+.hero .enso-wrap svg{transform:none!important;filter:drop-shadow(0 6px 16px rgba(0,0,0,.35))}
 </style>
 <script type="text/javascript">
 (function(c,l,a,r,i,t,y){
@@ -468,6 +475,7 @@ footer .foot-note{ text-align:center; color:#6b6758; margin-bottom:6px; }
       <p class="cta-note">Pix ou cartão · Acesso imediato no celular · Garantia incondicional de 30 dias</p>
     </div>
     <p class="lead-hero">O método japonês de caminhada intervalada que, segundo estudos, gera <strong>mais perda de peso e mais queda de pressão que a caminhada comum</strong> — e aposenta de vez a meta dos 10.000 passos (que nasceu como marketing de pedômetro nos anos 60, não como ciência).</p>
+    <div class="capa-wrap"><img src="/protocolo/capa.webp" alt="Capa do ebook Protocolo Japonês 3x3" width="240" height="340" fetchpriority="high"></div>
   </div>
 </header>
 
