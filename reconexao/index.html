@@ -991,23 +991,18 @@ body.com-barra{padding-bottom:84px}
   var bar=document.getElementById('barra-cta');
   var hero=document.getElementById('hero');
   if(!bar||!hero||!('IntersectionObserver' in window))return;
-  var heroVisivel=true,estado=new Map();
-  function render(){
-    var algumCta=false;
-    estado.forEach(function(v){if(v)algumCta=true;});
-    var mostrar=!heroVisivel&&!algumCta;
-    bar.classList.toggle('visivel',mostrar);
-    document.body.classList.toggle('com-barra',mostrar);
+  // Regra simples e robusta: a barra fixa so aparece DEPOIS de rolar
+  // metade do hero (nunca no segundo zero) e some perto do rodape.
+  function upd(){
+    var gatilho = hero.offsetHeight * 0.5;
+    var perto_fim = (window.innerHeight + window.scrollY) > (document.body.scrollHeight - 280);
+    var mostrar = (window.scrollY > gatilho) && !perto_fim;
+    bar.classList.toggle('visivel', mostrar);
+    document.body.classList.toggle('com-barra', mostrar);
   }
-  new IntersectionObserver(function(e){
-    heroVisivel=(e[0].intersectionRatio>0.6);render();
-  },{threshold:[0,0.3,0.6,0.9,1]}).observe(hero);
-  var alvos=document.querySelectorAll('a.cta,footer');
-  var io=new IntersectionObserver(function(entradas){
-    entradas.forEach(function(en){estado.set(en.target,en.isIntersecting);});
-    render();
-  },{threshold:0});
-  alvos.forEach(function(t){io.observe(t);});
+  window.addEventListener('scroll', upd, {passive:true});
+  window.addEventListener('resize', upd, {passive:true});
+  upd();
   // Smooth scroll para âncoras internas (fallback + offset limpo)
   document.querySelectorAll('a[href^="#"]').forEach(function(a){
     a.addEventListener('click',function(ev){
