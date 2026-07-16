@@ -990,8 +990,11 @@ body.com-barra{padding-bottom:84px}
   if(!bar||!hero)return;
   // Regra simples e robusta: a barra fixa so aparece DEPOIS de rolar
   // metade do hero (nunca no segundo zero) e some perto do rodape.
+  // Barra de preco: SO depois que a visitante ja passou pela secao da oferta
+  // (preco apresentado com contexto). Antes disso: zero mencao a dinheiro.
+  var oferta = document.getElementById('oferta');
   function upd(){
-    var gatilho = hero.offsetHeight * 0.5;
+    var gatilho = oferta ? (oferta.offsetTop + 250) : (document.body.scrollHeight * 0.55);
     var perto_fim = (window.innerHeight + window.scrollY) > (document.body.scrollHeight - 280);
     var mostrar = (window.scrollY > gatilho) && !perto_fim;
     bar.classList.toggle('visivel', mostrar);
