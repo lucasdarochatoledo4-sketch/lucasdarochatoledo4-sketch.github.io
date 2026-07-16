@@ -490,8 +490,12 @@ body.com-barra{padding-bottom:84px}
     </svg>
 
     <p class="entrega">📖 Ebook completo + 5 bônus · acesso imediato · garantia incondicional de 30 dias</p>
-    <a class="cta" href="#metodo">💡 QUERO ENTENDER COMO FUNCIONA ↓</a>
-    <p class="cta-sub" style="margin-top:10px">Leitura de 3 minutos · o mecanismo aberto, sem cadastro e sem compromisso</p>
+    <a class="cta" href="https://pay.kiwify.com.br/ldtfS4Z">🔥 QUERO MEU ACESSO AGORA POR R$37 →</a>
+    <p class="ancora-hero">Condicao de fundadora: <s>R$342</s> por <strong>R$37</strong> · ate <strong>31/07</strong><span id="cd-hero"></span></p>
+    <ul class="cta-seguro">
+      <li>💳 Pix ou cartao</li><li>⚡ Acesso imediato</li><li>🛡️ Garantia de 30 dias</li><li>🔕 Compra 100% discreta</li>
+    </ul>
+    <a class="link-metodo" href="#metodo">Cética? Desce e conhece o mecanismo primeiro ↓</a>
     <a class="isca-scroll" href="#metodo-ancora" aria-label="Continuar lendo">
       Antes de decidir qualquer coisa, <b>entenda por que correr atras AFASTA</b> — e o que funciona no lugar.
       <span class="seta" aria-hidden="true">&#8595;</span>
@@ -751,7 +755,6 @@ body.com-barra{padding-bottom:84px}
     <p>Sem âncora de mentira, sem "de R$5.000 por...". R$342 é a soma honesta do que cada peça valeria vendida separada.</p>
     <p>E hoje, na condição de fundadora, você não paga R$342.</p>
 
-    <p class="ancora-hero" style="color:var(--texto-suave)">Condicao de fundadora: <s>R$342</s> por <strong style="color:var(--vinho)">R$37</strong> · ate <strong style="color:var(--vinho)">31/07</strong><span id="cd-hero"></span></p>
     <a class="cta" href="https://pay.kiwify.com.br/ldtfS4Z">🔥 GARANTIR MEU ACESSO POR R$37 →</a>
     <ul class="cta-seguro">
       <li>💳 Pix ou cartão</li><li>⚡ Acesso imediato no e-mail</li><li>🛡️ Garantia de 30 dias</li><li>🔒 Pagamento seguro Kiwify</li>
