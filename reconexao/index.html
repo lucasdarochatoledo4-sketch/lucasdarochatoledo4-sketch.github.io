@@ -990,7 +990,7 @@ body.com-barra{padding-bottom:84px}
 (function(){
   var bar=document.getElementById('barra-cta');
   var hero=document.getElementById('hero');
-  if(!bar||!hero||!('IntersectionObserver' in window))return;
+  if(!bar||!hero)return;
   // Regra simples e robusta: a barra fixa so aparece DEPOIS de rolar
   // metade do hero (nunca no segundo zero) e some perto do rodape.
   function upd(){
