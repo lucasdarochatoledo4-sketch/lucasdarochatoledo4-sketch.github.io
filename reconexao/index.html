@@ -94,6 +94,12 @@ h3{font-size:clamp(1.2rem,4.4vw,1.45rem);margin:1.4em 0 .6em}
 #sair-aviso.on{transform:translateX(-50%) translateY(0)}
 #sair-aviso a{color:var(--dourado-claro);font-weight:800;text-decoration:underline}
 #sair-aviso button{position:absolute;top:6px;right:10px;background:none;border:none;color:#d9a8bf;font-size:1.1rem;cursor:pointer}
+.isca-scroll{display:block;text-align:center;margin:22px auto 2px;color:var(--rose-medio);font-size:.98rem;text-decoration:none;animation:isca-fade 3s ease-in-out infinite}
+.isca-scroll b{color:#fff}
+.isca-scroll .seta{display:block;font-size:1.5rem;color:var(--dourado-claro);animation:isca-bounce 1.6s ease-in-out infinite;margin-top:2px;line-height:1}
+@keyframes isca-bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(7px)}}
+@keyframes isca-fade{0%,100%{opacity:.82}50%{opacity:1}}
+@media (prefers-reduced-motion:reduce){.isca-scroll,.isca-scroll .seta{animation:none}}
 @media (max-width:699px){section:nth-of-type(n+5){content-visibility:auto;contain-intrinsic-size:auto 900px}}
 
 /* ============ VARIAÇÕES DE SEÇÃO ============ */
@@ -490,9 +496,14 @@ body.com-barra{padding-bottom:84px}
       <li>💳 Pix ou cartao</li><li>⚡ Acesso imediato</li><li>🛡️ Garantia de 30 dias</li><li>🔕 Compra 100% discreta</li>
     </ul>
     <a class="link-metodo" href="#metodo">Cética? Desce e conhece o mecanismo primeiro ↓</a>
+    <a class="isca-scroll" href="#metodo-ancora" aria-label="Continuar lendo">
+      Antes de decidir qualquer coisa, <b>entenda por que correr atras AFASTA</b> — e o que funciona no lugar.
+      <span class="seta" aria-hidden="true">&#8595;</span>
+    </a>
   </div>
 </header>
 
+<span id="metodo-ancora"></span>
 <!-- ==================== PROVA STRIP ==================== -->
 <div class="prova-strip" role="complementary" aria-label="Segurança da compra">
   <ul>
@@ -989,8 +1000,8 @@ body.com-barra{padding-bottom:84px}
     document.body.classList.toggle('com-barra',mostrar);
   }
   new IntersectionObserver(function(e){
-    heroVisivel=e[0].isIntersecting;render();
-  },{threshold:0}).observe(hero);
+    heroVisivel=(e[0].intersectionRatio>0.6);render();
+  },{threshold:[0,0.3,0.6,0.9,1]}).observe(hero);
   var alvos=document.querySelectorAll('a.cta,footer');
   var io=new IntersectionObserver(function(entradas){
     entradas.forEach(function(en){estado.set(en.target,en.isIntersecting);});
