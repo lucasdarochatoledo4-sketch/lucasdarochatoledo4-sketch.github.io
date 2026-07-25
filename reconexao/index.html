@@ -172,6 +172,23 @@ h3{font-size:clamp(1.2rem,4.4vw,1.45rem);margin:1.4em 0 .6em}
 .lista-dor li:active{transform:scale(.99)}
 a.selo-topo{text-decoration:none;cursor:pointer}
 a.selo-topo:active{opacity:.8}
+/* VITRINE-ATALHO: oferta compacta pós-método (99% não chegava na oferta do fundo) */
+.vitrine-atalho{
+  margin-top:34px;background:linear-gradient(165deg,var(--vinho-escuro),var(--vinho));
+  border:1px solid rgba(231,205,143,.5);border-radius:18px;padding:26px 22px;
+  box-shadow:0 18px 44px rgba(90,18,51,.35);text-align:center;
+}
+.vitrine-atalho .va-titulo{font-family:Georgia,serif;font-size:1.15rem;color:var(--dourado-claro);margin-bottom:14px}
+.vitrine-atalho .va-stack{list-style:none;text-align:left;max-width:480px;margin:0 auto 16px}
+.vitrine-atalho .va-stack li{padding:7px 0;border-bottom:1px dashed rgba(231,205,143,.25);color:#f6e4ec;font-size:.98rem}
+.vitrine-atalho .va-stack li:last-child{border-bottom:none}
+.vitrine-atalho .va-stack strong{color:var(--dourado-claro)}
+.vitrine-atalho .va-preco{font-family:Georgia,serif;font-size:1.3rem;color:#fff;margin:6px 0 16px}
+.vitrine-atalho .va-preco strong{font-size:2rem;color:var(--dourado-claro)}
+.vitrine-atalho .va-preco span{display:block;font-family:inherit;font-size:.85rem;color:#e9c3d3;margin-top:2px}
+.vitrine-atalho .cta-seguro{margin-top:12px}
+.vitrine-atalho .cta-seguro li{color:#e9c3d3}
+.vitrine-atalho .va-ps{font-size:.85rem;color:#d9a8bf;margin:14px 0 0}
 .lista-check{list-style:none;margin:0 0 1.5em}
 .lista-check li{padding:9px 0 9px 34px;position:relative}
 .lista-check li::before{content:"🧲";position:absolute;left:0;top:9px;font-size:.95rem}
@@ -604,10 +621,23 @@ body.com-barra{padding-bottom:84px}
 
     <blockquote><strong>O diferencial:</strong> não é silêncio à toa — é silêncio com estrutura, um propósito e uma saída. É por isso que funciona onde o "some e vê o que acontece" falha.</blockquote>
 
-    <a class="cta" href="https://pay.kiwify.com.br/ldtfS4Z">🔥 QUERO COMEÇAR A FASE 1 HOJE →</a>
-    <ul class="cta-seguro">
-      <li>💳 Pix ou cartão</li><li>⚡ Acesso imediato</li><li>🛡️ Garantia de 30 dias</li>
-    </ul>
+    <!-- VITRINE-ATALHO: a oferta visível onde 26% ainda estão (dados Clarity 25/07) -->
+    <div class="vitrine-atalho" id="oferta-atalho">
+      <p class="va-titulo">Tudo isso está no seu acesso de hoje:</p>
+      <ul class="va-stack">
+        <li>📖 <strong>Ebook Método Í.M.Ã.</strong> — o plano completo dos 21 dias, dia a dia</li>
+        <li>💬 Cofre de <strong>30 Mensagens</strong> prontas (palavra por palavra)</li>
+        <li>🗺️ Mapa dos <strong>21 Dias</strong> + Checklist Diário</li>
+        <li>🎭 Mapa de <strong>9 Cenários</strong> + Protocolo <em>"Ele-Está-Com-Outra"</em></li>
+        <li>🎧 <strong>Áudios</strong> de reforço pros dias difíceis</li>
+      </ul>
+      <p class="va-preco">Tudo por <strong>R$ 37</strong> <span>· à vista no Pix ou em até 8x no cartão</span></p>
+      <a class="cta" href="https://pay.kiwify.com.br/ldtfS4Z">💛 QUERO MEU ACESSO AGORA →</a>
+      <ul class="cta-seguro">
+        <li>⚡ Acesso imediato no e-mail</li><li>🛡️ Garantia incondicional de 30 dias</li><li>🔒 Compra segura Kiwify</li>
+      </ul>
+      <p class="va-ps">Quer ver cada detalhe antes? Continua lendo — está tudo aberto aqui embaixo. 👇</p>
+    </div>
   </div>
 </section>
 
