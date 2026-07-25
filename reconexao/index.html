@@ -167,6 +167,12 @@ h3{font-size:clamp(1.2rem,4.4vw,1.45rem);margin:1.4em 0 .6em}
   font-size:1rem;
 }
 .lista-dor li::before{content:"💔";position:absolute;left:14px;top:13px;font-size:1.05rem}
+/* dead-click fix: os cards de dor e o selo do topo agora RESPONDEM ao toque */
+.lista-dor li::after{content:"↓";position:absolute;right:13px;top:13px;color:var(--rose-medio);font-weight:700}
+.lista-dor li a.dor-go{color:inherit;text-decoration:none;display:block}
+.lista-dor li:active{transform:scale(.99)}
+a.selo-topo{text-decoration:none;cursor:pointer}
+a.selo-topo:active{opacity:.8}
 .lista-check{list-style:none;margin:0 0 1.5em}
 .lista-check li{padding:9px 0 9px 34px;position:relative}
 .lista-check li::before{content:"🧲";position:absolute;left:0;top:9px;font-size:.95rem}
@@ -448,7 +454,7 @@ body.com-barra{padding-bottom:84px}
 <!-- ==================== PRIMEIRA DOBRA ==================== -->
 <header class="hero" id="hero">
   <div class="wrap">
-    <span class="selo-topo">🧲 Método Í.M.Ã. · plano de 21 dias</span>
+    <a class="selo-topo" href="#metodo">🧲 Método Í.M.Ã. · plano de 21 dias</a>
     <h1>Como fazer ele sentir a <span class="destaque">SUA</span> falta — sem mandar uma mensagem sequer</h1>
     <p class="sub">O <strong>Método Í.M.Ã.</strong> transforma o contato zero num plano de <strong>21 dias, dia a dia</strong>, para você parar de correr atrás e virar o jogo da atração — mesmo que hoje ele pareça frio, distante ou já tenha dito que <em>"não sente mais nada"</em>.</p>
 
@@ -533,12 +539,12 @@ body.com-barra{padding-bottom:84px}
   <div class="wrap">
     <h2>Me diz se isso aqui é você (ninguém está olhando)</h2>
     <ul class="lista-dor">
-      <li>Você <strong>decora o horário</strong> em que ele fica online — e se pega esperando.</li>
-      <li>Você já mandou o textão perfeito... e recebeu <strong>o vácuo</strong> de volta.</li>
-      <li>Ele disse que "não sente mais nada", ou que "um dia quem sabe" — e você ficou <strong>paralisada no tempo</strong>, esperando por ele.</li>
-      <li>Você tentou o contato zero, aguentou 4 dias... e <strong>quebrou</strong>. Mandou "oi, sumido" e se odiou depois.</li>
-      <li>Você posta stories pensando <em>nele</em> ver. Ele vê. <strong>E não fala nada.</strong></li>
-      <li>E a pior parte: quanto mais você tenta se aproximar, mais <strong>distante</strong> ele fica.</li>
+      <li><a class="dor-go" href="#metodo">Você <strong>decora o horário</strong> em que ele fica online — e se pega esperando.</a></li>
+      <li><a class="dor-go" href="#metodo">Você já mandou o textão perfeito... e recebeu <strong>o vácuo</strong> de volta.</a></li>
+      <li><a class="dor-go" href="#metodo">Ele disse que "não sente mais nada", ou que "um dia quem sabe" — e você ficou <strong>paralisada no tempo</strong>, esperando por ele.</a></li>
+      <li><a class="dor-go" href="#metodo">Você tentou o contato zero, aguentou 4 dias... e <strong>quebrou</strong>. Mandou "oi, sumido" e se odiou depois.</a></li>
+      <li><a class="dor-go" href="#metodo">Você posta stories pensando <em>nele</em> ver. Ele vê. <strong>E não fala nada.</strong></a></li>
+      <li><a class="dor-go" href="#metodo">E a pior parte: quanto mais você tenta se aproximar, mais <strong>distante</strong> ele fica.</a></li>
     </ul>
     <p>Se você balançou a cabeça em três ou mais... eu preciso te contar uma coisa que quase ninguém tem coragem de dizer:</p>
     <blockquote><strong>O problema não é falta de amor. E não é você que "não é suficiente". É a dinâmica da atração entre vocês que se inverteu — e existe uma ordem certa para inverter de volta.</strong></blockquote>
