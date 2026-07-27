@@ -530,8 +530,82 @@ body.sem-scroll #fecharPainel{display:block}
 .entregas li::before{content:"◆";color:var(--ouro);font-size:.7rem}
 .painel-cta{margin-top:44px;display:flex;gap:16px;align-items:center;flex-wrap:wrap}
 
+/* ============================================================
+   v7 OBSESSÃO — portal vivo, dúvidas, letras magnéticas, farol
+   ============================================================ */
+/* portal v2: pó de ouro + selo orbitado + manchete líquida */
+#po{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.portal-in{position:relative;z-index:2}
+.selo-v{position:relative}
+.selo-v::after{content:"";position:absolute;top:50%;left:50%;width:6px;height:6px;border-radius:50%;
+  background:var(--ouro);box-shadow:0 0 12px var(--ouro),0 0 26px rgba(232,196,124,.5);
+  animation:orbita 5.5s linear infinite}
+@keyframes orbita{
+  from{transform:translate(-50%,-50%) rotate(0deg) translateX(56px)}
+  to{transform:translate(-50%,-50%) rotate(360deg) translateX(56px)}}
+#portal h2{background:linear-gradient(110deg,#fff 25%,var(--volt-claro) 45%,var(--ouro) 62%,#fff 82%);
+  background-size:260% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;
+  animation:fluxoTexto 5.5s linear infinite}
+@keyframes fluxoTexto{to{background-position:260% 0}}
+.tick{color:var(--cinza);font-size:1.02rem;margin-bottom:38px;letter-spacing:.02em}
+.tick b{color:var(--ouro);font-weight:500;font-variant-numeric:tabular-nums}
+#btn-entrar{animation:chamaOuro 2.8s ease-out infinite}
+@keyframes chamaOuro{
+  0%{box-shadow:0 0 0 0 rgba(232,196,124,.32)}
+  55%{box-shadow:0 0 0 24px rgba(232,196,124,0)}
+  100%{box-shadow:0 0 0 0 rgba(232,196,124,0)}}
+.portal-sub{margin-top:20px;color:var(--cinza);font-size:.66rem;letter-spacing:.3em;text-transform:uppercase;opacity:.8}
+
+/* letras magnéticas: o texto reage à mão */
+.lm{display:inline-block;transition:transform .28s cubic-bezier(.2,.9,.2,1),color .28s;will-change:transform}
+.lm:hover{transform:translateY(-8px) rotate(5deg) scale(1.12);color:var(--ouro)}
+.lm.onda{animation:ondaLetra .7s cubic-bezier(.2,.9,.2,1)}
+@keyframes ondaLetra{35%{transform:translateY(-12px) rotate(4deg);color:var(--ouro)}}
+
+/* sublinhado vivo nas palavras-chave */
+.manifesto b,.resposta b{position:relative}
+.manifesto b::after,.resposta b::after{content:"";position:absolute;left:0;bottom:-2px;height:1px;width:100%;
+  background:linear-gradient(90deg,var(--ouro),var(--volt));transform:scaleX(0);transform-origin:left;
+  transition:transform .5s cubic-bezier(.2,.9,.2,1)}
+.manifesto b:hover::after,.manifesto b.viu::after,.resposta b:hover::after,.duvida.aberta .resposta b::after{transform:scaleX(1)}
+
+/* ===== DÚVIDAS: a aba que convence ===== */
+.faq-nota{color:var(--cinza);font-size:.9rem;margin-bottom:14px}
+.faq-nota b{color:var(--ouro)}
+.faq{margin-top:34px;border-top:1px solid var(--linha)}
+.duvida{border-bottom:1px solid var(--linha)}
+.pergunta{width:100%;background:none;border:none;color:var(--osso);font-family:inherit;text-align:left;
+  padding:26px 52px 26px 0;font-size:clamp(1.05rem,2.6vw,1.35rem);font-weight:500;cursor:pointer;
+  position:relative;letter-spacing:.01em;transition:color .25s}
+.pergunta:hover{color:var(--volt-claro)}
+.pergunta .serif{color:var(--volt-claro)}
+.pergunta::after{content:"+";position:absolute;right:8px;top:50%;transform:translateY(-50%);
+  color:var(--ouro);font-size:1.7rem;font-weight:300;transition:transform .45s cubic-bezier(.2,.9,.2,1)}
+.duvida.aberta .pergunta::after{transform:translateY(-50%) rotate(135deg)}
+.resposta{display:grid;grid-template-rows:0fr;transition:grid-template-rows .55s cubic-bezier(.77,0,.18,1)}
+.duvida.aberta .resposta{grid-template-rows:1fr}
+.resposta>div{overflow:hidden}
+.resposta p{color:var(--cinza);padding:0 0 28px;max-width:760px;font-size:1rem}
+.resposta p b{color:var(--osso)}
+.resposta .ouro{color:var(--ouro)}
+.resposta .mini-cta{display:inline-block;margin-top:6px;color:var(--ouro);text-decoration:none;
+  border-bottom:1px solid var(--ouro-linha);padding-bottom:3px;font-size:.9rem;letter-spacing:.08em}
+.resposta .mini-cta:hover{color:#f3dfae}
+
+/* farol de curiosidade: quanto do estúdio você já viu */
+#farol{position:fixed;bottom:52px;left:22px;z-index:96;background:rgba(10,10,16,.65);
+  border:1px solid var(--linha);backdrop-filter:blur(8px);border-radius:999px;padding:9px 16px;
+  font-size:.66rem;letter-spacing:.22em;color:var(--cinza);text-transform:uppercase;text-decoration:none;
+  pointer-events:none;transition:color .3s,border-color .3s,box-shadow .3s;opacity:0;transform:translateY(8px)}
+body.pronto #farol{opacity:1;transform:none;transition:opacity .6s ease 2s,transform .6s ease 2s,color .3s,border-color .3s}
+#farol b{color:var(--ouro)}
+#farol.total{pointer-events:auto;border-color:var(--ouro-linha);color:var(--osso);
+  box-shadow:0 0 22px rgba(232,196,124,.25);animation:chamaOuro 2.4s ease-out infinite}
+@media(max-width:720px){#farol{bottom:16px;left:14px;padding:8px 13px;font-size:.6rem}}
+
 @media (prefers-reduced-motion:reduce){
   *{animation:none!important;transition:none!important}
+  #po{display:none}.lm:hover{transform:none}
   .hero h1 i,.hero .frase,.hero-ctas{opacity:1!important;transform:none!important}
   #telao{display:none}body{cursor:auto}#dot,#anel,.grao,.leak,.barra-cine{display:none}
   #txparticulas,#warp{display:none}.palavra-viva.viva h1 i{opacity:1!important}
@@ -551,6 +625,7 @@ body.sem-scroll #fecharPainel{display:block}
 </div>
 
 <div id="portal" role="dialog" aria-label="Boas-vindas ao estúdio Veltrix">
+  <canvas id="po" aria-hidden="true"></canvas>
   <div class="portal-in">
     <div class="selo-v" aria-hidden="true">
       <svg viewBox="0 0 120 120">
@@ -566,8 +641,9 @@ body.sem-scroll #fecharPainel{display:block}
     </div>
     <span class="assinado">Veltrix · Premium Branding</span>
     <h2>Bem-vindo ao <span class="serif">estúdio.</span></h2>
-    <p>Aqui, marcas deixam de pedir atenção — e passam a exigir. Respira fundo e entra.</p>
+    <p class="tick">Aqui nascem marcas que <b id="tickb">hipnotizam.</b></p>
     <button id="btn-entrar">Entrar no estúdio</button>
+    <span class="portal-sub">90 segundos que mudam como você vê a sua marca</span>
   </div>
 </div>
 <canvas id="boom" aria-hidden="true"></canvas>
@@ -771,6 +847,42 @@ body.sem-scroll #fecharPainel{display:block}
     <p class="tiles-nota rev">* Explorações internas do estúdio. O próximo case com nome real pode ser o seu.</p>
   </div>
 </section>
+
+<section id="duvidas">
+  <div class="wrap">
+    <span class="rotulo rev">Dúvidas de quem chega agora</span>
+    <h2 class="rev">Perguntas que <span class="serif">todo mundo</span> faz.</h2>
+    <p class="faq-nota rev">Toca nas perguntas — as respostas são diretas. <b>Sem enrolação, sem juridiquês.</b></p>
+    <div class="faq rev">
+      <div class="duvida">
+        <button class="pergunta">O que é <span class="serif">logo design</span>, afinal?</button>
+        <div class="resposta"><div><p>É o desenho do símbolo que vai te representar <b>em todo lugar onde você não está</b> — no perfil, na fachada, na etiqueta, no boca a boca. A primeira impressão de uma marca acontece <b>em menos de um segundo</b>, antes de qualquer palavra ser lida. Um símbolo amador cobra esse preço em silêncio: a pessoa sente que é "pequeno" e nem sabe dizer por quê. <span class="ouro">Um símbolo certo faz parecer empresa de verdade antes da primeira conversa.</span></p></div></div>
+      </div>
+      <div class="duvida">
+        <button class="pergunta">Identidade de marca não é <span class="serif">só o logo?</span></button>
+        <div class="resposta"><div><p>O logo é o rosto. A identidade é <b>o jeito de andar, de falar e de se vestir</b>: cores, tipografia, texturas e tom de voz operando juntos. Sem esse sistema, cada post parece de uma empresa diferente — e o cliente <b>sente a bagunça mesmo sem saber explicar</b>. Com o sistema, a marca é reconhecida até quando o logo nem aparece. <span class="ouro">Isso é o que separa "ter um logo" de "ser uma marca".</span></p></div></div>
+      </div>
+      <div class="duvida">
+        <button class="pergunta">O que muda com uma <span class="serif">social media</span> premium?</button>
+        <div class="resposta"><div><p>O feed é a vitrine que <b>nunca fecha</b> — é onde o cliente decide se você é confiável às 2h da manhã. Com direção de arte e sistema de conteúdo, <b>cada post parece campanha, não improviso</b>. Padrão repetido vira reputação; improviso repetido vira ruído. <span class="ouro">E reputação é o que permite cobrar mais pelo mesmo serviço.</span></p></div></div>
+      </div>
+      <div class="duvida">
+        <button class="pergunta">Quanto <span class="serif">custa?</span></button>
+        <div class="resposta"><div><p>Cada marca é um projeto único — o valor depende do tamanho da guerra que ela vai travar. Funciona assim: <b>você chama no WhatsApp, conta em duas linhas o que constrói</b>, e devolvemos uma proposta de caminho com valores <b>em até 24h</b>. Sem tabela genérica, sem compromisso. <a class="mini-cta" href="https://wa.me/5535999259372?text=Ol%C3%A1%2C%20Veltrix!%20Quero%20saber%20o%20investimento%20pra%20minha%20marca." target="_blank" rel="noopener">Perguntar o investimento →</a></p></div></div>
+      </div>
+      <div class="duvida">
+        <button class="pergunta">Em quanto tempo <span class="serif">fica pronto?</span></button>
+        <div class="resposta"><div><p>Símbolos levam <b>dias</b>; sistemas completos de identidade levam <b>semanas</b> — o prazo exato vai junto com a proposta, e a gente cumpre. O que não fazemos é atropelar: <span class="ouro">marca boa não nasce com pressa, nasce com critério.</span></p></div></div>
+      </div>
+      <div class="duvida">
+        <button class="pergunta">Por que a Veltrix e não <span class="serif">uma IA ou um app de logo?</span></button>
+        <div class="resposta"><div><p>Ferramenta faz desenho; estúdio faz <b>decisão</b>. Qualquer app te dá "um logo bonito" — o problema é que ele dá o mesmo pros seus concorrentes. O que você leva daqui é <b>critério</b>: por que essa forma, essa cor, essa voz — documentado num manual que protege a marca por anos. <span class="ouro">Bonito é fácil. Inevitável dá trabalho.</span></p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<a id="farol" href="https://wa.me/5535999259372?text=Ol%C3%A1%2C%20Veltrix!%20Vi%20o%20est%C3%BAdio%20inteiro%20%E2%80%94%20quero%20uma%20marca%20premium." target="_blank" rel="noopener">Você viu <b id="farolp">0%</b> do estúdio</a>
 
 <section class="cta-final">
   <canvas id="warp" aria-hidden="true"></canvas>
@@ -1556,6 +1668,127 @@ const io4 = new IntersectionObserver(es => es.forEach(e => {
   fogoTela.faisca(innerWidth * .75, yb, 30, 7);
 }), { threshold: .25 });
 document.querySelectorAll('section, .oficio').forEach(s => io4.observe(s));
+
+/* ============================================================
+   MOTORES v7 — portal vivo, letras magnéticas, dúvidas, farol
+   ============================================================ */
+
+/* ===== PÓ DE OURO no portal ===== */
+(function poOuro(){
+  if (REDUZ) return;
+  const cv = document.getElementById('po'), ctx = cv.getContext('2d');
+  const PP = [];
+  function mede(){ cv.width = innerWidth * DPRg; cv.height = innerHeight * DPRg;
+    ctx.setTransform(DPRg, 0, 0, DPRg, 0, 0); }
+  mede(); addEventListener('resize', mede);
+  for (let i = 0; i < 64; i++) PP.push({
+    x: Math.random() * innerWidth, y: Math.random() * innerHeight,
+    v: .12 + Math.random() * .4, s: .6 + Math.random() * 1.8,
+    a: .12 + Math.random() * .5, tw: Math.random() * 6.28,
+    ouro: Math.random() < .55
+  });
+  (function loop(t){
+    if (entrou && !loop._fim) loop._fim = t + 1600;   /* deixa o pó assentar após a entrada */
+    if (loop._fim && t > loop._fim){ ctx.clearRect(0, 0, innerWidth, innerHeight); return; }
+    ctx.clearRect(0, 0, innerWidth, innerHeight);
+    for (const p of PP){
+      p.y -= p.v; p.x += Math.sin(t / 1400 + p.tw) * .18;
+      if (p.y < -4){ p.y = innerHeight + 4; p.x = Math.random() * innerWidth; }
+      ctx.globalAlpha = p.a * (.6 + .4 * Math.sin(t / 600 + p.tw));
+      ctx.fillStyle = p.ouro ? '#e8c47c' : '#cfc9ff';
+      ctx.fillRect(p.x, p.y, p.s, p.s);
+    }
+    ctx.globalAlpha = 1;
+    requestAnimationFrame(loop);
+  })(0);
+})();
+
+/* ===== TICKER: a manchete que troca de destino ===== */
+(function ticker(){
+  const el = document.getElementById('tickb'); if (!el) return;
+  const P = ['hipnotizam.', 'vendem sozinhas.', 'ficam na cabeça.', 'parecem caras.', 'são inevitáveis.'];
+  const G = '█▓▒░<>/*';
+  let i = 0;
+  setInterval(() => {
+    if (entrou) return;
+    i = (i + 1) % P.length;
+    const alvo = P[i]; let q = 0; const tot = Math.max(10, alvo.length * 2);
+    (function passo(){
+      let s = '';
+      for (let k = 0; k < alvo.length; k++)
+        s += k < (q / tot) * alvo.length ? alvo[k] : (alvo[k] === ' ' ? ' ' : G[(Math.random() * G.length) | 0]);
+      el.textContent = s;
+      if (q++ < tot) requestAnimationFrame(passo); else el.textContent = alvo;
+    })();
+  }, 2400);
+})();
+
+/* ===== LETRAS MAGNÉTICAS: os títulos reagem à mão ===== */
+function granula(el){
+  [...el.childNodes].forEach(n => {
+    if (n.nodeType === 3){
+      const frag = document.createDocumentFragment();
+      for (const ch of n.textContent){
+        if (ch.trim() === '') frag.appendChild(document.createTextNode(ch));
+        else { const s = document.createElement('span'); s.className = 'lm'; s.textContent = ch; frag.appendChild(s); }
+      }
+      n.replaceWith(frag);
+    } else if (n.nodeType === 1) granula(n);
+  });
+}
+const TITULOS = [...document.querySelectorAll('h2, .painel h3')].filter(el => !el.closest('#portal'));
+TITULOS.forEach(granula);
+/* no toque, a onda corre pelas letras */
+TITULOS.forEach(t => {
+  t.addEventListener('touchstart', () => {
+    t.querySelectorAll('.lm').forEach((l, i) => setTimeout(() => {
+      l.classList.add('onda'); setTimeout(() => l.classList.remove('onda'), 760);
+    }, i * 26));
+  }, { passive: true });
+});
+
+/* ===== sublinhado que se acende sozinho no manifesto ===== */
+const io5 = new IntersectionObserver(es => es.forEach(e =>
+  e.target.classList.toggle('viu', e.isIntersecting)), { threshold: .8 });
+document.querySelectorAll('.manifesto b').forEach(b => io5.observe(b));
+
+/* ===== DÚVIDAS: acordeão que solta faíscas ===== */
+document.querySelectorAll('.duvida').forEach(d => {
+  d.querySelector('.pergunta').addEventListener('click', e => {
+    const estava = d.classList.contains('aberta');
+    document.querySelectorAll('.duvida.aberta').forEach(o => o.classList.remove('aberta'));
+    if (!estava){
+      d.classList.add('aberta');
+      fogoTela.faisca(e.clientX || innerWidth / 2, e.clientY || innerHeight / 2, 30, 5);
+    }
+  });
+});
+
+/* ===== FAROL: quanto do estúdio você já viu ===== */
+const farol = document.getElementById('farol'), farolp = document.getElementById('farolp');
+let farolTotal = false;
+addEventListener('scroll', () => {
+  if (farolTotal) return;
+  const h = document.documentElement;
+  const p = Math.min(Math.round(h.scrollTop / (h.scrollHeight - h.clientHeight) * 100), 100);
+  farolp.textContent = p + '%';
+  if (p >= 96){
+    farolTotal = true;
+    farol.classList.add('total');
+    farol.innerHTML = 'Viu tudo? <b>Agora chama →</b>';
+    fogoTela.faisca(90, innerHeight - 60, 40, 6);
+  }
+}, { passive: true });
+
+/* ===== COMETA: o cursor deixa rastro de faíscas ===== */
+if (matchMedia('(hover:hover)').matches && !REDUZ){
+  let uX = 0, uY = 0;
+  addEventListener('mousemove', e => {
+    const d = Math.hypot(e.clientX - uX, e.clientY - uY);
+    if (d > 34 && Math.random() < .35 && entrou) fogoTela.faisca(e.clientX, e.clientY, 2, 1.6);
+    uX = e.clientX; uY = e.clientY;
+  }, { passive: true });
+}
 </script>
 </body>
 </html>
