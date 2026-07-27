@@ -1,0 +1,289 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>VELTRIX® — Premium Branding Agency</title>
+<meta name="description" content="Veltrix é um estúdio de branding premium: logo design, identidade de marca e social media para marcas que querem parecer inevitáveis.">
+<meta property="og:title" content="VELTRIX® — Premium Branding Agency">
+<meta property="og:description" content="Logo Design · Brand Identity · Social Media. Marcas que parecem inevitáveis.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_BR">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90' fill='%237c5cff' font-family='Arial Black'>V</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --preto:#08080a;
+  --carvao:#0e0e12;
+  --grafite:#17171d;
+  --linha:rgba(255,255,255,.08);
+  --osso:#f4f2ec;
+  --cinza:#9b9aa3;
+  --volt:#7c5cff;
+  --volt-claro:#a78bfa;
+  --volt-neon:#8f6bff;
+}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
+body{
+  background:var(--preto);color:var(--osso);
+  font-family:"Space Grotesk",-apple-system,"Segoe UI",sans-serif;
+  line-height:1.6;overflow-x:hidden;
+}
+::selection{background:var(--volt);color:#fff}
+.serif{font-family:"Instrument Serif",Georgia,serif;font-style:italic;font-weight:400}
+.wrap{max-width:1180px;margin:0 auto;padding:0 28px}
+
+/* ===== fundo vivo ===== */
+.aura{position:fixed;inset:0;z-index:-1;pointer-events:none;
+  background:
+    radial-gradient(ellipse 55% 40% at 75% -10%, rgba(124,92,255,.16), transparent 60%),
+    radial-gradient(ellipse 40% 35% at 10% 110%, rgba(124,92,255,.10), transparent 60%),
+    var(--preto);}
+.grao{position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:.5;
+  background-image:radial-gradient(rgba(255,255,255,.028) 1px, transparent 1px);
+  background-size:3px 3px}
+
+/* ===== nav ===== */
+nav{position:fixed;top:0;left:0;right:0;z-index:50;
+  backdrop-filter:blur(14px);background:rgba(8,8,10,.55);
+  border-bottom:1px solid var(--linha)}
+.nav-in{display:flex;align-items:center;justify-content:space-between;height:68px}
+.logo{font-weight:700;letter-spacing:.22em;font-size:1.02rem;color:var(--osso);text-decoration:none}
+.logo sup{color:var(--volt-claro);font-size:.6em}
+.nav-links{display:flex;gap:30px;align-items:center}
+.nav-links a{color:var(--cinza);text-decoration:none;font-size:.86rem;letter-spacing:.06em;transition:color .2s}
+.nav-links a:hover{color:var(--osso)}
+.btn-nav{border:1px solid rgba(124,92,255,.6);border-radius:999px;padding:9px 20px;color:var(--osso)!important;
+  transition:background .2s,box-shadow .2s}
+.btn-nav:hover{background:var(--volt);box-shadow:0 0 24px rgba(124,92,255,.5)}
+@media(max-width:720px){.nav-links a:not(.btn-nav){display:none}}
+
+/* ===== hero ===== */
+.hero{min-height:100svh;display:flex;flex-direction:column;justify-content:center;padding-top:68px;position:relative}
+.hero-kicker{display:inline-flex;align-items:center;gap:10px;color:var(--volt-claro);
+  font-size:.8rem;letter-spacing:.34em;text-transform:uppercase;margin-bottom:26px}
+.hero-kicker::before{content:"";width:34px;height:1px;background:var(--volt)}
+.hero h1{
+  font-size:clamp(3.4rem,12.5vw,10.5rem);font-weight:700;line-height:.92;
+  letter-spacing:-.02em;text-transform:uppercase;
+  background:linear-gradient(120deg,#fff 30%,var(--volt-claro) 75%,var(--volt) 100%);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.hero .frase{margin-top:34px;max-width:640px;font-size:clamp(1.1rem,2.6vw,1.5rem);color:var(--cinza)}
+.hero .frase em{color:var(--osso)}
+.hero-ctas{margin-top:44px;display:flex;gap:16px;flex-wrap:wrap;align-items:center}
+.btn{display:inline-block;text-decoration:none;border-radius:999px;padding:16px 34px;font-weight:500;
+  letter-spacing:.04em;transition:transform .2s,box-shadow .2s,background .2s}
+.btn-solid{background:var(--volt);color:#fff;box-shadow:0 10px 40px rgba(124,92,255,.35)}
+.btn-solid:hover{transform:translateY(-2px);box-shadow:0 16px 52px rgba(124,92,255,.55)}
+.btn-ghost{border:1px solid var(--linha);color:var(--cinza)}
+.btn-ghost:hover{color:var(--osso);border-color:rgba(255,255,255,.3)}
+.hero-scroll{position:absolute;bottom:26px;left:50%;transform:translateX(-50%);color:var(--cinza);
+  font-size:.72rem;letter-spacing:.3em;text-transform:uppercase;animation:desce 2.4s ease-in-out infinite}
+@keyframes desce{0%,100%{transform:translateX(-50%) translateY(0);opacity:.5}50%{transform:translateX(-50%) translateY(8px);opacity:1}}
+
+/* ===== marquee ===== */
+.marquee{border-top:1px solid var(--linha);border-bottom:1px solid var(--linha);
+  overflow:hidden;padding:18px 0;background:rgba(255,255,255,.015)}
+.marquee-trilho{display:flex;gap:0;width:max-content;animation:rola 26s linear infinite}
+.marquee span{display:inline-flex;align-items:center;gap:26px;padding-right:26px;white-space:nowrap;
+  font-size:1rem;letter-spacing:.28em;text-transform:uppercase;color:var(--cinza)}
+.marquee b{color:var(--volt-claro);font-weight:400}
+@keyframes rola{to{transform:translateX(-50%)}}
+
+/* ===== seções ===== */
+section{padding:110px 0}
+.rotulo{color:var(--volt-claro);font-size:.78rem;letter-spacing:.34em;text-transform:uppercase;margin-bottom:18px;display:block}
+h2{font-size:clamp(2rem,5.5vw,3.4rem);font-weight:700;letter-spacing:-.01em;line-height:1.08;margin-bottom:22px}
+h2 .serif{color:var(--volt-claro)}
+
+/* serviços */
+.grid-serv{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--linha);
+  border:1px solid var(--linha);border-radius:20px;overflow:hidden;margin-top:52px}
+@media(max-width:860px){.grid-serv{grid-template-columns:1fr}}
+.serv{background:var(--carvao);padding:44px 34px;position:relative;transition:background .3s}
+.serv:hover{background:var(--grafite)}
+.serv::before{content:"";position:absolute;left:0;top:0;height:100%;width:2px;
+  background:linear-gradient(180deg,var(--volt),transparent);opacity:0;transition:opacity .3s}
+.serv:hover::before{opacity:1}
+.serv .num{font-family:"Instrument Serif",serif;font-style:italic;color:var(--volt-claro);font-size:1rem;letter-spacing:.2em}
+.serv h3{font-size:1.5rem;margin:14px 0 12px;font-weight:700}
+.serv p{color:var(--cinza);font-size:.98rem}
+.serv .tags{margin-top:22px;display:flex;flex-wrap:wrap;gap:8px}
+.serv .tags i{font-style:normal;border:1px solid var(--linha);border-radius:999px;padding:5px 13px;
+  font-size:.74rem;color:var(--cinza);letter-spacing:.05em}
+
+/* manifesto */
+.manifesto{border-top:1px solid var(--linha);border-bottom:1px solid var(--linha);
+  background:linear-gradient(180deg,rgba(124,92,255,.05),transparent)}
+.manifesto p.grande{font-size:clamp(1.5rem,3.6vw,2.4rem);line-height:1.35;max-width:900px;font-weight:400}
+.manifesto p.grande b{color:var(--volt-claro);font-weight:500}
+.manifesto .assina{margin-top:34px;color:var(--cinza);font-size:.9rem;letter-spacing:.2em;text-transform:uppercase}
+
+/* processo */
+.passos{display:grid;grid-template-columns:repeat(4,1fr);gap:26px;margin-top:52px}
+@media(max-width:860px){.passos{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:520px){.passos{grid-template-columns:1fr}}
+.passo{border-top:1px solid var(--linha);padding-top:22px;position:relative}
+.passo::before{content:"";position:absolute;top:-1px;left:0;width:44px;height:1px;background:var(--volt)}
+.passo .n{font-family:"Instrument Serif",serif;font-style:italic;font-size:2.2rem;color:var(--volt-claro)}
+.passo h4{margin:10px 0 8px;font-size:1.06rem;letter-spacing:.04em}
+.passo p{color:var(--cinza);font-size:.9rem}
+
+/* explorações (portfolio honesto) */
+.tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:52px}
+@media(max-width:860px){.tiles{grid-template-columns:1fr}}
+.tile{aspect-ratio:4/3;border-radius:18px;border:1px solid var(--linha);position:relative;overflow:hidden;
+  display:flex;align-items:center;justify-content:center;transition:transform .35s,border-color .35s}
+.tile:hover{transform:translateY(-6px);border-color:rgba(124,92,255,.5)}
+.tile .marca{font-weight:700;letter-spacing:.14em;font-size:1.5rem;text-transform:uppercase}
+.tile .tipo{position:absolute;bottom:14px;left:16px;font-size:.72rem;letter-spacing:.22em;
+  text-transform:uppercase;color:rgba(255,255,255,.55)}
+.t1{background:radial-gradient(circle at 30% 30%,#241a4d,#0b0918)}
+.t1 .marca{color:#a78bfa}
+.t2{background:radial-gradient(circle at 70% 20%,#0e2e26,#080d0b)}
+.t2 .marca{color:#5eead4;font-family:"Instrument Serif",serif;font-style:italic;text-transform:none;font-size:1.9rem}
+.t3{background:radial-gradient(circle at 50% 80%,#3a1220,#120508)}
+.t3 .marca{color:#fda4af;letter-spacing:.4em}
+.tiles-nota{margin-top:18px;color:var(--cinza);font-size:.85rem}
+
+/* CTA final */
+.cta-final{text-align:center;padding:130px 0}
+.cta-final h2{font-size:clamp(2.4rem,7vw,4.6rem)}
+.cta-final p{color:var(--cinza);max-width:520px;margin:0 auto 40px}
+
+/* footer */
+footer{border-top:1px solid var(--linha);padding:34px 0;color:var(--cinza);font-size:.82rem}
+.foot{display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap}
+footer a{color:var(--volt-claro);text-decoration:none}
+
+/* reveal on scroll */
+.rev{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s ease}
+.rev.on{opacity:1;transform:none}
+</style>
+</head>
+<body>
+<div class="aura"></div><div class="grao"></div>
+
+<nav>
+  <div class="wrap nav-in">
+    <a class="logo" href="#top">VELTRIX<sup>®</sup></a>
+    <div class="nav-links">
+      <a href="#servicos">Serviços</a>
+      <a href="#estudio">Estúdio</a>
+      <a href="#processo">Processo</a>
+      <a class="btn-nav" href="mailto:contato@vallezi.com.br?subject=Projeto%20Veltrix%20—%20quero%20uma%20marca">Iniciar projeto</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="wrap">
+    <span class="hero-kicker">Premium Branding Agency</span>
+    <h1>Veltrix</h1>
+    <p class="frase">Construímos marcas que parecem <em>inevitáveis</em> — identidades com peso, presença e intenção em cada pixel.</p>
+    <div class="hero-ctas">
+      <a class="btn btn-solid" href="mailto:contato@vallezi.com.br?subject=Projeto%20Veltrix%20—%20quero%20uma%20marca">Iniciar um projeto</a>
+      <a class="btn btn-ghost" href="#servicos">Ver o que fazemos</a>
+    </div>
+  </div>
+  <div class="hero-scroll">desça</div>
+</header>
+
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-trilho">
+    <span>Logo Design <b>◆</b> Brand Identity <b>◆</b> Social Media <b>◆</b> Direção Criativa <b>◆</b>&nbsp;</span>
+    <span>Logo Design <b>◆</b> Brand Identity <b>◆</b> Social Media <b>◆</b> Direção Criativa <b>◆</b>&nbsp;</span>
+  </div>
+</div>
+
+<section id="servicos">
+  <div class="wrap">
+    <span class="rotulo rev">O que fazemos</span>
+    <h2 class="rev">Três ofícios. <span class="serif">Um padrão.</span></h2>
+    <div class="grid-serv">
+      <article class="serv rev">
+        <span class="num">— 01</span>
+        <h3>Logo Design</h3>
+        <p>O símbolo que carrega a marca inteira. Desenhado à exaustão, reduzido ao essencial — funciona do favicon ao outdoor.</p>
+        <div class="tags"><i>Símbolo</i><i>Tipografia</i><i>Variações</i><i>Manual de uso</i></div>
+      </article>
+      <article class="serv rev">
+        <span class="num">— 02</span>
+        <h3>Brand Identity</h3>
+        <p>O sistema completo: cores, tipos, voz, texturas e regras. A diferença entre ter um logo e <b>ser uma marca</b>.</p>
+        <div class="tags"><i>Identidade visual</i><i>Brandbook</i><i>Papelaria</i><i>Tom de voz</i></div>
+      </article>
+      <article class="serv rev">
+        <span class="num">— 03</span>
+        <h3>Social Media</h3>
+        <p>A marca viva no feed: direção de arte, templates e sistema de conteúdo que mantém o padrão premium em cada post.</p>
+        <div class="tags"><i>Direção de arte</i><i>Templates</i><i>Kit de conteúdo</i></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="manifesto" id="estudio">
+  <div class="wrap">
+    <span class="rotulo rev">Manifesto</span>
+    <p class="grande rev">Marca não é logo bonito. É a sensação de <b>coisa certa</b> que o cliente tem antes de conseguir explicar por quê. É <b>consistência</b> repetida até virar reputação. A Veltrix existe pra construir exatamente isso.</p>
+    <p class="assina rev">Veltrix — um estúdio Vallezi</p>
+  </div>
+</section>
+
+<section id="processo">
+  <div class="wrap">
+    <span class="rotulo rev">Como trabalhamos</span>
+    <h2 class="rev">Do briefing ao lançamento, <span class="serif">sem achismo.</span></h2>
+    <div class="passos">
+      <div class="passo rev"><span class="n">i.</span><h4>Imersão</h4><p>Entendemos o negócio, o público e a guerra que a marca vai travar. Nada se desenha antes disso.</p></div>
+      <div class="passo rev"><span class="n">ii.</span><h4>Conceito</h4><p>A grande ideia: o território visual e verbal que torna a marca impossível de confundir.</p></div>
+      <div class="passo rev"><span class="n">iii.</span><h4>Sistema</h4><p>Logo, paleta, tipografia, texturas e regras — tudo documentado pra escalar sem quebrar.</p></div>
+      <div class="passo rev"><span class="n">iv.</span><h4>Lançamento</h4><p>Entrega com manual, templates e acompanhamento do primeiro voo da marca no mundo.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <span class="rotulo rev">Explorações do estúdio</span>
+    <h2 class="rev">O padrão Veltrix <span class="serif">em ação.</span></h2>
+    <div class="tiles">
+      <div class="tile t1 rev"><span class="marca">NOKTA</span><span class="tipo">Conceito · Tech</span></div>
+      <div class="tile t2 rev"><span class="marca">Alva Café</span><span class="tipo">Conceito · Gastronomia</span></div>
+      <div class="tile t3 rev"><span class="marca">RUÍNA</span><span class="tipo">Conceito · Streetwear</span></div>
+    </div>
+    <p class="tiles-nota rev">* Explorações internas do estúdio. O próximo case com nome real pode ser o seu.</p>
+  </div>
+</section>
+
+<section class="cta-final">
+  <div class="wrap">
+    <span class="rotulo rev">Vagas limitadas por mês</span>
+    <h2 class="rev">Sua marca merece ser <span class="serif">inevitável.</span></h2>
+    <p class="rev">Conte em duas linhas o que você constrói — respondemos com uma proposta de caminho em até 24h.</p>
+    <a class="btn btn-solid rev" href="mailto:contato@vallezi.com.br?subject=Projeto%20Veltrix%20—%20quero%20uma%20marca">Iniciar um projeto →</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot">
+    <span>© 2026 VELTRIX® — Premium Branding Agency</span>
+    <span>Logo Design · Brand Identity · Social Media</span>
+    <a href="mailto:contato@vallezi.com.br">contato@vallezi.com.br</a>
+  </div>
+</footer>
+
+<script>
+const io = new IntersectionObserver(es => es.forEach(e => {
+  if (e.isIntersecting) { e.target.classList.add('on'); io.unobserve(e.target); }
+}), { threshold: .15 });
+document.querySelectorAll('.rev').forEach(el => io.observe(el));
+</script>
+</body>
+</html>
