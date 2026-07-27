@@ -217,6 +217,107 @@ footer a{color:var(--volt-claro);text-decoration:none}
   transition:opacity .9s ease,transform .9s ease,filter .9s ease}
 .rev.on{opacity:1;transform:none;filter:none}
 
+/* ===== OFÍCIOS IMERSIVOS ===== */
+.oficio{padding:90px 0;border-top:1px solid var(--linha)}
+.oficio.ofi-invert{background:linear-gradient(180deg,rgba(124,92,255,.04),transparent)}
+.ofi-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:70px;align-items:center}
+.ofi-invert .ofi-grid{grid-template-columns:1.1fr 1fr}
+.ofi-invert .ofi-texto{order:2}
+.ofi-invert .ofi-demo{order:1}
+@media(max-width:900px){.ofi-grid,.ofi-invert .ofi-grid{grid-template-columns:1fr;gap:40px}
+  .ofi-invert .ofi-texto{order:1}.ofi-invert .ofi-demo{order:2}}
+.ofi-texto .num{font-family:"Instrument Serif",serif;font-style:italic;color:var(--volt-claro);letter-spacing:.2em}
+.ofi-texto h3{font-size:clamp(1.9rem,4.5vw,2.8rem);margin:12px 0 16px;font-weight:700}
+.ofi-texto p{color:var(--cinza);font-size:1.05rem;max-width:460px}
+.ofi-texto p b{color:var(--osso)}
+.ofi-texto .tags{margin-top:24px;display:flex;flex-wrap:wrap;gap:8px}
+.ofi-texto .tags i{font-style:normal;border:1px solid var(--linha);border-radius:999px;padding:5px 13px;
+  font-size:.74rem;color:var(--cinza);letter-spacing:.05em}
+
+/* 01 — forja do símbolo */
+.forja{border:1px solid var(--linha);border-radius:20px;padding:30px;background:
+  radial-gradient(circle at 50% 40%,rgba(124,92,255,.10),transparent 70%),var(--carvao);
+  display:flex;flex-direction:column;align-items:center;gap:18px}
+.forja svg{width:min(320px,80%);overflow:visible}
+.malha circle,.malha line{fill:none;stroke:rgba(167,139,250,.28);stroke-width:.8;
+  stroke-dasharray:800;stroke-dashoffset:800;animation:desenha 3.2s ease forwards}
+.malha line{animation-delay:.5s}
+.forja svg .malha{transform-origin:150px 150px;animation:giraLento 40s linear infinite}
+@keyframes giraLento{to{transform:rotate(360deg)}}
+@keyframes desenha{to{stroke-dashoffset:0}}
+.vtraco{stroke:url(#nada) var(--volt-claro);stroke:var(--volt-claro);stroke-width:10;stroke-linecap:round;stroke-linejoin:round;
+  stroke-dasharray:600;stroke-dashoffset:600;
+  filter:drop-shadow(0 0 12px rgba(124,92,255,.9));
+  animation:forjaV 5.2s cubic-bezier(.6,0,.2,1) infinite}
+.vtraco.v2{stroke:#fff;stroke-width:4;opacity:.9;animation-delay:.35s}
+@keyframes forjaV{
+  0%{stroke-dashoffset:600;opacity:0}
+  12%{opacity:1}
+  45%{stroke-dashoffset:0;opacity:1}
+  75%{stroke-dashoffset:0;opacity:1}
+  92%,100%{stroke-dashoffset:-600;opacity:0}}
+.forja-legenda{display:flex;gap:26px;color:var(--cinza);font-size:.72rem;letter-spacing:.3em;text-transform:uppercase}
+.forja-legenda span:nth-child(2){color:var(--volt-claro)}
+
+/* 02 — sistema vivo */
+.sistema{display:flex;flex-direction:column;align-items:center;gap:22px}
+.cartao{width:min(420px,92%);aspect-ratio:16/9.5;border-radius:16px;padding:28px;
+  display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden;
+  box-shadow:0 30px 70px rgba(0,0,0,.55);
+  transition:background 1s ease,color 1s ease,transform .3s ease}
+.cartao:hover{transform:translateY(-6px) rotate(-1deg)}
+.c-marca{font-weight:700;font-size:1.9rem;letter-spacing:.18em;transition:all 1s ease}
+.c-tag{font-size:.8rem;opacity:.75;letter-spacing:.16em;text-transform:uppercase;transition:all 1s}
+.c-rodape{display:flex;align-items:center;gap:10px;font-size:.78rem;opacity:.85}
+.c-dot{width:9px;height:9px;border-radius:50%;background:currentColor;display:inline-block}
+.cartao::after{content:"";position:absolute;inset:0;
+  background:linear-gradient(115deg,transparent 30%,rgba(255,255,255,.13) 48%,transparent 62%);
+  transform:translateX(-130%);animation:brilhoCartao 4s ease infinite}
+@keyframes brilhoCartao{45%,100%{transform:translateX(130%)}}
+.cartao.tema-nokta{background:linear-gradient(135deg,#191036,#0c0a18);color:#c9b8ff;
+  font-family:"Space Grotesk",sans-serif}
+.cartao.tema-nokta .c-marca{letter-spacing:.3em}
+.cartao.tema-alva{background:linear-gradient(135deg,#f4ead9,#e6d3b3);color:#3d2b1f;
+  font-family:"Instrument Serif",serif}
+.cartao.tema-alva .c-marca{font-style:italic;letter-spacing:.04em;text-transform:none;font-weight:400}
+.cartao.tema-ruina{background:linear-gradient(135deg,#1a0508,#3d0a12);color:#ff8f9e;
+  font-family:"Space Grotesk",sans-serif}
+.cartao.tema-ruina .c-marca{letter-spacing:.5em}
+.paleta{display:flex;gap:12px}
+.paleta i{width:38px;height:38px;border-radius:10px;border:1px solid rgba(255,255,255,.15);
+  transition:background 1s ease,transform .4s ease}
+.paleta i:hover{transform:scale(1.15)}
+
+/* 03 — feed premium */
+.fone{width:min(270px,80%);aspect-ratio:9/18.5;border-radius:36px;border:1px solid rgba(255,255,255,.16);
+  background:#0b0b11;position:relative;overflow:hidden;margin:0 auto;
+  box-shadow:0 40px 90px rgba(0,0,0,.6),inset 0 0 0 6px #16161d;will-change:transform;transform-style:preserve-3d}
+.fone-notch{position:absolute;top:10px;left:50%;transform:translateX(-50%);width:36%;height:16px;
+  border-radius:999px;background:#16161d;z-index:3}
+.fone-topo{position:absolute;top:36px;left:0;right:0;display:flex;align-items:center;gap:10px;
+  padding:0 18px;z-index:3;font-size:.78rem;letter-spacing:.06em}
+.story{width:26px;height:26px;border-radius:50%;position:relative;background:#0b0b11;flex:none}
+.story::before{content:"";position:absolute;inset:-3px;border-radius:50%;z-index:-1;
+  background:conic-gradient(var(--volt),#5eead4,var(--volt-claro),var(--volt));
+  animation:giraLento 3s linear infinite}
+.feed{position:absolute;top:74px;left:12px;right:12px;bottom:12px;display:flex;flex-direction:column;gap:12px;
+  animation:feedRola 12s linear infinite}
+@keyframes feedRola{to{transform:translateY(-50%)}}
+.post{flex:none;height:200px;border-radius:16px;display:flex;align-items:center;justify-content:center;
+  text-align:center;font-weight:700;letter-spacing:.2em;font-size:1rem;border:1px solid rgba(255,255,255,.07)}
+.post.p1{background:radial-gradient(circle at 30% 25%,#2a1c5e,#0d0a1c);color:#b9a5ff}
+.post.p2{background:linear-gradient(160deg,#f4ead9,#d9c096);color:#40301f;font-size:1.15rem;letter-spacing:.02em}
+.post.p3{background:radial-gradient(circle at 70% 80%,#3d0a12,#160407);color:#ff8f9e;line-height:1.5}
+.curtidas{position:absolute;right:14px;bottom:18px;z-index:4;background:rgba(10,10,16,.7);
+  border:1px solid rgba(255,255,255,.14);backdrop-filter:blur(8px);
+  border-radius:999px;padding:8px 14px;font-size:.8rem;color:#ff9ecb}
+.coracao{position:absolute;z-index:4;color:#ff5d8f;font-size:1rem;pointer-events:none;
+  animation:sobeCoracao 2.6s ease forwards}
+@keyframes sobeCoracao{
+  0%{opacity:0;transform:translateY(0) scale(.6)}
+  15%{opacity:1}
+  100%{opacity:0;transform:translateY(-190px) scale(1.4) rotate(14deg)}}
+
 @media (prefers-reduced-motion:reduce){
   *{animation:none!important;transition:none!important}
   .hero h1 i,.hero .frase,.hero-ctas{opacity:1!important;transform:none!important}
@@ -287,26 +388,90 @@ footer a{color:var(--volt-claro);text-decoration:none}
 <section id="servicos">
   <div class="wrap">
     <span class="rotulo rev">O que fazemos</span>
-    <h2 class="rev">Três ofícios. <span class="serif">Um padrão.</span></h2>
-    <div class="grid-serv">
-      <article class="serv rev">
+    <h2 class="rev">Três ofícios. <span class="serif">Três mundos.</span></h2>
+  </div>
+
+  <!-- ===== 01 · LOGO DESIGN — A FORJA DO SÍMBOLO ===== -->
+  <div class="oficio">
+    <div class="wrap ofi-grid">
+      <div class="ofi-texto rev">
         <span class="num">— 01</span>
         <h3>Logo Design</h3>
-        <p>O símbolo que carrega a marca inteira. Desenhado à exaustão, reduzido ao essencial — funciona do favicon ao outdoor.</p>
+        <p>O símbolo que carrega a marca inteira. Nasce na <b>malha de construção</b>, é desenhado à exaustão e reduzido ao essencial — funciona do favicon ao outdoor.</p>
         <div class="tags"><i>Símbolo</i><i>Tipografia</i><i>Variações</i><i>Manual de uso</i></div>
-      </article>
-      <article class="serv rev">
+      </div>
+      <div class="ofi-demo rev">
+        <div class="forja">
+          <svg viewBox="0 0 300 300" aria-label="Construção do símbolo V">
+            <g class="malha">
+              <circle cx="150" cy="150" r="120"/>
+              <circle cx="150" cy="150" r="74"/>
+              <circle cx="104" cy="120" r="46"/>
+              <circle cx="196" cy="120" r="46"/>
+              <line x1="150" y1="18" x2="150" y2="282"/>
+              <line x1="18" y1="150" x2="282" y2="150"/>
+              <line x1="60" y1="60" x2="240" y2="240"/>
+              <line x1="240" y1="60" x2="60" y2="240"/>
+            </g>
+            <path class="vtraco" d="M 78 84 L 150 222 L 222 84" fill="none"/>
+            <path class="vtraco v2" d="M 108 84 L 150 165 L 192 84" fill="none"/>
+          </svg>
+          <div class="forja-legenda"><span>grid</span><span>traço</span><span>símbolo</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== 02 · BRAND IDENTITY — O SISTEMA VIVO ===== -->
+  <div class="oficio ofi-invert">
+    <div class="wrap ofi-grid">
+      <div class="ofi-texto rev">
         <span class="num">— 02</span>
         <h3>Brand Identity</h3>
-        <p>O sistema completo: cores, tipos, voz, texturas e regras. A diferença entre ter um logo e <b>ser uma marca</b>.</p>
+        <p>O sistema completo: cores, tipos, voz e regras. Repara no cartão — <b>a mesma estrutura, três almas diferentes</b>. Isso é a diferença entre ter um logo e ser uma marca.</p>
         <div class="tags"><i>Identidade visual</i><i>Brandbook</i><i>Papelaria</i><i>Tom de voz</i></div>
-      </article>
-      <article class="serv rev">
+      </div>
+      <div class="ofi-demo rev">
+        <div class="sistema">
+          <div class="cartao" id="cartao">
+            <span class="c-marca">NOKTA</span>
+            <span class="c-tag">design & tecnologia</span>
+            <div class="c-rodape"><span class="c-dot"></span><span class="c-site">nokta.studio</span></div>
+          </div>
+          <div class="paleta" id="paleta">
+            <i></i><i></i><i></i><i></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== 03 · SOCIAL MEDIA — O FEED PREMIUM ===== -->
+  <div class="oficio">
+    <div class="wrap ofi-grid">
+      <div class="ofi-texto rev">
         <span class="num">— 03</span>
         <h3>Social Media</h3>
-        <p>A marca viva no feed: direção de arte, templates e sistema de conteúdo que mantém o padrão premium em cada post.</p>
+        <p>A marca viva no feed: direção de arte, templates e sistema de conteúdo. O padrão premium <b>em cada post</b> — e o algoritmo percebe.</p>
         <div class="tags"><i>Direção de arte</i><i>Templates</i><i>Kit de conteúdo</i></div>
-      </article>
+      </div>
+      <div class="ofi-demo rev">
+        <div class="fone" id="fone">
+          <div class="fone-notch"></div>
+          <div class="fone-topo">
+            <span class="story"></span><b>veltrix.studio</b>
+          </div>
+          <div class="feed" id="feed">
+            <div class="post p1"><span>DROP 001</span></div>
+            <div class="post p2"><span class="serif">a marca é o detalhe</span></div>
+            <div class="post p3"><span>PADRÃO<br>PREMIUM</span></div>
+            <div class="post p1"><span>DROP 001</span></div>
+            <div class="post p2"><span class="serif">a marca é o detalhe</span></div>
+            <div class="post p3"><span>PADRÃO<br>PREMIUM</span></div>
+          </div>
+          <div class="curtidas" id="curtidas">♥ <b id="likes">12.4k</b></div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -476,6 +641,55 @@ reelSize(); addEventListener('resize', reelSize);
   ox.globalCompositeOperation = 'source-over';
   requestAnimationFrame(reelLoop);
 })(0);
+
+/* ===== 02: SISTEMA VIVO — o cartão troca de alma ===== */
+const TEMAS = [
+  { cls:'tema-nokta', marca:'NOKTA', tag:'design & tecnologia', site:'nokta.studio',
+    cores:['#7c5cff','#191036','#c9b8ff','#0c0a18'] },
+  { cls:'tema-alva', marca:'Alva Café', tag:'torrefação artesanal', site:'alvacafe.com.br',
+    cores:['#3d2b1f','#f4ead9','#c98f4e','#8a5a2e'] },
+  { cls:'tema-ruina', marca:'RUÍNA', tag:'streetwear brasil', site:'ruina.wear',
+    cores:['#ff5d6e','#1a0508','#ff8f9e','#3d0a12'] }
+];
+const cartao = document.getElementById('cartao'), paleta = document.getElementById('paleta');
+let ti = 0;
+function aplicaTema(){
+  const t = TEMAS[ti % TEMAS.length];
+  cartao.className = 'cartao ' + t.cls;
+  cartao.querySelector('.c-marca').textContent = t.marca;
+  cartao.querySelector('.c-tag').textContent = t.tag;
+  cartao.querySelector('.c-site').textContent = t.site;
+  [...paleta.children].forEach((sw, i) => sw.style.background = t.cores[i]);
+  ti++;
+}
+aplicaTema();
+setInterval(aplicaTema, 2800);
+
+/* ===== 03: FEED — corações subindo + curtidas crescendo ===== */
+const fone = document.getElementById('fone'), likesEl = document.getElementById('likes');
+let likes = 12400;
+setInterval(() => {
+  likes += 3 + Math.floor(Math.random() * 24);
+  likesEl.textContent = (likes/1000).toFixed(1) + 'k';
+  const c = document.createElement('span');
+  c.className = 'coracao'; c.textContent = '♥';
+  c.style.right = (16 + Math.random() * 40) + 'px';
+  c.style.bottom = '54px';
+  c.style.fontSize = (0.8 + Math.random() * 0.8) + 'rem';
+  fone.appendChild(c);
+  setTimeout(() => c.remove(), 2600);
+}, 900);
+
+/* celular inclina em 3D com o mouse */
+if (matchMedia('(hover:hover)').matches) {
+  fone.addEventListener('mousemove', e => {
+    const r = fone.getBoundingClientRect();
+    const rx = ((e.clientY - r.top) / r.height - .5) * -10;
+    const ry = ((e.clientX - r.left) / r.width - .5) * 14;
+    fone.style.transform = `rotateX(${rx}deg) rotateY(${ry}deg)`;
+  });
+  fone.addEventListener('mouseleave', () => fone.style.transform = '');
+}
 </script>
 </body>
 </html>
