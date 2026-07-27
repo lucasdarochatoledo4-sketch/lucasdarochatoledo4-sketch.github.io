@@ -373,7 +373,7 @@ footer a{color:var(--volt-claro);text-decoration:none}
 .palavra-viva.viva h1 i{opacity:0!important;transition:opacity .6s}
 .dica-particulas{display:block;margin-top:10px;font-size:.78rem;color:var(--volt-claro);
   letter-spacing:.18em;text-transform:uppercase;font-weight:500;opacity:.75}
-@media(hover:none),(max-width:900px){.dica-particulas{display:none}}
+@media(max-width:900px){.dica-particulas{font-size:.68rem;letter-spacing:.14em}}
 
 /* instagram na nav */
 .ig-link{display:inline-flex;align-items:center;color:var(--cinza);transition:color .2s,transform .2s}
@@ -386,11 +386,159 @@ footer a{color:var(--volt-claro);text-decoration:none}
 #warp{position:absolute;inset:0;width:100%;height:100%;z-index:0;opacity:.8}
 .cta-conteudo{position:relative;z-index:1}
 
+/* ============================================================
+   AUTO-LUXO v6 — ouro, portal de boas-vindas, abas, cofre, estouros
+   ============================================================ */
+:root{--ouro:#e8c47c;--ouro-2:#c49a4e;--ouro-linha:rgba(232,196,124,.35)}
+.marquee b{color:var(--ouro)}
+.rotulo::after{content:"";display:block;width:46px;height:1px;margin-top:12px;
+  background:linear-gradient(90deg,var(--ouro),transparent)}
+.slate::before{border-color:var(--ouro-linha);
+  background:repeating-linear-gradient(-45deg,rgba(232,196,124,.5) 0 3px,transparent 3px 6px)}
+
+/* ===== PORTAL: tela de boas-vindas ===== */
+body.travado{overflow:hidden}
+#portal{position:fixed;inset:0;z-index:160;display:flex;align-items:center;justify-content:center;
+  text-align:center;padding:28px;
+  background:
+    radial-gradient(ellipse 70% 55% at 50% 36%,rgba(124,92,255,.16),transparent 64%),
+    radial-gradient(ellipse 50% 40% at 50% 70%,rgba(232,196,124,.08),transparent 62%),
+    #050508;
+  transition:opacity 1s ease .35s,visibility 1s ease .35s}
+#portal.foi{opacity:0;visibility:hidden;pointer-events:none}
+.portal-in{max-width:560px;display:flex;flex-direction:column;align-items:center}
+.selo-v{width:112px;height:112px;margin-bottom:30px}
+.selo-v svg{width:100%;height:100%;overflow:visible}
+.selo-v .aro{fill:none;stroke:var(--ouro-linha);stroke-width:1;stroke-dasharray:600;stroke-dashoffset:600;
+  animation:desenha 2.4s ease .4s forwards}
+.selo-v .aro.a2{stroke:rgba(167,139,250,.4);animation-delay:.7s}
+.selo-v .vv{fill:none;stroke:url(#gradV);stroke-width:7;stroke-linecap:round;stroke-linejoin:round;
+  stroke-dasharray:220;stroke-dashoffset:220;animation:desenha 1.5s cubic-bezier(.6,0,.2,1) 1s forwards;
+  filter:drop-shadow(0 0 16px rgba(124,92,255,.8))}
+.portal-in .assinado{color:var(--ouro);letter-spacing:.42em;font-size:.66rem;text-transform:uppercase;margin-bottom:18px}
+.portal-in h2{font-size:clamp(2rem,6.5vw,3.8rem);margin-bottom:14px}
+.portal-in p{color:var(--cinza);font-size:1rem;max-width:430px;margin-bottom:42px}
+#btn-entrar{position:relative;cursor:pointer;background:rgba(10,10,16,.4);border:none;color:var(--osso);
+  font-family:inherit;padding:19px 54px;font-size:.88rem;letter-spacing:.32em;text-transform:uppercase;
+  border-radius:999px;transition:transform .25s,box-shadow .25s}
+#btn-entrar::before{content:"";position:absolute;inset:0;border-radius:999px;padding:1px;
+  background:linear-gradient(120deg,var(--ouro),var(--volt),var(--ouro-2),var(--volt-claro),var(--ouro));
+  background-size:320% 100%;animation:fluxoOuro 4.5s linear infinite;
+  -webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);
+  -webkit-mask-composite:xor;mask-composite:exclude}
+@keyframes fluxoOuro{to{background-position:320% 0}}
+#btn-entrar:hover{transform:translateY(-3px);box-shadow:0 18px 50px rgba(124,92,255,.35),0 6px 30px rgba(232,196,124,.18)}
+#boom{position:fixed;inset:0;z-index:168;pointer-events:none}
+#flash{position:fixed;inset:0;z-index:185;pointer-events:none;opacity:0;transition:opacity .8s ease;
+  background:radial-gradient(circle at 50% 55%,#fff 0%,#f3e8ff 35%,transparent 75%)}
+#estouro{position:fixed;inset:0;z-index:145;pointer-events:none}
+
+/* ===== ABAS DE SERVIÇO (mundos 1 a 1) ===== */
+.abas-rail{display:flex;gap:14px;margin-top:38px;flex-wrap:wrap}
+.aba{position:relative;cursor:pointer;font-family:inherit;background:rgba(14,14,19,.7);color:var(--osso);
+  border:1px solid var(--linha);border-radius:16px;padding:22px 28px;text-align:left;
+  font-size:1rem;font-weight:500;letter-spacing:.05em;flex:1;min-width:210px;
+  transition:transform .25s,border-color .25s,background .25s;overflow:hidden}
+.aba s{display:block;text-decoration:none;font-family:"Instrument Serif",serif;font-style:italic;
+  color:var(--ouro);font-size:.85rem;letter-spacing:.24em;margin-bottom:8px}
+.aba small{display:block;color:var(--cinza);font-size:.78rem;font-weight:400;margin-top:6px;letter-spacing:.02em}
+.aba::after{content:"ABRIR ↗";position:absolute;top:22px;right:20px;font-size:.64rem;letter-spacing:.22em;
+  color:var(--volt-claro);opacity:0;transition:opacity .25s}
+.aba:hover{transform:translateY(-5px);border-color:var(--ouro-linha);background:var(--grafite)}
+.aba:hover::after{opacity:1}
+.link-mundo{margin-top:22px;background:none;border:none;border-bottom:1px solid var(--ouro-linha);
+  color:var(--ouro);font-family:inherit;cursor:pointer;font-size:.82rem;letter-spacing:.18em;
+  text-transform:uppercase;padding:0 0 4px;transition:letter-spacing .25s,color .25s;display:inline-block}
+.link-mundo:hover{letter-spacing:.26em;color:#f3dfae}
+
+/* ===== PAINÉIS: cada serviço vira um mundo ===== */
+body.sem-scroll{overflow:hidden}
+.painel{position:fixed;inset:0;z-index:120;background:var(--preto);overflow-y:auto;
+  -webkit-overflow-scrolling:touch;visibility:hidden;
+  clip-path:circle(0px at var(--cx,50%) var(--cy,50%));
+  transition:clip-path .85s cubic-bezier(.77,0,.18,1),visibility 0s linear .85s}
+.painel.aberto{visibility:visible;clip-path:circle(142vmax at var(--cx,50%) var(--cy,50%));
+  transition:clip-path .85s cubic-bezier(.77,0,.18,1)}
+#fecharPainel{position:fixed;top:16px;right:22px;z-index:130;display:none;cursor:pointer;
+  background:rgba(10,10,16,.65);border:1px solid var(--linha);backdrop-filter:blur(10px);
+  color:var(--osso);font-family:inherit;border-radius:999px;padding:11px 22px;font-size:.72rem;
+  letter-spacing:.26em;transition:border-color .2s,color .2s}
+body.sem-scroll #fecharPainel{display:block}
+#fecharPainel:hover{border-color:var(--ouro-linha);color:var(--ouro)}
+.painel-in{max-width:1180px;margin:0 auto;padding:96px 28px 110px;position:relative}
+.painel .num-gig{font-family:"Instrument Serif",serif;font-style:italic;font-size:clamp(4rem,14vw,9rem);
+  line-height:1;color:transparent;-webkit-text-stroke:1px var(--ouro-linha);position:absolute;
+  top:54px;right:28px;pointer-events:none;user-select:none}
+.painel h3{font-size:clamp(2.2rem,6vw,4rem);font-weight:700;margin:10px 0 16px}
+.painel .lead{color:var(--cinza);font-size:1.08rem;max-width:560px}
+.painel .lead b{color:var(--osso)}
+.p-rev{opacity:0;transform:translateY(30px);filter:blur(5px);
+  transition:opacity .7s ease var(--d,0s),transform .7s ease var(--d,0s),filter .7s ease var(--d,0s)}
+.painel.aberto .p-rev{opacity:1;transform:none;filter:none}
+
+/* cofre de logos */
+.cofre{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:48px;perspective:1100px}
+@media(max-width:860px){.cofre{grid-template-columns:repeat(2,1fr);gap:12px}}
+.joia{aspect-ratio:1/1;border-radius:18px;border:1px solid var(--linha);position:relative;overflow:hidden;
+  display:flex;align-items:center;justify-content:center;cursor:pointer;
+  background:radial-gradient(circle at 50% 34%,rgba(255,255,255,.045),transparent 62%),var(--carvao);
+  transform-style:preserve-3d;will-change:transform;transition:border-color .3s}
+.joia:hover{border-color:var(--ouro-linha)}
+.joia svg{width:64%;height:64%;transform:translateZ(36px);pointer-events:none}
+.joia .j-nome{position:absolute;bottom:14px;left:16px;font-size:.68rem;letter-spacing:.26em;
+  text-transform:uppercase;color:rgba(255,255,255,.55);pointer-events:none}
+.joia .j-brilho{position:absolute;inset:0;pointer-events:none;opacity:0;transition:opacity .3s;
+  background:radial-gradient(circle at var(--gx,50%) var(--gy,50%),rgba(255,255,255,.14),transparent 55%)}
+.joia:hover .j-brilho,.joia.toco .j-brilho{opacity:1}
+.cofre-nota{margin-top:16px;color:var(--cinza);font-size:.85rem}
+.cofre-nota b{color:var(--ouro)}
+
+/* specimen de identidade */
+.specimen{margin-top:48px;display:grid;grid-template-columns:1.2fr 1fr;gap:20px}
+@media(max-width:860px){.specimen{grid-template-columns:1fr}}
+.spec-tipo{border:1px solid var(--linha);border-radius:18px;padding:34px;background:var(--carvao);
+  overflow:hidden;position:relative}
+.spec-tipo .aa{font-size:clamp(4.2rem,13vw,8.2rem);line-height:1;font-weight:700;
+  background:linear-gradient(120deg,#fff,var(--volt-claro) 55%,var(--ouro));
+  -webkit-background-clip:text;background-clip:text;color:transparent}
+.spec-tipo p{color:var(--cinza);margin-top:14px;font-size:.9rem}
+.barras{display:flex;flex-direction:column;gap:14px;border:1px solid var(--linha);border-radius:18px;
+  padding:30px;background:var(--carvao);justify-content:center}
+.cor{color:var(--cinza);font-size:.76rem;letter-spacing:.12em}
+.cor i{display:block;height:34px;border-radius:9px;margin-top:6px;transform-origin:left;transform:scaleX(0);
+  transition:transform 1.1s cubic-bezier(.2,.9,.2,1) var(--d,0s)}
+.painel.aberto .cor i{transform:scaleX(var(--s,1))}
+.voz{margin-top:20px;border:1px solid var(--linha);border-radius:18px;padding:30px;background:var(--carvao)}
+.voz .certa{font-size:1.15rem;color:var(--osso)}
+.voz .errada{margin-top:10px;color:var(--cinza);text-decoration:line-through;font-size:.95rem}
+
+/* social: demo + métricas */
+.social-demo{display:grid;grid-template-columns:auto 1fr;gap:44px;margin-top:48px;align-items:center}
+@media(max-width:860px){.social-demo{grid-template-columns:1fr}}
+.metricas{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+@media(max-width:520px){.metricas{grid-template-columns:1fr}}
+.met{border:1px solid var(--linha);border-radius:16px;padding:22px;background:var(--carvao)}
+.met b{display:block;font-size:1.9rem;font-weight:700;color:var(--ouro)}
+.met span{color:var(--cinza);font-size:.76rem;letter-spacing:.18em;text-transform:uppercase}
+.met small{display:block;margin-top:6px;color:#5eead4;font-size:.78rem}
+
+/* entregáveis + CTA dos painéis */
+.entregas{margin-top:44px;display:grid;grid-template-columns:repeat(2,1fr);gap:12px;max-width:720px;padding:0}
+@media(max-width:640px){.entregas{grid-template-columns:1fr}}
+.entregas li{list-style:none;border:1px solid var(--linha);border-radius:12px;padding:14px 18px;
+  color:var(--cinza);font-size:.92rem;display:flex;gap:10px;align-items:center}
+.entregas li::before{content:"◆";color:var(--ouro);font-size:.7rem}
+.painel-cta{margin-top:44px;display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+
 @media (prefers-reduced-motion:reduce){
   *{animation:none!important;transition:none!important}
   .hero h1 i,.hero .frase,.hero-ctas{opacity:1!important;transform:none!important}
   #telao{display:none}body{cursor:auto}#dot,#anel,.grao,.leak,.barra-cine{display:none}
   #txparticulas,#warp{display:none}.palavra-viva.viva h1 i{opacity:1!important}
+  #boom,#estouro,#flash{display:none}
+  .p-rev{opacity:1!important;transform:none!important;filter:none!important}
+  .cor i{transform:scaleX(var(--s,1))!important}
+  .painel{clip-path:none!important}
 }
 </style>
 </head>
@@ -401,6 +549,30 @@ footer a{color:var(--volt-claro);text-decoration:none}
   <div class="risco"></div>
   <div class="sub">Premium Branding Agency</div>
 </div>
+
+<div id="portal" role="dialog" aria-label="Boas-vindas ao estúdio Veltrix">
+  <div class="portal-in">
+    <div class="selo-v" aria-hidden="true">
+      <svg viewBox="0 0 120 120">
+        <defs>
+          <linearGradient id="gradV" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#e8c47c"/><stop offset=".5" stop-color="#a78bfa"/><stop offset="1" stop-color="#7c5cff"/>
+          </linearGradient>
+        </defs>
+        <circle class="aro" cx="60" cy="60" r="54"/>
+        <circle class="aro a2" cx="60" cy="60" r="44"/>
+        <path class="vv" d="M 38 42 L 60 84 L 82 42"/>
+      </svg>
+    </div>
+    <span class="assinado">Veltrix · Premium Branding</span>
+    <h2>Bem-vindo ao <span class="serif">estúdio.</span></h2>
+    <p>Aqui, marcas deixam de pedir atenção — e passam a exigir. Respira fundo e entra.</p>
+    <button id="btn-entrar">Entrar no estúdio</button>
+  </div>
+</div>
+<canvas id="boom" aria-hidden="true"></canvas>
+<div id="flash" aria-hidden="true"></div>
+<canvas id="estouro" aria-hidden="true"></canvas>
 
 <div id="rolo"></div>
 <div class="aura"></div>
@@ -471,6 +643,11 @@ footer a{color:var(--volt-claro);text-decoration:none}
   <div class="wrap">
     <span class="rotulo rev">O que fazemos</span>
     <h2 class="rev">Três ofícios. <span class="serif">Três mundos.</span></h2>
+    <div class="abas-rail rev">
+      <button class="aba" data-p="p-logo"><s>Mundo 01</s>Logo Design<small>O cofre de símbolos — 6 conceitos pra sentir o padrão.</small></button>
+      <button class="aba" data-p="p-id"><s>Mundo 02</s>Brand Identity<small>Tipografia, cor e voz — o sistema que vira reputação.</small></button>
+      <button class="aba" data-p="p-social"><s>Mundo 03</s>Social Media<small>O feed premium e os números que ele move.</small></button>
+    </div>
   </div>
 
   <!-- ===== 01 · LOGO DESIGN — A FORJA DO SÍMBOLO ===== -->
@@ -481,6 +658,7 @@ footer a{color:var(--volt-claro);text-decoration:none}
         <h3>Logo Design</h3>
         <p>O símbolo que carrega a marca inteira. Nasce na <b>malha de construção</b>, é desenhado à exaustão e reduzido ao essencial — funciona do favicon ao outdoor.</p>
         <div class="tags"><i>Símbolo</i><i>Tipografia</i><i>Variações</i><i>Manual de uso</i></div>
+        <button class="link-mundo" data-p="p-logo">Entrar no mundo 01 →</button>
       </div>
       <div class="ofi-demo rev">
         <div class="forja">
@@ -512,6 +690,7 @@ footer a{color:var(--volt-claro);text-decoration:none}
         <h3>Brand Identity</h3>
         <p>O sistema completo: cores, tipos, voz e regras. Repara no cartão — <b>a mesma estrutura, três almas diferentes</b>. Isso é a diferença entre ter um logo e ser uma marca.</p>
         <div class="tags"><i>Identidade visual</i><i>Brandbook</i><i>Papelaria</i><i>Tom de voz</i></div>
+        <button class="link-mundo" data-p="p-id">Entrar no mundo 02 →</button>
       </div>
       <div class="ofi-demo rev">
         <div class="sistema">
@@ -536,6 +715,7 @@ footer a{color:var(--volt-claro);text-decoration:none}
         <h3>Social Media</h3>
         <p>A marca viva no feed: direção de arte, templates e sistema de conteúdo. O padrão premium <b>em cada post</b> — e o algoritmo percebe.</p>
         <div class="tags"><i>Direção de arte</i><i>Templates</i><i>Kit de conteúdo</i></div>
+        <button class="link-mundo" data-p="p-social">Entrar no mundo 03 →</button>
       </div>
       <div class="ofi-demo rev">
         <div class="fone" id="fone">
@@ -603,6 +783,173 @@ footer a{color:var(--volt-claro);text-decoration:none}
   </div>
 </section>
 
+<button id="fecharPainel" aria-label="Fechar e voltar">✕ &nbsp;VOLTAR</button>
+
+<!-- ===== MUNDO 01 · LOGO DESIGN ===== -->
+<div class="painel" id="p-logo" role="dialog" aria-label="Mundo Logo Design">
+  <div class="painel-in">
+    <span class="num-gig" aria-hidden="true">01</span>
+    <span class="rotulo p-rev">Mundo 01</span>
+    <h3 class="p-rev" style="--d:.08s">Logo <span class="serif">Design.</span></h3>
+    <p class="lead p-rev" style="--d:.16s">O símbolo é o soldado que vai sozinho pra guerra: aparece no favicon, na fachada, no perfil, na etiqueta. Abaixo, <b>seis conceitos do cofre Veltrix</b> — toca em cada um: eles reagem.</p>
+    <div class="cofre">
+      <div class="joia t3d p-rev" style="--d:.2s">
+        <svg viewBox="0 0 100 100" aria-label="Logo conceito Aurum">
+          <defs><linearGradient id="lgA" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#c49a4e"/><stop offset="1" stop-color="#f3dfae"/></linearGradient></defs>
+          <circle cx="50" cy="47" r="33" fill="none" stroke="url(#lgA)" stroke-width="1.3"/>
+          <path d="M36 60 L50 32 L64 60" fill="none" stroke="url(#lgA)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+          <line x1="43" y1="51" x2="57" y2="51" stroke="url(#lgA)" stroke-width="3" stroke-linecap="round"/>
+          <circle cx="50" cy="14" r="2.2" fill="#f3dfae"/>
+          <text x="50" y="93" text-anchor="middle" font-family="Instrument Serif,serif" font-style="italic" font-size="10" fill="#e8c47c" letter-spacing="5">AURUM</text>
+        </svg>
+        <span class="j-nome">Joalheria</span><i class="j-brilho"></i>
+      </div>
+      <div class="joia t3d p-rev" style="--d:.26s">
+        <svg viewBox="0 0 100 100" aria-label="Logo conceito Vora">
+          <defs><linearGradient id="lgV2" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#a78bfa"/><stop offset="1" stop-color="#7c5cff"/></linearGradient></defs>
+          <polygon points="50,12 82,30 82,64 50,82 18,64 18,30" fill="none" stroke="rgba(167,139,250,.45)" stroke-width="1.3"/>
+          <path d="M35 32 L50 64 L65 32" fill="none" stroke="url(#lgV2)" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+          <text x="50" y="95" text-anchor="middle" font-family="Space Grotesk,sans-serif" font-weight="700" font-size="9" fill="#a78bfa" letter-spacing="6">VORA</text>
+        </svg>
+        <span class="j-nome">Tecnologia</span><i class="j-brilho"></i>
+      </div>
+      <div class="joia t3d p-rev" style="--d:.32s">
+        <svg viewBox="0 0 100 100" aria-label="Logo conceito Íris">
+          <defs><linearGradient id="lgI" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#a78bfa"/><stop offset="1" stop-color="#5eead4"/></linearGradient></defs>
+          <g fill="none" stroke="url(#lgI)" stroke-width="1.8">
+            <ellipse cx="50" cy="45" rx="25" ry="9.5"/>
+            <ellipse cx="50" cy="45" rx="25" ry="9.5" transform="rotate(60 50 45)"/>
+            <ellipse cx="50" cy="45" rx="25" ry="9.5" transform="rotate(120 50 45)"/>
+          </g>
+          <circle cx="50" cy="45" r="3.6" fill="#fff"/>
+          <text x="50" y="92" text-anchor="middle" font-family="Space Grotesk,sans-serif" font-weight="500" font-size="9" fill="#7dd3c8" letter-spacing="7">ÍRIS</text>
+        </svg>
+        <span class="j-nome">Fotografia</span><i class="j-brilho"></i>
+      </div>
+      <div class="joia t3d p-rev" style="--d:.38s">
+        <svg viewBox="0 0 100 100" aria-label="Logo conceito Kronos">
+          <circle cx="50" cy="46" r="32" fill="none" stroke="rgba(232,196,124,.4)" stroke-width="1.2"/>
+          <path d="M39 33 H61 L50 46 L61 59 H39 L50 46 Z" fill="none" stroke="#f4f2ec" stroke-width="3.4" stroke-linejoin="round"/>
+          <circle cx="50" cy="46" r="2" fill="#e8c47c"/>
+          <text x="50" y="93" text-anchor="middle" font-family="Space Grotesk,sans-serif" font-weight="700" font-size="9" fill="#f4f2ec" letter-spacing="5">KRONOS</text>
+        </svg>
+        <span class="j-nome">Relojoaria</span><i class="j-brilho"></i>
+      </div>
+      <div class="joia t3d p-rev" style="--d:.44s">
+        <svg viewBox="0 0 100 100" aria-label="Logo conceito Orla">
+          <circle cx="50" cy="46" r="32" fill="none" stroke="rgba(94,234,212,.35)" stroke-width="1.2"/>
+          <g fill="none" stroke="#5eead4" stroke-width="2.6" stroke-linecap="round">
+            <path d="M32 38 q9 -7 18 0 t18 0"/>
+            <path d="M32 48 q9 -7 18 0 t18 0" opacity=".65"/>
+            <path d="M32 58 q9 -7 18 0 t18 0" opacity=".35"/>
+          </g>
+          <text x="50" y="93" text-anchor="middle" font-family="Instrument Serif,serif" font-style="italic" font-size="11" fill="#5eead4" letter-spacing="4">Orla</text>
+        </svg>
+        <span class="j-nome">Hotelaria</span><i class="j-brilho"></i>
+      </div>
+      <div class="joia t3d p-rev" style="--d:.5s">
+        <svg viewBox="0 0 100 100" aria-label="Logo conceito Nokta">
+          <defs><linearGradient id="lgN" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#c9b8ff"/><stop offset="1" stop-color="#7c5cff"/></linearGradient></defs>
+          <g fill="url(#lgN)">
+            <circle cx="36" cy="32" r="3.4"/><circle cx="36" cy="45" r="3.4"/><circle cx="36" cy="58" r="3.4"/>
+            <circle cx="45" cy="39" r="3.4"/><circle cx="55" cy="51" r="3.4"/>
+            <circle cx="64" cy="32" r="3.4"/><circle cx="64" cy="45" r="3.4"/><circle cx="64" cy="58" r="3.4"/>
+          </g>
+          <text x="50" y="93" text-anchor="middle" font-family="Space Grotesk,sans-serif" font-weight="700" font-size="9" fill="#c9b8ff" letter-spacing="6">NOKTA</text>
+        </svg>
+        <span class="j-nome">Design & Tech</span><i class="j-brilho"></i>
+      </div>
+    </div>
+    <p class="cofre-nota p-rev" style="--d:.55s">* Conceitos autorais do estúdio, desenhados em vetor puro — <b>nítidos em qualquer tamanho, do favicon ao outdoor</b>. O sétimo pode ser o seu.</p>
+    <ul class="entregas p-rev" style="--d:.6s">
+      <li>Símbolo + logotipo + variações</li>
+      <li>Malha de construção documentada</li>
+      <li>Versões positivo, negativo e mono</li>
+      <li>Manual de uso (o que pode e o que jamais)</li>
+    </ul>
+    <div class="painel-cta p-rev" style="--d:.65s">
+      <a class="btn btn-solid magnet" href="https://wa.me/5535999259372?text=Ol%C3%A1%2C%20Veltrix!%20Quero%20um%20logo%20premium%20pra%20minha%20marca." target="_blank" rel="noopener">Quero meu símbolo →</a>
+      <a class="btn btn-ghost magnet" href="https://www.instagram.com/veltrix__agency" target="_blank" rel="noopener">@veltrix__agency</a>
+    </div>
+  </div>
+</div>
+
+<!-- ===== MUNDO 02 · BRAND IDENTITY ===== -->
+<div class="painel" id="p-id" role="dialog" aria-label="Mundo Brand Identity">
+  <div class="painel-in">
+    <span class="num-gig" aria-hidden="true">02</span>
+    <span class="rotulo p-rev">Mundo 02</span>
+    <h3 class="p-rev" style="--d:.08s">Brand <span class="serif">Identity.</span></h3>
+    <p class="lead p-rev" style="--d:.16s">Logo é o rosto; identidade é o <b>corpo inteiro</b> — tipografia, cor, textura e voz operando como um sistema. É isso que faz a marca ser reconhecida até sem o logo na tela.</p>
+    <div class="specimen">
+      <div class="spec-tipo t3d p-rev" style="--d:.24s">
+        <div class="aa">Aa <span class="serif">Aa</span></div>
+        <p>Par tipográfico do sistema: um grotesco que impõe + um serifado que seduz. Hierarquia definida em 5 níveis, do outdoor à legenda.</p>
+      </div>
+      <div class="barras p-rev" style="--d:.32s">
+        <div class="cor">CARVÃO PROFUNDO · 07070A<i style="--s:1;--d:.5s;background:#16161d;border:1px solid rgba(255,255,255,.14)"></i></div>
+        <div class="cor">VIOLETA VOLT · 7C5CFF<i style="--s:.82;--d:.65s;background:linear-gradient(90deg,#7c5cff,#a78bfa)"></i></div>
+        <div class="cor">OURO CHAMPANHE · E8C47C<i style="--s:.6;--d:.8s;background:linear-gradient(90deg,#c49a4e,#f3dfae)"></i></div>
+        <div class="cor">OSSO · F4F2EC<i style="--s:.4;--d:.95s;background:#f4f2ec"></i></div>
+      </div>
+    </div>
+    <div class="voz t3d p-rev" style="--d:.4s">
+      <p class="certa">“Sua marca merece ser inevitável.” — <b style="color:var(--ouro)">a voz certa</b></p>
+      <p class="errada">“Somos uma empresa focada em soluções criativas e inovadoras.” — a voz de todo mundo</p>
+    </div>
+    <ul class="entregas p-rev" style="--d:.48s">
+      <li>Brandbook completo (regras + exemplos)</li>
+      <li>Paleta com códigos e proporções de uso</li>
+      <li>Par tipográfico licenciável + hierarquia</li>
+      <li>Tom de voz: como a marca fala e como jamais fala</li>
+    </ul>
+    <div class="painel-cta p-rev" style="--d:.54s">
+      <a class="btn btn-solid magnet" href="https://wa.me/5535999259372?text=Ol%C3%A1%2C%20Veltrix!%20Quero%20uma%20identidade%20de%20marca%20completa." target="_blank" rel="noopener">Quero um sistema →</a>
+      <a class="btn btn-ghost magnet" href="https://www.instagram.com/veltrix__agency" target="_blank" rel="noopener">@veltrix__agency</a>
+    </div>
+  </div>
+</div>
+
+<!-- ===== MUNDO 03 · SOCIAL MEDIA ===== -->
+<div class="painel" id="p-social" role="dialog" aria-label="Mundo Social Media">
+  <div class="painel-in">
+    <span class="num-gig" aria-hidden="true">03</span>
+    <span class="rotulo p-rev">Mundo 03</span>
+    <h3 class="p-rev" style="--d:.08s">Social <span class="serif">Media.</span></h3>
+    <p class="lead p-rev" style="--d:.16s">O feed é a vitrine que nunca fecha. Direção de arte com sistema — <b>templates, grid e ritmo de conteúdo</b> — pra cada post parecer campanha, não improviso.</p>
+    <div class="social-demo">
+      <div class="fone t3d p-rev" id="fone2" style="--d:.24s">
+        <div class="fone-notch"></div>
+        <div class="fone-topo"><span class="story"></span><b>sua.marca</b></div>
+        <div class="feed">
+          <div class="post p2"><span class="serif">o padrão se repete</span></div>
+          <div class="post p1"><span>CAMPANHA 01</span></div>
+          <div class="post p3"><span>ASSINATURA<br>VISUAL</span></div>
+          <div class="post p2"><span class="serif">o padrão se repete</span></div>
+          <div class="post p1"><span>CAMPANHA 01</span></div>
+          <div class="post p3"><span>ASSINATURA<br>VISUAL</span></div>
+        </div>
+        <div class="curtidas">♥ <b>você aqui</b></div>
+      </div>
+      <div class="metricas">
+        <div class="met p-rev" style="--d:.3s"><b data-alvo="2.4" data-sufixo="x">0x</b><span>Alcance médio</span><small>com direção de arte</small></div>
+        <div class="met p-rev" style="--d:.38s"><b data-alvo="180" data-sufixo="%">0%</b><span>Mais salvamentos</span><small>conteúdo com sistema</small></div>
+        <div class="met p-rev" style="--d:.46s"><b data-alvo="3" data-sufixo="x">0x</b><span>Resposta em DM</span><small>quando a marca tem voz</small></div>
+      </div>
+    </div>
+    <ul class="entregas p-rev" style="--d:.52s">
+      <li>Direção de arte do feed (grid + ritmo)</li>
+      <li>Pack de templates editáveis</li>
+      <li>Capas de destaque + assinatura visual</li>
+      <li>Kit de lançamento pro primeiro mês</li>
+    </ul>
+    <div class="painel-cta p-rev" style="--d:.58s">
+      <a class="btn btn-solid magnet" href="https://wa.me/5535999259372?text=Ol%C3%A1%2C%20Veltrix!%20Quero%20um%20feed%20premium%20pra%20minha%20marca." target="_blank" rel="noopener">Quero esse feed →</a>
+      <a class="btn btn-ghost magnet" href="https://www.instagram.com/veltrix__agency" target="_blank" rel="noopener">@veltrix__agency</a>
+    </div>
+  </div>
+</div>
+
 <footer>
   <div class="wrap foot">
     <span>© 2026 VELTRIX® — Premium Branding Agency</span>
@@ -614,10 +961,7 @@ footer a{color:var(--volt-claro);text-decoration:none}
 <script>
 /* ===== cortina ===== */
 addEventListener('load', () => {
-  setTimeout(() => {
-    document.getElementById('telao').classList.add('vai');
-    document.body.classList.add('pronto');
-  }, 1150);
+  setTimeout(() => document.getElementById('telao').classList.add('vai'), 1000);
 });
 
 /* ===== barra do rolo ===== */
@@ -672,14 +1016,17 @@ document.querySelectorAll('.tile').forEach(t => {
 
 /* ===== reveals ===== */
 const io = new IntersectionObserver(es => es.forEach(e => {
-  if (e.isIntersecting) { e.target.classList.add('on'); io.unobserve(e.target); }
+  if (e.isIntersecting) e.target.classList.add('on');
+  else e.target.classList.remove('on');   /* re-arma: a cena explode de novo ao voltar */
 }), { threshold: .15 });
 document.querySelectorAll('.rev').forEach(el => io.observe(el));
 
 /* ===== CÉU: poeira de luz flutuando ===== */
 const ceu = document.getElementById('ceu'), cx2 = ceu.getContext('2d');
 let PS = [];
-function ceuSize(){ ceu.width = innerWidth; ceu.height = innerHeight; }
+const DPRg = Math.min(devicePixelRatio || 1, 2);   /* nitidez ultra HD em telas retina */
+function ceuSize(){ ceu.width = innerWidth * DPRg; ceu.height = innerHeight * DPRg;
+  cx2.setTransform(DPRg, 0, 0, DPRg, 0, 0); }
 ceuSize(); addEventListener('resize', ceuSize);
 for (let i = 0; i < 70; i++) PS.push({
   x: Math.random()*innerWidth, y: Math.random()*innerHeight,
@@ -687,9 +1034,9 @@ for (let i = 0; i < 70; i++) PS.push({
   a: .08+Math.random()*.4, tw: Math.random()*6.28
 });
 (function ceuLoop(t){
-  cx2.clearRect(0,0,ceu.width,ceu.height);
+  cx2.clearRect(0,0,innerWidth,innerHeight);
   for (const p of PS){
-    p.y -= p.v; if (p.y < -4){ p.y = ceu.height+4; p.x = Math.random()*ceu.width; }
+    p.y -= p.v; if (p.y < -4){ p.y = innerHeight+4; p.x = Math.random()*innerWidth; }
     const tw = .6+.4*Math.sin(t/700+p.tw);
     cx2.globalAlpha = p.a*tw;
     cx2.fillStyle = Math.random()<.06 ? '#a78bfa' : '#cfc9ff';
@@ -702,10 +1049,12 @@ for (let i = 0; i < 70; i++) PS.push({
 /* ===== SHOWREEL: ondas de luz cinematográficas ===== */
 const on = document.getElementById('ondas'), ox = on.getContext('2d');
 function reelSize(){ const r = on.parentElement.getBoundingClientRect();
-  on.width = r.width; on.height = r.height; }
+  on.width = r.width * DPRg; on.height = r.height * DPRg;
+  on._w = r.width; on._h = r.height;
+  ox.setTransform(DPRg, 0, 0, DPRg, 0, 0); }
 reelSize(); addEventListener('resize', reelSize);
 (function reelLoop(t){
-  const W = on.width, H = on.height;
+  const W = on._w || 0, H = on._h || 0;
   ox.clearRect(0,0,W,H);
   ox.globalCompositeOperation = 'lighter';
   for (let l = 0; l < 4; l++){
@@ -869,7 +1218,9 @@ btnSom.addEventListener('click', () => {
 
 /* ============ PALAVRA VIVA: VELTRIX em milhares de partículas ============ */
 (function palavraViva(){
-  if (!matchMedia('(hover:hover)').matches || innerWidth < 900) return;
+  const TOQUE = !matchMedia('(hover:hover)').matches;
+  const dica = document.querySelector('.dica-particulas');
+  if (TOQUE && dica) dica.textContent = 'Toca no nome e arrasta.';
   const casa = document.querySelector('.palavra-viva');
   const h1 = casa.querySelector('h1');
   const cv = document.getElementById('txparticulas');
@@ -893,7 +1244,7 @@ btnSom.addEventListener('click', () => {
     ox2.fillText('VELTRIX', W/2, H/2);
     const img = ox2.getImageData(0, 0, W, H).data;
     P = [];
-    const passo = Math.max(3, Math.floor(W / 420));
+    const passo = Math.max(TOQUE ? 4 : 3, Math.floor(W / 420));
     for (let y = 0; y < H; y += passo)
       for (let x = 0; x < W; x += passo)
         if (img[(y * W + x) * 4 + 3] > 128) {
@@ -915,6 +1266,14 @@ btnSom.addEventListener('click', () => {
     const r = cv.getBoundingClientRect();
     mX = e.clientX - r.left; mY = e.clientY - r.top;
   });
+  function noToque(e){
+    const t = e.touches[0]; if (!t) return;
+    const r = cv.getBoundingClientRect();
+    mX = t.clientX - r.left; mY = t.clientY - r.top;
+  }
+  casa.addEventListener('touchstart', noToque, { passive: true });
+  casa.addEventListener('touchmove', noToque, { passive: true });
+  addEventListener('touchend', () => { mX = -9999; mY = -9999; });
 
   (function anima(){
     const W = cv.width / DPR, H = cv.height / DPR;
@@ -928,6 +1287,7 @@ btnSom.addEventListener('click', () => {
       }
       p.vx += (p.tx - p.x) * .055; p.vy += (p.ty - p.y) * .055;
       p.vx *= .82; p.vy *= .82;
+      p.vx += (Math.random() - .5) * .1; p.vy += (Math.random() - .5) * .1;  /* respiração viva */
       p.x += p.vx; p.y += p.vy;
       cx.fillStyle = `rgba(${p.cor},.95)`;
       cx.fillRect(p.x, p.y, p.s, p.s);
@@ -955,7 +1315,10 @@ btnSom.addEventListener('click', () => {
     })();
   }
   const io2 = new IntersectionObserver(es => es.forEach(e => {
-    if (e.isIntersecting) { scramble(e.target); io2.unobserve(e.target); }
+    if (e.isIntersecting && !e.target._rodando) {
+      e.target._rodando = true; scramble(e.target);
+      setTimeout(() => e.target._rodando = false, 1400);
+    }
   }), { threshold: .6 });
   document.querySelectorAll('.rotulo, .ofi-texto h3, .slate').forEach(el => io2.observe(el));
 })();
@@ -967,17 +1330,19 @@ btnSom.addEventListener('click', () => {
   function wSize(){
     const r = wc.parentElement.getBoundingClientRect();
     if (r.width < 40) return;                                 /* viewport zerado: mantém o tamanho anterior */
-    wc.width = r.width; wc.height = r.height;
+    wc.width = r.width * DPRg; wc.height = r.height * DPRg;
+    wc._w = r.width; wc._h = r.height;
+    wx.setTransform(DPRg, 0, 0, DPRg, 0, 0);
     E = [];
     for (let i = 0; i < 170; i++) E.push({
-      a: Math.random() * 6.2832, r: Math.random() * Math.max(wc.width, wc.height) * .5,
+      a: Math.random() * 6.2832, r: Math.random() * Math.max(r.width, r.height) * .5,
       v: .4 + Math.random() * 2.2, s: .5 + Math.random() * 1.4
     });
   }
   wSize(); addEventListener('resize', wSize);
   (function wLoop(){
     if (!wc.width) { wSize(); requestAnimationFrame(wLoop); return; }
-    const W = wc.width, H = wc.height, cxx = W/2, cyy = H/2;
+    const W = wc._w, H = wc._h, cxx = W/2, cyy = H/2;
     wx.fillStyle = 'rgba(7,7,10,.32)'; wx.fillRect(0, 0, W, H);
     wx.globalCompositeOperation = 'lighter';
     for (const e of E) {
@@ -995,6 +1360,202 @@ btnSom.addEventListener('click', () => {
     requestAnimationFrame(wLoop);
   })();
 })();
+
+/* ============================================================
+   MOTORES v6 — portal, big bang, abas-mundo, toque, estouros
+   ============================================================ */
+const REDUZ = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* ===== FOGO: motor de faíscas de ouro e violeta ===== */
+function Fogo(cv){
+  const ctx = cv.getContext('2d');
+  const F = [], AN = [];
+  let vivo = false;
+  function mede(){ cv.width = innerWidth * DPRg; cv.height = innerHeight * DPRg;
+    ctx.setTransform(DPRg, 0, 0, DPRg, 0, 0); }
+  mede(); addEventListener('resize', mede);
+  const CORES = ['232,196,124','243,223,174','167,139,250','124,92,255','255,255,255'];
+  function loop(){
+    if (!F.length && !AN.length){ vivo = false; ctx.clearRect(0,0,innerWidth,innerHeight); return; }
+    ctx.clearRect(0,0,innerWidth,innerHeight);
+    ctx.globalCompositeOperation = 'lighter';
+    for (let i = F.length-1; i >= 0; i--){
+      const p = F[i];
+      p.x += p.vx; p.y += p.vy; p.vx *= .965; p.vy = p.vy*.965 + .05; p.vida -= p.dec;
+      if (p.vida <= 0){ F.splice(i,1); continue; }
+      ctx.globalAlpha = Math.min(p.vida, 1);
+      ctx.fillStyle = `rgb(${p.cor})`;
+      ctx.fillRect(p.x, p.y, p.s, p.s);
+    }
+    for (let i = AN.length-1; i >= 0; i--){
+      const a = AN[i];
+      a.r += a.vel; a.op -= .022;
+      if (a.op <= 0){ AN.splice(i,1); continue; }
+      ctx.globalAlpha = a.op; ctx.strokeStyle = a.cor; ctx.lineWidth = a.esp;
+      ctx.beginPath(); ctx.ellipse(a.x, a.y, a.r, a.r*.75, 0, 0, 6.2832); ctx.stroke();
+    }
+    ctx.globalAlpha = 1; ctx.globalCompositeOperation = 'source-over';
+    requestAnimationFrame(loop);
+  }
+  this.faisca = (x, y, n, forca) => {
+    if (REDUZ) return;
+    for (let i = 0; i < n; i++){
+      const ang = Math.random()*6.2832, v = (Math.random()**1.6) * forca + .6;
+      F.push({ x, y, vx: Math.cos(ang)*v, vy: Math.sin(ang)*v*.8,
+        s: 1 + Math.random()*2.2, vida: .9 + Math.random()*.5, dec: .012 + Math.random()*.02,
+        cor: CORES[(Math.random()*CORES.length)|0] });
+    }
+    if (F.length > 900) F.splice(0, F.length - 900);
+    if (!vivo){ vivo = true; loop(); }
+  };
+  this.anel = (x, y, cor) => {
+    if (REDUZ) return;
+    AN.push({ x, y, r: 8, vel: 16, op: .85, esp: 2, cor });
+    AN.push({ x, y, r: 4, vel: 24, op: .6, esp: 1, cor: 'rgba(255,255,255,.9)' });
+    if (!vivo){ vivo = true; loop(); }
+  };
+}
+const fogoBoom = new Fogo(document.getElementById('boom'));
+const fogoTela = new Fogo(document.getElementById('estouro'));
+
+/* ===== PORTAL: a entrada é um big bang ===== */
+const portal = document.getElementById('portal');
+const btnEntrar = document.getElementById('btn-entrar');
+const flashEl = document.getElementById('flash');
+document.body.classList.add('travado');
+const MAPA_HASH = { 'p-logo': '#logo-design', 'p-id': '#identidade', 'p-social': '#social-media' };
+let entrou = false, autoGlide = null;
+function cancelaGlide(){ if (autoGlide){ clearTimeout(autoGlide); autoGlide = null; } }
+function entrada(){
+  if (entrou) return; entrou = true;
+  const r = btnEntrar.getBoundingClientRect();
+  const x = r.left + r.width/2, y = r.top + r.height/2;
+  fogoBoom.faisca(x, y, 520, 17);
+  fogoBoom.anel(x, y, 'rgba(232,196,124,.9)');
+  setTimeout(() => fogoBoom.anel(x, y, 'rgba(167,139,250,.8)'), 130);
+  if (!REDUZ){ flashEl.style.opacity = .95; setTimeout(() => flashEl.style.opacity = 0, 90); }
+  portal.classList.add('foi');
+  setTimeout(() => {
+    document.body.classList.remove('travado');
+    document.body.classList.add('pronto');
+    const alvoHash = Object.entries(MAPA_HASH).find(([,h]) => h === location.hash);
+    if (alvoHash) setTimeout(() => abrePainel(alvoHash[0]), 900);
+  }, 300);
+  /* transição suave: das boas-vindas direto pra demonstração dos serviços */
+  setTimeout(() => {
+    ['wheel','touchstart','keydown'].forEach(ev => addEventListener(ev, cancelaGlide, { passive: true }));
+  }, 800);
+  autoGlide = setTimeout(() => {
+    if (!painelAberto) document.getElementById('servicos').scrollIntoView({ behavior: 'smooth' });
+  }, 4600);
+}
+btnEntrar.addEventListener('click', entrada);
+
+/* ===== ABAS: cada serviço é um mundo com portal de íris ===== */
+const btnFechar = document.getElementById('fecharPainel');
+let painelAberto = null;
+function abrePainel(id, x, y){
+  const p = document.getElementById(id); if (!p) return;
+  p.style.setProperty('--cx', (x ?? innerWidth/2) + 'px');
+  p.style.setProperty('--cy', (y ?? innerHeight/2) + 'px');
+  p.scrollTop = 0;
+  p.classList.add('aberto');
+  document.body.classList.add('sem-scroll');
+  painelAberto = p;
+  fogoTela.faisca(x ?? innerWidth/2, y ?? innerHeight/2, 90, 9);
+  history.replaceState(null, '', MAPA_HASH[id] || location.pathname);
+  if (id === 'p-social') contaMetricas(p);
+}
+function fechaPainel(){
+  if (!painelAberto) return;
+  painelAberto.classList.remove('aberto');
+  document.body.classList.remove('sem-scroll');
+  painelAberto = null;
+  history.replaceState(null, '', '#servicos');
+}
+document.querySelectorAll('[data-p]').forEach(b =>
+  b.addEventListener('click', e => abrePainel(b.dataset.p, e.clientX, e.clientY)));
+btnFechar.addEventListener('click', fechaPainel);
+addEventListener('keydown', e => { if (e.key === 'Escape') fechaPainel(); });
+
+/* métricas que contam sozinhas */
+function contaMetricas(p){
+  p.querySelectorAll('.met b[data-alvo]').forEach(b => {
+    const alvo = parseFloat(b.dataset.alvo), suf = b.dataset.sufixo || '';
+    const dec = String(b.dataset.alvo).includes('.') ? 1 : 0;
+    const t0 = performance.now();
+    (function conta(t){
+      const k = Math.min((t - t0) / 1400, 1);
+      b.textContent = (alvo * (1 - Math.pow(1-k, 3))).toFixed(dec) + suf;
+      if (k < 1) requestAnimationFrame(conta);
+    })(t0);
+  });
+}
+
+/* ===== TOQUE 3D: as imagens se mexem na mão ===== */
+function aplicaTilt(el, gx = 12, gy = 14){
+  function vira(cx, cy){
+    const r = el.getBoundingClientRect();
+    const rx = ((cy - r.top) / r.height - .5) * -gx;
+    const ry = ((cx - r.left) / r.width - .5) * gy;
+    el.style.transform = `rotateX(${rx}deg) rotateY(${ry}deg)`;
+    el.style.setProperty('--gx', ((cx - r.left) / r.width * 100) + '%');
+    el.style.setProperty('--gy', ((cy - r.top) / r.height * 100) + '%');
+  }
+  el.addEventListener('mousemove', e => vira(e.clientX, e.clientY));
+  el.addEventListener('mouseleave', () => el.style.transform = '');
+  el.addEventListener('touchmove', e => {
+    const t = e.touches[0]; if (t) vira(t.clientX, t.clientY);
+  }, { passive: true });
+  el.addEventListener('touchend', () => setTimeout(() => el.style.transform = '', 350));
+}
+document.querySelectorAll('.t3d').forEach(el => aplicaTilt(el));
+document.querySelectorAll('.tile').forEach(el => {
+  el.addEventListener('touchmove', e => {
+    const t = e.touches[0]; if (!t) return;
+    const r = el.getBoundingClientRect();
+    const rx = ((t.clientY - r.top) / r.height - .5) * -10;
+    const ry = ((t.clientX - r.left) / r.width - .5) * 12;
+    el.style.transform = `rotateX(${rx}deg) rotateY(${ry}deg)`;
+  }, { passive: true });
+  el.addEventListener('touchend', () => setTimeout(() => el.style.transform = '', 350));
+});
+
+/* todo toque em peça visual solta faíscas */
+document.addEventListener('click', e => {
+  const alvo = e.target.closest('.joia,.tile,.cartao,.fone,.aba,.btn,.link-mundo');
+  if (!alvo) return;
+  fogoTela.faisca(e.clientX, e.clientY, 46, 6.5);
+  if (alvo.classList.contains('joia')){
+    alvo.classList.add('toco');
+    setTimeout(() => alvo.classList.remove('toco'), 600);
+  }
+});
+
+/* ===== EXPLOSÕES NO SCROLL (descendo E subindo) ===== */
+let ultScrollV6 = scrollY, ultBurst = 0;
+addEventListener('scroll', () => {
+  const agora = performance.now();
+  const dv = scrollY - ultScrollV6; ultScrollV6 = scrollY;
+  if (Math.abs(dv) > 42 && agora - ultBurst > 620 && entrou){
+    ultBurst = agora;
+    const yb = dv > 0 ? innerHeight * .88 : innerHeight * .12;
+    for (let i = 0; i < 3; i++)
+      fogoTela.faisca(innerWidth * (.15 + Math.random() * .7), yb + (Math.random()-.5)*40, 26, 6);
+  }
+}, { passive: true });
+
+/* cada cena que entra no quadro = salva de faíscas */
+const io4 = new IntersectionObserver(es => es.forEach(e => {
+  if (!e.isIntersecting || !entrou) return;
+  const agora = performance.now();
+  if (agora - ultBurst < 700) return;
+  ultBurst = agora;
+  const yb = e.boundingClientRect.top > innerHeight/2 ? innerHeight * .82 : innerHeight * .18;
+  fogoTela.faisca(innerWidth * .25, yb, 30, 7);
+  fogoTela.faisca(innerWidth * .75, yb, 30, 7);
+}), { threshold: .25 });
+document.querySelectorAll('section, .oficio').forEach(s => io4.observe(s));
 </script>
 </body>
 </html>
