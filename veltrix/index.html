@@ -365,10 +365,32 @@ footer a{color:var(--volt-claro);text-decoration:none}
 #som:hover,#som.on{color:var(--volt-claro);border-color:rgba(124,92,255,.6)}
 #som.on{box-shadow:0 0 18px rgba(124,92,255,.25)}
 
+/* ===== PALAVRA VIVA: VELTRIX em partículas ===== */
+.palavra-viva{position:relative}
+#txparticulas{position:absolute;inset:-40px -20px;width:calc(100% + 40px);height:calc(100% + 80px);
+  pointer-events:none;z-index:2;opacity:0;transition:opacity .6s}
+.palavra-viva.viva #txparticulas{opacity:1}
+.palavra-viva.viva h1 i{opacity:0!important;transition:opacity .6s}
+.dica-particulas{display:block;margin-top:10px;font-size:.78rem;color:var(--volt-claro);
+  letter-spacing:.18em;text-transform:uppercase;font-weight:500;opacity:.75}
+@media(hover:none),(max-width:900px){.dica-particulas{display:none}}
+
+/* instagram na nav */
+.ig-link{display:inline-flex;align-items:center;color:var(--cinza);transition:color .2s,transform .2s}
+.ig-link:hover{color:var(--volt-claro);transform:translateY(-2px)}
+.ig-rodape{color:var(--volt-claro);text-decoration:none}
+.ig-rodape:hover{text-decoration:underline}
+
+/* ===== WARP: hiperespaço da cena final ===== */
+.cta-final{position:relative;overflow:hidden}
+#warp{position:absolute;inset:0;width:100%;height:100%;z-index:0;opacity:.8}
+.cta-conteudo{position:relative;z-index:1}
+
 @media (prefers-reduced-motion:reduce){
   *{animation:none!important;transition:none!important}
   .hero h1 i,.hero .frase,.hero-ctas{opacity:1!important;transform:none!important}
   #telao{display:none}body{cursor:auto}#dot,#anel,.grao,.leak,.barra-cine{display:none}
+  #txparticulas,#warp{display:none}.palavra-viva.viva h1 i{opacity:1!important}
 }
 </style>
 </head>
@@ -399,6 +421,9 @@ footer a{color:var(--volt-claro);text-decoration:none}
       <a href="#servicos">Serviços</a>
       <a href="#estudio">Estúdio</a>
       <a href="#processo">Processo</a>
+      <a class="ig-link" href="https://www.instagram.com/veltrix__agency" target="_blank" rel="noopener" aria-label="Instagram da Veltrix">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.4" cy="6.6" r="1.2" fill="currentColor" stroke="none"/></svg>
+      </a>
       <a class="btn-nav" href="https://wa.me/5535999259372?text=Ol%C3%A1%2C%20Veltrix!%20Quero%20uma%20marca%20premium%20%E2%80%94%20vamos%20conversar%3F" target="_blank" rel="noopener">Iniciar projeto</a>
     </div>
   </div>
@@ -407,11 +432,15 @@ footer a{color:var(--volt-claro);text-decoration:none}
 <header class="hero" id="top">
   <div class="wrap" id="palco">
     <span class="hero-kicker">Premium Branding Agency</span>
-    <h1 aria-label="VELTRIX"><i>V</i><i>E</i><i>L</i><i>T</i><i>R</i><i>I</i><i>X</i></h1>
-    <p class="frase">Construímos marcas que parecem <em>inevitáveis</em> — identidades com peso, presença e intenção em cada pixel.</p>
+    <div class="palavra-viva">
+      <h1 aria-label="VELTRIX"><i>V</i><i>E</i><i>L</i><i>T</i><i>R</i><i>I</i><i>X</i></h1>
+      <canvas id="txparticulas" aria-hidden="true"></canvas>
+    </div>
+    <p class="frase">Construímos marcas que parecem <em>inevitáveis</em> — identidades com peso, presença e intenção em cada pixel. <b class="dica-particulas">Passa o mouse no nome.</b></p>
     <div class="hero-ctas">
       <a class="btn btn-solid magnet" href="https://wa.me/5535999259372?text=Ol%C3%A1%2C%20Veltrix!%20Quero%20uma%20marca%20premium%20%E2%80%94%20vamos%20conversar%3F" target="_blank" rel="noopener">Chamar no WhatsApp</a>
       <a class="btn btn-ghost magnet" href="#servicos">Ver o que fazemos</a>
+      <a class="btn btn-ghost magnet" href="https://www.instagram.com/veltrix__agency" target="_blank" rel="noopener">@veltrix__agency ↗</a>
     </div>
   </div>
   <div class="hero-scroll">desça</div>
@@ -564,19 +593,20 @@ footer a{color:var(--volt-claro);text-decoration:none}
 </section>
 
 <section class="cta-final">
-  <div class="wrap">
+  <canvas id="warp" aria-hidden="true"></canvas>
+  <div class="wrap cta-conteudo">
     <span class="rotulo rev">Vagas limitadas por mês</span>
     <h2 class="rev">Sua marca merece ser <span class="serif">inevitável.</span></h2>
     <p class="rev">Chama no WhatsApp, conta em duas linhas o que você constrói — respondemos com uma proposta de caminho em até 24h.</p>
     <a class="btn btn-solid magnet rev" href="https://wa.me/5535999259372?text=Ol%C3%A1%2C%20Veltrix!%20Quero%20uma%20marca%20premium%20%E2%80%94%20vamos%20conversar%3F" target="_blank" rel="noopener">💬 Chamar no WhatsApp →</a>
-    <span class="zap-num rev">+55 <b>(35) 99925-9372</b></span>
+    <span class="zap-num rev">+55 <b>(35) 99925-9372</b> · <a class="ig-rodape" href="https://www.instagram.com/veltrix__agency" target="_blank" rel="noopener">@veltrix__agency</a></span>
   </div>
 </section>
 
 <footer>
   <div class="wrap foot">
     <span>© 2026 VELTRIX® — Premium Branding Agency</span>
-    <span>Logo Design · Brand Identity · Social Media</span>
+    <a href="https://www.instagram.com/veltrix__agency" target="_blank" rel="noopener">Instagram @veltrix__agency</a>
     <a href="https://wa.me/5535999259372" target="_blank" rel="noopener">WhatsApp (35) 99925-9372</a>
   </div>
 </footer>
@@ -836,6 +866,131 @@ btnSom.addEventListener('click', () => {
     btnSom.textContent = 'SOM · OFF';
   }
 });
+
+/* ============ PALAVRA VIVA: VELTRIX em milhares de partículas ============ */
+(function palavraViva(){
+  if (!matchMedia('(hover:hover)').matches || innerWidth < 900) return;
+  const casa = document.querySelector('.palavra-viva');
+  const h1 = casa.querySelector('h1');
+  const cv = document.getElementById('txparticulas');
+  const cx = cv.getContext('2d');
+  let P = [], mX = -9999, mY = -9999, DPR = Math.min(devicePixelRatio || 1, 2);
+
+  function montar(){
+    const r = casa.getBoundingClientRect();
+    const W = r.width + 40, H = r.height + 80;
+    cv.width = W * DPR; cv.height = H * DPR;
+    cx.setTransform(DPR, 0, 0, DPR, 0, 0);
+    /* estêncil: desenha VELTRIX num canvas oculto e amostra os pixels */
+    const off = document.createElement('canvas');
+    off.width = W; off.height = H;
+    const ox2 = off.getContext('2d');
+    const fs = Math.min(W / 6.2, 170);
+    ox2.font = `700 ${fs}px "Space Grotesk", sans-serif`;
+    ox2.textBaseline = 'middle'; ox2.textAlign = 'center';
+    ox2.fillStyle = '#fff';
+    ox2.fillText('VELTRIX', W/2, H/2);
+    const img = ox2.getImageData(0, 0, W, H).data;
+    P = [];
+    const passo = Math.max(3, Math.floor(W / 420));
+    for (let y = 0; y < H; y += passo)
+      for (let x = 0; x < W; x += passo)
+        if (img[(y * W + x) * 4 + 3] > 128) {
+          const t = x / W;
+          P.push({
+            x: Math.random() * W, y: Math.random() * H,
+            tx: x, ty: y, vx: 0, vy: 0,
+            cor: t < .45 ? '255,255,255' : (t < .75 ? '167,139,250' : '124,92,255'),
+            s: .9 + Math.random() * 1.5
+          });
+        }
+    if (P.length) casa.classList.add('viva');
+  }
+
+  document.fonts.ready.then(() => setTimeout(montar, 2400));
+  addEventListener('resize', () => { clearTimeout(cv._rz); cv._rz = setTimeout(montar, 300); });
+  addEventListener('mousemove', e => {
+    const r = cv.getBoundingClientRect();
+    mX = e.clientX - r.left; mY = e.clientY - r.top;
+  });
+
+  (function anima(){
+    const W = cv.width / DPR, H = cv.height / DPR;
+    cx.clearRect(0, 0, W, H);
+    for (const p of P) {
+      const dx = mX - p.x, dy = mY - p.y;
+      const d2 = dx*dx + dy*dy;
+      if (d2 < 8100) {                       /* raio 90: o dedo do diretor afasta a tinta */
+        const d = Math.sqrt(d2) || 1, f = (90 - d) / 90 * 7;
+        p.vx -= dx / d * f; p.vy -= dy / d * f;
+      }
+      p.vx += (p.tx - p.x) * .055; p.vy += (p.ty - p.y) * .055;
+      p.vx *= .82; p.vy *= .82;
+      p.x += p.vx; p.y += p.vy;
+      cx.fillStyle = `rgba(${p.cor},.95)`;
+      cx.fillRect(p.x, p.y, p.s, p.s);
+    }
+    requestAnimationFrame(anima);
+  })();
+})();
+
+/* ============ DECODIFICAÇÃO: títulos se montam com glifos ============ */
+(function decode(){
+  const GLIFOS = '█▓▒░<>/\\|VELTRIX*#%&@01';
+  function scramble(el){
+    const alvo = el.dataset.txt || (el.dataset.txt = el.textContent);
+    let quadro = 0;
+    const total = Math.max(14, alvo.length * 2);
+    (function passo(){
+      let s = '';
+      for (let i = 0; i < alvo.length; i++) {
+        if (i < (quadro / total) * alvo.length) s += alvo[i];
+        else s += alvo[i] === ' ' ? ' ' : GLIFOS[(Math.random() * GLIFOS.length) | 0];
+      }
+      el.textContent = s;
+      if (quadro++ < total) requestAnimationFrame(passo);
+      else el.textContent = alvo;
+    })();
+  }
+  const io2 = new IntersectionObserver(es => es.forEach(e => {
+    if (e.isIntersecting) { scramble(e.target); io2.unobserve(e.target); }
+  }), { threshold: .6 });
+  document.querySelectorAll('.rotulo, .ofi-texto h3, .slate').forEach(el => io2.observe(el));
+})();
+
+/* ============ WARP: hiperespaço puxando pra decisão ============ */
+(function warp(){
+  const wc = document.getElementById('warp'), wx = wc.getContext('2d');
+  let E = [];
+  function wSize(){
+    const r = wc.parentElement.getBoundingClientRect();
+    wc.width = r.width; wc.height = r.height;
+    E = [];
+    for (let i = 0; i < 170; i++) E.push({
+      a: Math.random() * 6.2832, r: Math.random() * Math.max(wc.width, wc.height) * .5,
+      v: .4 + Math.random() * 2.2, s: .5 + Math.random() * 1.4
+    });
+  }
+  wSize(); addEventListener('resize', wSize);
+  (function wLoop(){
+    const W = wc.width, H = wc.height, cxx = W/2, cyy = H/2;
+    wx.fillStyle = 'rgba(7,7,10,.32)'; wx.fillRect(0, 0, W, H);
+    wx.globalCompositeOperation = 'lighter';
+    for (const e of E) {
+      const r0 = e.r;
+      e.r += e.v * (1 + e.r / 260);
+      if (e.r > Math.max(W, H) * .75) { e.r = Math.random() * 30; e.a = Math.random() * 6.2832; }
+      const x0 = cxx + Math.cos(e.a) * r0, y0 = cyy + Math.sin(e.a) * r0 * .6;
+      const x1 = cxx + Math.cos(e.a) * e.r, y1 = cyy + Math.sin(e.a) * e.r * .6;
+      const al = Math.min(e.r / 200, .8);
+      wx.strokeStyle = `rgba(${e.a % 1 < .5 ? '167,139,250' : '255,255,255'},${al})`;
+      wx.lineWidth = e.s;
+      wx.beginPath(); wx.moveTo(x0, y0); wx.lineTo(x1, y1); wx.stroke();
+    }
+    wx.globalCompositeOperation = 'source-over';
+    requestAnimationFrame(wLoop);
+  })();
+})();
 </script>
 </body>
 </html>
