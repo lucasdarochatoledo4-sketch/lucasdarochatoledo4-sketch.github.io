@@ -513,7 +513,8 @@ body.sem-scroll #fecharPainel{display:block}
 .voz .errada{margin-top:10px;color:var(--cinza);text-decoration:line-through;font-size:.95rem}
 
 /* social: demo + métricas */
-.social-demo{display:grid;grid-template-columns:auto 1fr;gap:44px;margin-top:48px;align-items:center}
+.social-demo{display:grid;grid-template-columns:auto auto 1fr;gap:34px;margin-top:48px;align-items:center}
+@media(max-width:1080px){.social-demo{grid-template-columns:auto auto}}
 @media(max-width:860px){.social-demo{grid-template-columns:1fr}}
 .metricas{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
 @media(max-width:520px){.metricas{grid-template-columns:1fr}}
@@ -603,9 +604,135 @@ body.pronto #farol{opacity:1;transform:none;transition:opacity .6s ease 2s,trans
   box-shadow:0 0 22px rgba(232,196,124,.25);animation:chamaOuro 2.4s ease-out infinite}
 @media(max-width:720px){#farol{bottom:16px;left:14px;padding:8px 13px;font-size:.6rem}}
 
+/* ============================================================
+   v8 CINEMA TOTAL — desintegração, 360, órbita, mundo 04
+   ============================================================ */
+/* portal: raios de projetor + push-in de câmera + título que respira */
+.raios{position:absolute;inset:-30%;pointer-events:none;opacity:.5;
+  background:conic-gradient(from 0deg at 50% 42%,
+    transparent 0 8%, rgba(124,92,255,.05) 10% 13%, transparent 15% 24%,
+    rgba(232,196,124,.05) 26% 29%, transparent 31% 45%, rgba(124,92,255,.04) 47% 50%,
+    transparent 52% 70%, rgba(232,196,124,.04) 72% 75%, transparent 77% 100%);
+  animation:giraLento 70s linear infinite}
+.portal-in{animation:puxaCamera 5s cubic-bezier(.2,.6,.2,1) both}
+@keyframes puxaCamera{from{transform:scale(.93);opacity:.7}to{transform:scale(1);opacity:1}}
+.portal-in .assinado{animation:abreEspaco 2.4s ease .4s both}
+@keyframes abreEspaco{from{letter-spacing:.06em;opacity:0}to{letter-spacing:.42em;opacity:1}}
+
+/* giro 360 de vitrine (logos, cartão, peças) */
+.joia svg{backface-visibility:visible}
+.joia.gira svg{animation:giro360 1.5s cubic-bezier(.65,0,.35,1)}
+@keyframes giro360{to{transform:translateZ(36px) rotateY(360deg)}}
+.cartao.vira{transform:rotateY(360deg) !important;transition:transform .8s cubic-bezier(.65,0,.35,1),background 1s ease,color 1s ease}
+
+/* mundo 04: navegador que constrói o site sozinho */
+.navegador{border:1px solid var(--linha);border-radius:16px;overflow:hidden;background:#0b0b11;
+  max-width:640px;margin-top:48px;box-shadow:0 30px 80px rgba(0,0,0,.5)}
+.nav-chrome{display:flex;align-items:center;gap:7px;padding:12px 16px;background:var(--grafite);border-bottom:1px solid var(--linha)}
+.nav-chrome i{width:10px;height:10px;border-radius:50%;background:#3a3a44}
+.nav-chrome i:nth-child(1){background:#ff5f57}.nav-chrome i:nth-child(2){background:#febc2e}.nav-chrome i:nth-child(3){background:#28c840}
+.nav-chrome .url{margin-left:12px;flex:1;background:rgba(255,255,255,.05);border-radius:8px;padding:5px 14px;
+  font-size:.72rem;color:var(--cinza);letter-spacing:.08em}
+.nav-chrome .url b{color:var(--ouro)}
+.nav-tela{aspect-ratio:16/9.4;padding:26px;display:flex;flex-direction:column;gap:12px;position:relative;overflow:hidden;
+  background:radial-gradient(ellipse 70% 60% at 70% -10%,rgba(124,92,255,.14),transparent 60%),#0a0a10}
+.sk{border-radius:8px;transform-origin:left;animation:montaSite 7s cubic-bezier(.2,.9,.2,1) infinite}
+.sk-logo{width:88px;height:14px;background:linear-gradient(90deg,var(--ouro),var(--ouro-2))}
+.sk-titulo{width:72%;height:26px;background:linear-gradient(90deg,#fff2,#fff1);animation-delay:.5s}
+.sk-titulo2{width:52%;height:26px;background:linear-gradient(90deg,rgba(167,139,250,.5),rgba(124,92,255,.3));animation-delay:.9s}
+.sk-texto{width:64%;height:9px;background:#ffffff14;animation-delay:1.3s}
+.sk-texto2{width:56%;height:9px;background:#ffffff10;animation-delay:1.5s}
+.sk-btn{width:150px;height:34px;border-radius:999px;background:linear-gradient(90deg,var(--volt),var(--volt-claro));
+  animation-delay:1.9s;box-shadow:0 8px 30px rgba(124,92,255,.4)}
+@keyframes montaSite{
+  0%{transform:scaleX(0);opacity:0}
+  8%,82%{transform:scaleX(1);opacity:1}
+  93%,100%{transform:scaleX(0);opacity:0}}
+.nav-cursor{position:absolute;width:14px;height:14px;border-radius:50%;border:2px solid var(--ouro);
+  right:20%;bottom:22%;animation:navClica 7s ease infinite}
+@keyframes navClica{
+  0%,28%{transform:translate(90px,60px);opacity:0}
+  38%{transform:translate(0,0);opacity:1}
+  44%{transform:scale(.6)}
+  50%{transform:scale(1)}
+  82%{opacity:1}
+  93%,100%{opacity:0}}
+
+/* perfil do Instagram crescendo */
+.perfil-ig{width:min(340px,92vw);border:1px solid var(--linha);border-radius:20px;background:var(--carvao);
+  padding:22px;position:relative;overflow:hidden;transform-style:preserve-3d;will-change:transform}
+.ig-topo{display:flex;align-items:center;gap:13px}
+.ig-topo .story{width:52px;height:52px}
+.ig-topo b{display:block;font-size:1.02rem}
+.ig-topo small{color:var(--cinza);font-size:.74rem;display:block;margin-top:2px}
+.seguir{margin-left:auto;background:var(--volt);border:none;color:#fff;font-family:inherit;font-weight:500;
+  border-radius:9px;padding:8px 16px;font-size:.8rem;cursor:pointer;transition:background .4s}
+.seguir.seguindo{background:var(--grafite);border:1px solid var(--linha);color:var(--cinza)}
+.ig-stats{display:flex;gap:8px;margin:18px 0 16px;text-align:center}
+.ig-stats>div{flex:1}
+.ig-stats b{display:block;font-size:1.25rem;font-weight:700;color:var(--osso);font-variant-numeric:tabular-nums}
+.ig-stats #segNum{color:var(--ouro)}
+.ig-stats span{color:var(--cinza);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase}
+.ig-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:5px}
+.ig-grid i{aspect-ratio:1;border-radius:6px;display:block}
+.ig-grid i:nth-child(1){background:radial-gradient(circle at 30% 25%,#2a1c5e,#0d0a1c)}
+.ig-grid i:nth-child(2){background:linear-gradient(160deg,#f4ead9,#d9c096)}
+.ig-grid i:nth-child(3){background:radial-gradient(circle at 70% 80%,#3d0a12,#160407)}
+.ig-grid i:nth-child(4){background:linear-gradient(135deg,#191036,#0c0a18)}
+.ig-grid i:nth-child(5){background:radial-gradient(circle at 40% 40%,#0e2e26,#080d0b)}
+.ig-grid i:nth-child(6){background:linear-gradient(120deg,#c49a4e,#8a5a2e)}
+.mais-seg{position:absolute;right:16px;top:74px;background:rgba(10,10,16,.85);border:1px solid var(--ouro-linha);
+  color:var(--ouro);border-radius:999px;padding:5px 12px;font-size:.7rem;pointer-events:none;opacity:0}
+.mais-seg.sobe{animation:sobeSeg 1.6s ease forwards}
+@keyframes sobeSeg{
+  0%{opacity:0;transform:translateY(6px)}
+  20%{opacity:1}
+  100%{opacity:0;transform:translateY(-42px)}}
+.painel.aberto #fone2{animation:fone360 18s linear infinite 1.2s}
+@keyframes fone360{to{transform:rotateY(360deg)}}
+@media(max-width:860px){.social-demo{justify-items:center}}
+
+/* ===== ÓRBITA FINAL: cuidamos do perfil inteiro ===== */
+#orbita{overflow:hidden}
+.orb-nota{color:var(--cinza);max-width:560px}
+.orb-nota b{color:var(--ouro)}
+.sistema-orbita{position:relative;width:min(600px,94vw);aspect-ratio:1;margin:50px auto 0;
+  --r1:120px;--r2:165px;--r3:210px;--r4:258px}
+@media(max-width:640px){.sistema-orbita{--r1:74px;--r2:104px;--r3:134px;--r4:164px}}
+.orbitas{position:absolute;inset:0;width:100%;height:100%}
+.orbitas circle{fill:none;stroke:rgba(255,255,255,.08);stroke-dasharray:2 6}
+.sol{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:122px;height:122px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;text-align:center;font-weight:700;
+  letter-spacing:.16em;font-size:.78rem;line-height:1.5;
+  background:radial-gradient(circle at 35% 30%,rgba(232,196,124,.28),rgba(124,92,255,.14) 60%,transparent 80%),#0e0e13;
+  border:1px solid var(--ouro-linha);box-shadow:0 0 46px rgba(124,92,255,.3);animation:pulsa 3.2s ease-in-out infinite}
+@media(max-width:640px){.sol{width:92px;height:92px;font-size:.66rem}}
+.planeta{position:absolute;top:50%;left:50%;cursor:pointer;background:rgba(14,14,19,.85);
+  border:1px solid var(--linha);border-radius:999px;color:var(--osso);font-family:inherit;
+  font-size:.76rem;letter-spacing:.1em;padding:11px 17px;display:flex;gap:8px;align-items:center;
+  backdrop-filter:blur(6px);transition:border-color .25s,box-shadow .25s;white-space:nowrap;
+  transform:translate(-50%,-50%)}
+.planeta i{font-style:normal;color:var(--ouro)}
+.planeta:hover{border-color:var(--ouro-linha);box-shadow:0 0 26px rgba(232,196,124,.3)}
+.pl1{animation:orb1 17s linear infinite}
+.pl2{animation:orb2 23s linear infinite}
+.pl3{animation:orb3 29s linear infinite}
+.pl4{animation:orb4 36s linear infinite}
+@keyframes orb1{from{transform:translate(-50%,-50%) rotate(0deg) translateX(var(--r1)) rotate(0deg)}
+  to{transform:translate(-50%,-50%) rotate(360deg) translateX(var(--r1)) rotate(-360deg)}}
+@keyframes orb2{from{transform:translate(-50%,-50%) rotate(100deg) translateX(var(--r2)) rotate(-100deg)}
+  to{transform:translate(-50%,-50%) rotate(460deg) translateX(var(--r2)) rotate(-460deg)}}
+@keyframes orb3{from{transform:translate(-50%,-50%) rotate(200deg) translateX(var(--r3)) rotate(-200deg)}
+  to{transform:translate(-50%,-50%) rotate(560deg) translateX(var(--r3)) rotate(-560deg)}}
+@keyframes orb4{from{transform:translate(-50%,-50%) rotate(300deg) translateX(var(--r4)) rotate(-300deg)}
+  to{transform:translate(-50%,-50%) rotate(660deg) translateX(var(--r4)) rotate(-660deg)}}
+
 @media (prefers-reduced-motion:reduce){
   *{animation:none!important;transition:none!important}
   #po{display:none}.lm:hover{transform:none}
+  .planeta{position:static;display:inline-flex;margin:6px;transform:none}
+  .sistema-orbita{aspect-ratio:auto;display:flex;flex-wrap:wrap;justify-content:center;padding:20px}
+  .sol{position:static;transform:none;margin:0 auto 20px}
   .hero h1 i,.hero .frase,.hero-ctas{opacity:1!important;transform:none!important}
   #telao{display:none}body{cursor:auto}#dot,#anel,.grao,.leak,.barra-cine{display:none}
   #txparticulas,#warp{display:none}.palavra-viva.viva h1 i{opacity:1!important}
@@ -626,6 +753,7 @@ body.pronto #farol{opacity:1;transform:none;transition:opacity .6s ease 2s,trans
 
 <div id="portal" role="dialog" aria-label="Boas-vindas ao estúdio Veltrix">
   <canvas id="po" aria-hidden="true"></canvas>
+  <div class="raios" aria-hidden="true"></div>
   <div class="portal-in">
     <div class="selo-v" aria-hidden="true">
       <svg viewBox="0 0 120 120">
@@ -696,8 +824,8 @@ body.pronto #farol{opacity:1;transform:none;transition:opacity .6s ease 2s,trans
 
 <div class="marquee" aria-hidden="true">
   <div class="marquee-trilho">
-    <span>Logo Design <b>◆</b> Brand Identity <b>◆</b> Social Media <b>◆</b> Direção Criativa <b>◆</b>&nbsp;</span>
-    <span>Logo Design <b>◆</b> Brand Identity <b>◆</b> Social Media <b>◆</b> Direção Criativa <b>◆</b>&nbsp;</span>
+    <span>Logo Design <b>◆</b> Brand Identity <b>◆</b> Social Media <b>◆</b> Criação de Sites <b>◆</b>&nbsp;</span>
+    <span>Logo Design <b>◆</b> Brand Identity <b>◆</b> Social Media <b>◆</b> Criação de Sites <b>◆</b>&nbsp;</span>
   </div>
 </div>
 
@@ -723,6 +851,7 @@ body.pronto #farol{opacity:1;transform:none;transition:opacity .6s ease 2s,trans
       <button class="aba" data-p="p-logo"><s>Mundo 01</s>Logo Design<small>O cofre de símbolos — 6 conceitos pra sentir o padrão.</small></button>
       <button class="aba" data-p="p-id"><s>Mundo 02</s>Brand Identity<small>Tipografia, cor e voz — o sistema que vira reputação.</small></button>
       <button class="aba" data-p="p-social"><s>Mundo 03</s>Social Media<small>O feed premium e os números que ele move.</small></button>
+      <button class="aba" data-p="p-site"><s>Mundo 04</s>Criação de Sites<small>O palco digital — você está dentro de um agora.</small></button>
     </div>
   </div>
 
@@ -812,6 +941,33 @@ body.pronto #farol{opacity:1;transform:none;transition:opacity .6s ease 2s,trans
       </div>
     </div>
   </div>
+
+  <!-- ===== 04 · CRIAÇÃO DE SITES — O PALCO DIGITAL ===== -->
+  <div class="oficio ofi-invert">
+    <div class="wrap ofi-grid">
+      <div class="ofi-texto rev">
+        <span class="num">— 04</span>
+        <h3>Criação de Sites</h3>
+        <p>A loja que nunca fecha. Landing pages <b>cinematográficas</b> que contam a história da marca e conduzem o visitante pelo caminho exato até o botão. <b>Você está dentro de uma agora.</b></p>
+        <div class="tags"><i>Landing premium</i><i>Copy</i><i>Animações</i><i>Domínio + publicação</i></div>
+        <button class="link-mundo" data-p="p-site">Entrar no mundo 04 →</button>
+      </div>
+      <div class="ofi-demo rev">
+        <div class="navegador">
+          <div class="nav-chrome"><i></i><i></i><i></i><span class="url">https://<b>suamarca</b>.com.br</span></div>
+          <div class="nav-tela">
+            <div class="sk sk-logo"></div>
+            <div class="sk sk-titulo"></div>
+            <div class="sk sk-titulo2"></div>
+            <div class="sk sk-texto"></div>
+            <div class="sk sk-texto2"></div>
+            <div class="sk sk-btn"></div>
+            <div class="nav-cursor"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 
 <section class="manifesto" id="estudio">
@@ -848,6 +1004,27 @@ body.pronto #farol{opacity:1;transform:none;transition:opacity .6s ease 2s,trans
   </div>
 </section>
 
+<section id="orbita">
+  <div class="wrap">
+    <span class="rotulo rev">Tudo em um só estúdio</span>
+    <h2 class="rev">Cuidamos do <span class="serif">perfil inteiro.</span></h2>
+    <p class="orb-nota rev">Símbolo, sistema, feed e site — <b>quatro ofícios girando em volta de uma coisa só: a sua marca.</b> Toca em qualquer planeta pra entrar no mundo dele.</p>
+    <div class="sistema-orbita rev">
+      <svg class="orbitas" viewBox="0 0 600 600" aria-hidden="true">
+        <circle cx="300" cy="300" r="120"/>
+        <circle cx="300" cy="300" r="165"/>
+        <circle cx="300" cy="300" r="210"/>
+        <circle cx="300" cy="300" r="258"/>
+      </svg>
+      <div class="sol">SUA<br>MARCA</div>
+      <button class="planeta pl1" data-p="p-logo"><i>◆</i>Logo Design</button>
+      <button class="planeta pl2" data-p="p-id"><i>◆</i>Identidade</button>
+      <button class="planeta pl3" data-p="p-social"><i>◆</i>Social Media</button>
+      <button class="planeta pl4" data-p="p-site"><i>◆</i>Site</button>
+    </div>
+  </div>
+</section>
+
 <section id="duvidas">
   <div class="wrap">
     <span class="rotulo rev">Dúvidas de quem chega agora</span>
@@ -873,6 +1050,10 @@ body.pronto #farol{opacity:1;transform:none;transition:opacity .6s ease 2s,trans
       <div class="duvida">
         <button class="pergunta">Em quanto tempo <span class="serif">fica pronto?</span></button>
         <div class="resposta"><div><p>Símbolos levam <b>dias</b>; sistemas completos de identidade levam <b>semanas</b> — o prazo exato vai junto com a proposta, e a gente cumpre. O que não fazemos é atropelar: <span class="ouro">marca boa não nasce com pressa, nasce com critério.</span></p></div></div>
+      </div>
+      <div class="duvida">
+        <button class="pergunta">Vocês criam <span class="serif">o site também?</span></button>
+        <div class="resposta"><div><p>Sim — e <b>você está dentro de um agora</b>. Este site inteiro, com as explosões, os mundos e as partículas, foi feito pela Veltrix: é o nosso cartão de visitas. O seu recebe o mesmo tratamento: <b>landing premium com animações cinematográficas</b>, copy que conduz ao clique, domínio próprio e rastreio de campanha. <span class="ouro">Imagina o teu cliente sentindo isso na TUA marca.</span></p></div></div>
       </div>
       <div class="duvida">
         <button class="pergunta">Por que a Veltrix e não <span class="serif">uma IA ou um app de logo?</span></button>
@@ -1030,7 +1211,21 @@ body.pronto #farol{opacity:1;transform:none;transition:opacity .6s ease 2s,trans
     <h3 class="p-rev" style="--d:.08s">Social <span class="serif">Media.</span></h3>
     <p class="lead p-rev" style="--d:.16s">O feed é a vitrine que nunca fecha. Direção de arte com sistema — <b>templates, grid e ritmo de conteúdo</b> — pra cada post parecer campanha, não improviso.</p>
     <div class="social-demo">
-      <div class="fone t3d p-rev" id="fone2" style="--d:.24s">
+      <div class="perfil-ig t3d p-rev" style="--d:.2s">
+        <div class="ig-topo">
+          <span class="story"></span>
+          <div><b>sua.marca</b><small>Marca premium · por Veltrix</small></div>
+          <button class="seguir" id="btnSeguir">Seguir</button>
+        </div>
+        <div class="ig-stats">
+          <div><b id="segNum">812</b><span>seguidores</span></div>
+          <div><b>127</b><span>posts</span></div>
+          <div><b id="likesMedia">1.2k</b><span>curtidas</span></div>
+        </div>
+        <div class="ig-grid"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+        <div class="mais-seg" id="maisSeg">+1 seguidor</div>
+      </div>
+      <div class="fone p-rev" id="fone2" style="--d:.24s">
         <div class="fone-notch"></div>
         <div class="fone-topo"><span class="story"></span><b>sua.marca</b></div>
         <div class="feed">
@@ -1057,6 +1252,40 @@ body.pronto #farol{opacity:1;transform:none;transition:opacity .6s ease 2s,trans
     </ul>
     <div class="painel-cta p-rev" style="--d:.58s">
       <a class="btn btn-solid magnet" href="https://wa.me/5535999259372?text=Ol%C3%A1%2C%20Veltrix!%20Quero%20um%20feed%20premium%20pra%20minha%20marca." target="_blank" rel="noopener">Quero esse feed →</a>
+      <a class="btn btn-ghost magnet" href="https://www.instagram.com/veltrix__agency" target="_blank" rel="noopener">@veltrix__agency</a>
+    </div>
+  </div>
+</div>
+
+<!-- ===== MUNDO 04 · CRIAÇÃO DE SITES ===== -->
+<div class="painel" id="p-site" role="dialog" aria-label="Mundo Criação de Sites">
+  <div class="painel-in">
+    <span class="num-gig" aria-hidden="true">04</span>
+    <span class="rotulo p-rev">Mundo 04</span>
+    <h3 class="p-rev" style="--d:.08s">Criação de <span class="serif">Sites.</span></h3>
+    <p class="lead p-rev" style="--d:.16s">O site é o palco onde a marca inteira se apresenta — e a prova está na tua tela: <b>este site que você está navegando foi 100% construído pela Veltrix.</b> Explosões, mundos, partículas, tudo. O da tua marca recebe o mesmo cinema.</p>
+    <div class="navegador p-rev" style="--d:.26s">
+      <div class="nav-chrome"><i></i><i></i><i></i><span class="url">https://<b>suamarca</b>.com.br</span></div>
+      <div class="nav-tela">
+        <div class="sk sk-logo"></div>
+        <div class="sk sk-titulo"></div>
+        <div class="sk sk-titulo2"></div>
+        <div class="sk sk-texto"></div>
+        <div class="sk sk-texto2"></div>
+        <div class="sk sk-btn"></div>
+        <div class="nav-cursor"></div>
+      </div>
+    </div>
+    <ul class="entregas p-rev" style="--d:.4s">
+      <li>Landing page premium — no nível desta</li>
+      <li>Copy que conduz do topo ao botão</li>
+      <li>Animações cinematográficas sob medida</li>
+      <li>Domínio próprio + publicação + SSL</li>
+      <li>Rápido no celular (nota alta de verdade)</li>
+      <li>Rastreio de campanha (Ads + mapa de calor)</li>
+    </ul>
+    <div class="painel-cta p-rev" style="--d:.5s">
+      <a class="btn btn-solid magnet" href="https://wa.me/5535999259372?text=Ol%C3%A1%2C%20Veltrix!%20Quero%20um%20site%20cinematogr%C3%A1fico%20pra%20minha%20marca." target="_blank" rel="noopener">Quero meu palco →</a>
       <a class="btn btn-ghost magnet" href="https://www.instagram.com/veltrix__agency" target="_blank" rel="noopener">@veltrix__agency</a>
     </div>
   </div>
@@ -1576,7 +1805,7 @@ function abrePainel(id, x, y){
   painelAberto = p;
   fogoTela.faisca(x ?? innerWidth/2, y ?? innerHeight/2, 90, 9);
   history.replaceState(null, '', MAPA_HASH[id] || location.pathname);
-  if (id === 'p-social') contaMetricas(p);
+  if (id === 'p-social'){ contaMetricas(p); cresceInsta(); }
 }
 function fechaPainel(){
   if (!painelAberto) return;
@@ -1610,7 +1839,7 @@ function aplicaTilt(el, gx = 12, gy = 14){
     const r = el.getBoundingClientRect();
     const rx = ((cy - r.top) / r.height - .5) * -gx;
     const ry = ((cx - r.left) / r.width - .5) * gy;
-    el.style.transform = `rotateX(${rx}deg) rotateY(${ry}deg)`;
+    el.style.transform = `translate(${(cx - r.left - r.width / 2) * .04}px, ${(cy - r.top - r.height / 2) * .05}px) rotateX(${rx}deg) rotateY(${ry}deg) scale(1.02)`;
     el.style.setProperty('--gx', ((cx - r.left) / r.width * 100) + '%');
     el.style.setProperty('--gy', ((cy - r.top) / r.height * 100) + '%');
   }
@@ -1640,7 +1869,9 @@ document.addEventListener('click', e => {
   fogoTela.faisca(e.clientX, e.clientY, 46, 6.5);
   if (alvo.classList.contains('joia')){
     alvo.classList.add('toco');
+    alvo.classList.add('gira');                       /* 360 de vitrine no toque */
     setTimeout(() => alvo.classList.remove('toco'), 600);
+    setTimeout(() => alvo.classList.remove('gira'), 1600);
   }
 });
 
@@ -1789,6 +2020,107 @@ if (matchMedia('(hover:hover)').matches && !REDUZ){
     uX = e.clientX; uY = e.clientY;
   }, { passive: true });
 }
+
+/* ============================================================
+   MOTORES v8 — desintegração no scroll, vitrine 360, insta vivo
+   ============================================================ */
+
+/* ===== DESINTEGRAÇÃO: as peças viram poeira nas bordas e se
+   recompõem no centro, suave, nas duas direções ===== */
+(function poeiraViva(){
+  if (REDUZ) return;
+  const DISS = [...document.querySelectorAll('.forja,.sistema,.fone,.tile,.reel,.navegador,.joia,.perfil-ig')];
+  let ultPo = 0;
+  DISS.forEach(el => {
+    el.style.transition = 'border-color .3s, background .3s';
+    el.addEventListener('mouseenter', () => el._segura = true);
+    el.addEventListener('mouseleave', () => { el._segura = false; });
+    el.addEventListener('touchstart', () => el._segura = true, { passive: true });
+    el.addEventListener('touchend', () => setTimeout(() => el._segura = false, 400));
+  });
+  (function ciclo(){
+    const agora = performance.now();
+    for (const el of DISS){
+      if (el._segura) continue;
+      const r = el.getBoundingClientRect();
+      if (r.width === 0 || r.bottom < -140 || r.top > innerHeight + 140){ el._k = 1; continue; }
+      const c = (r.top + r.height / 2 - innerHeight / 2) / (innerHeight / 2 + r.height / 2);
+      const k = Math.max(Math.min(Math.abs(c) * 1.3 - .22, 1), 0);
+      el.style.opacity = 1 - k * .8;
+      el.style.filter = `blur(${(k * 9).toFixed(1)}px)`;
+      el.style.transform = `translateY(${(c * 30).toFixed(1)}px) scale(${(1 - k * .12).toFixed(3)}) rotate(${(c * 2).toFixed(2)}deg)`;
+      if (el._k !== undefined && k > .55 && el._k <= .55 && entrou && agora - ultPo > 300){
+        ultPo = agora;
+        fogoTela.faisca(r.left + r.width * (.2 + Math.random() * .6), c > 0 ? r.top + 10 : r.bottom - 10, 14, 3.5);
+      }
+      el._k = k;
+    }
+    requestAnimationFrame(ciclo);
+  })();
+})();
+
+/* ===== VITRINE 360: os logos giram como num mostruário ===== */
+(function vitrine(){
+  if (REDUZ) return;
+  const joias = [...document.querySelectorAll('.joia')];
+  let vi = 0;
+  setInterval(() => {
+    if (!painelAberto || painelAberto.id !== 'p-logo') return;
+    const j = joias[vi % joias.length]; vi++;
+    j.classList.add('gira');
+    setTimeout(() => j.classList.remove('gira'), 1600);
+  }, 3200);
+})();
+
+/* ===== o cartão de identidade vira 360 quando troca de alma ===== */
+(function viraCartao(){
+  if (REDUZ) return;
+  const cartaoEl = document.getElementById('cartao');
+  let virando = false;
+  new MutationObserver(() => {
+    if (virando) return;
+    virando = true;
+    cartaoEl.classList.add('vira');
+    setTimeout(() => {
+      cartaoEl.classList.remove('vira');
+      setTimeout(() => virando = false, 150);
+    }, 850);
+  }).observe(cartaoEl, { attributes: true, attributeFilter: ['class'] });
+})();
+
+/* ===== INSTA VIVO: o perfil cresce na frente da pessoa ===== */
+let segTimer = null;
+function cresceInsta(){
+  const segNum = document.getElementById('segNum');
+  const btnSeguir = document.getElementById('btnSeguir');
+  const maisSeg = document.getElementById('maisSeg');
+  const likesM = document.getElementById('likesMedia');
+  if (!segNum) return;
+  if (segTimer) clearInterval(segTimer);
+  let atual = 812; const alvo = 24736; let likes = 1200;
+  btnSeguir.classList.remove('seguindo'); btnSeguir.textContent = 'Seguir';
+  segNum.textContent = '812';
+  segTimer = setInterval(() => {
+    if (!painelAberto || painelAberto.id !== 'p-social'){ clearInterval(segTimer); segTimer = null; return; }
+    const falta = alvo - atual;
+    if (falta <= 0){ segNum.textContent = '24,7k'; return; }
+    const ganho = Math.max(3, Math.round(falta * .055 * (.6 + Math.random())));
+    atual = Math.min(atual + ganho, alvo);
+    likes = Math.min(likes + Math.round(ganho * .18), 4900);
+    segNum.textContent = atual < 10000 ? atual.toLocaleString('pt-BR') : (atual / 1000).toFixed(1).replace('.', ',') + 'k';
+    likesM.textContent = likes < 2000 ? likes.toLocaleString('pt-BR') : (likes / 1000).toFixed(1).replace('.', ',') + 'k';
+    maisSeg.textContent = '+' + ganho + ' seguidores';
+    maisSeg.classList.remove('sobe'); void maisSeg.offsetWidth; maisSeg.classList.add('sobe');
+    if (atual > 5000 && !btnSeguir.classList.contains('seguindo')){
+      btnSeguir.classList.add('seguindo'); btnSeguir.textContent = 'Seguindo ✓';
+    }
+  }, 380);
+}
+
+/* ===== todo clique vira um anel de luz ===== */
+document.addEventListener('click', e => {
+  if (entrou) fogoTela.anel(e.clientX, e.clientY, 'rgba(167,139,250,.6)');
+});
 </script>
 </body>
 </html>
