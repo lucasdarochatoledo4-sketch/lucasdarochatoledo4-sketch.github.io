@@ -318,10 +318,57 @@ footer a{color:var(--volt-claro);text-decoration:none}
   15%{opacity:1}
   100%{opacity:0;transform:translateY(-190px) scale(1.4) rotate(14deg)}}
 
+/* ===== TRATAMENTO DE CINEMA ===== */
+/* letterbox: as barras do filme */
+.barra-cine{position:fixed;left:0;right:0;height:8vh;background:#000;z-index:140;pointer-events:none;
+  transition:transform 1.2s cubic-bezier(.77,0,.18,1) 1.4s}
+.barra-cine.topo{top:0;transform:translateY(0)}
+.barra-cine.base{bottom:0;transform:translateY(0)}
+.pronto .barra-cine.topo{transform:translateY(-86%)}
+.pronto .barra-cine.base{transform:translateY(86%)}
+
+/* vinheta de lente */
+.vinheta{position:fixed;inset:0;z-index:95;pointer-events:none;
+  background:radial-gradient(ellipse 105% 90% at 50% 45%,transparent 62%,rgba(0,0,0,.5) 100%)}
+
+/* HUD de filmagem: REC + timecode */
+.hud-rec{position:fixed;top:80px;right:22px;z-index:96;display:flex;align-items:center;gap:8px;
+  color:rgba(255,255,255,.55);font-size:.68rem;letter-spacing:.28em;pointer-events:none}
+.hud-rec i{width:9px;height:9px;border-radius:50%;background:#ff3b30;font-style:normal;
+  box-shadow:0 0 10px #ff3b30;animation:pisca 1.2s steps(2) infinite}
+@keyframes pisca{50%{opacity:.15}}
+.hud-tc{position:fixed;bottom:18px;left:22px;z-index:96;color:rgba(255,255,255,.4);
+  font-size:.7rem;letter-spacing:.24em;pointer-events:none;font-variant-numeric:tabular-nums}
+@media(max-width:720px){.hud-rec,.hud-tc{display:none}}
+
+/* vazamento de luz (light leak) */
+.leak{position:fixed;inset:-20%;z-index:94;pointer-events:none;opacity:0;
+  background:linear-gradient(115deg,transparent 30%,rgba(124,92,255,.10) 46%,rgba(255,180,120,.08) 52%,transparent 68%);
+  transform:translateX(-60%) rotate(8deg)}
+.leak.vaza{animation:vazaLuz 2.8s ease forwards}
+@keyframes vazaLuz{15%{opacity:1}100%{opacity:0;transform:translateX(60%) rotate(8deg)}}
+
+/* claquete de cena */
+.slate{display:inline-flex;align-items:center;gap:12px;margin-bottom:14px;
+  color:rgba(255,255,255,.45);font-size:.68rem;letter-spacing:.34em;text-transform:uppercase}
+.slate::before{content:"";width:24px;height:14px;border:1px solid rgba(167,139,250,.6);
+  background:repeating-linear-gradient(-45deg,rgba(167,139,250,.6) 0 3px,transparent 3px 6px)}
+
+/* dolly do hero no scroll */
+.hero .wrap{will-change:transform,opacity}
+
+/* botão de som ambiente */
+#som{position:fixed;bottom:16px;right:22px;z-index:96;background:rgba(10,10,16,.6);
+  border:1px solid var(--linha);backdrop-filter:blur(8px);color:var(--cinza);
+  border-radius:999px;padding:9px 16px;font-family:inherit;font-size:.7rem;
+  letter-spacing:.26em;cursor:pointer;transition:color .2s,border-color .2s}
+#som:hover,#som.on{color:var(--volt-claro);border-color:rgba(124,92,255,.6)}
+#som.on{box-shadow:0 0 18px rgba(124,92,255,.25)}
+
 @media (prefers-reduced-motion:reduce){
   *{animation:none!important;transition:none!important}
   .hero h1 i,.hero .frase,.hero-ctas{opacity:1!important;transform:none!important}
-  #telao{display:none}body{cursor:auto}#dot,#anel,.grao{display:none}
+  #telao{display:none}body{cursor:auto}#dot,#anel,.grao,.leak,.barra-cine{display:none}
 }
 </style>
 </head>
@@ -338,6 +385,12 @@ footer a{color:var(--volt-claro);text-decoration:none}
 <canvas id="ceu"></canvas>
 <div class="grao"></div>
 <div id="dot"></div><div id="anel"></div>
+<div class="barra-cine topo"></div><div class="barra-cine base"></div>
+<div class="vinheta"></div>
+<div class="leak" id="leak"></div>
+<div class="hud-rec"><i></i>REC</div>
+<div class="hud-tc" id="timecode">VELTRIX · 00:00:00:00</div>
+<button id="som" aria-label="Ligar trilha ambiente">SOM · OFF</button>
 
 <nav>
   <div class="wrap nav-in">
@@ -690,6 +743,99 @@ if (matchMedia('(hover:hover)').matches) {
   });
   fone.addEventListener('mouseleave', () => fone.style.transform = '');
 }
+
+/* ===== TIMECODE SMPTE rodando ===== */
+const tc = document.getElementById('timecode');
+const t0 = performance.now();
+setInterval(() => {
+  const ms = performance.now() - t0;
+  const f = Math.floor(ms / (1000/24)) % 24;
+  const s = Math.floor(ms/1000) % 60, m = Math.floor(ms/60000) % 60, h = Math.floor(ms/3600000);
+  const p = n => String(n).padStart(2,'0');
+  tc.textContent = `VELTRIX · ${p(h)}:${p(m)}:${p(s)}:${p(f)}`;
+}, 42);
+
+/* ===== vazamentos de luz aleatórios ===== */
+const leak = document.getElementById('leak');
+(function agendaLeak(){
+  setTimeout(() => {
+    leak.classList.remove('vaza'); void leak.offsetWidth; leak.classList.add('vaza');
+    agendaLeak();
+  }, 7000 + Math.random()*9000);
+})();
+
+/* ===== DOLLY: o hero afasta como câmera subindo ===== */
+const heroWrap = document.querySelector('.hero .wrap');
+addEventListener('scroll', () => {
+  const y = scrollY, vh = innerHeight;
+  if (y < vh) {
+    const p = y / vh;
+    heroWrap.style.opacity = 1 - p*1.1;
+    heroWrap.style.transform = `translateY(${p*-90}px) scale(${1 - p*.08})`;
+  }
+}, { passive: true });
+
+/* ===== claquetes de cena ===== */
+(function planta(){
+  const mapa = [
+    ['Showreel','CENA 02 · TAKE 1'], ['O que fazemos','CENA 03 · TAKE 1'],
+    ['Manifesto','CENA 04 · TAKE ÚNICO'], ['Como trabalhamos','CENA 05 · TAKE 2'],
+    ['Explorações do estúdio','CENA 06 · TAKE 3'], ['Vagas limitadas por mês','CENA FINAL']
+  ];
+  document.querySelectorAll('.rotulo').forEach(r => {
+    const hit = mapa.find(([txt]) => r.textContent.trim() === txt);
+    if (!hit) return;
+    const s = document.createElement('span');
+    s.className = 'slate rev';
+    s.textContent = hit[1];
+    r.parentElement.insertBefore(s, r);
+    io.observe(s);
+  });
+})();
+
+/* ===== marquee acelera com a velocidade do scroll ===== */
+const trilho = document.querySelector('.marquee-trilho');
+let ultY = scrollY, veloc = 0;
+addEventListener('scroll', () => { veloc = Math.min(Math.abs(scrollY - ultY), 80); ultY = scrollY; }, { passive:true });
+(function marqueeVel(){
+  veloc *= .92;
+  trilho.style.animationDuration = (26 - Math.min(veloc*.22, 18)) + 's';
+  requestAnimationFrame(marqueeVel);
+})();
+
+/* ===== TRILHA AMBIENTE (gerada por código, opt-in) ===== */
+const btnSom = document.getElementById('som');
+let actx = null, ganho = null;
+btnSom.addEventListener('click', () => {
+  if (!actx) {
+    actx = new (window.AudioContext || window.webkitAudioContext)();
+    ganho = actx.createGain(); ganho.gain.value = 0; ganho.connect(actx.destination);
+    /* pad grave em quinta + ar */
+    [[55,'sine',.05],[82.4,'sine',.035],[110,'triangle',.014]].forEach(([f,tipo,v]) => {
+      const o = actx.createOscillator(), g = actx.createGain();
+      o.type = tipo; o.frequency.value = f; g.gain.value = v;
+      const lfo = actx.createOscillator(), lg = actx.createGain();
+      lfo.frequency.value = .07 + Math.random()*.06; lg.gain.value = v*.5;
+      lfo.connect(lg); lg.connect(g.gain); lfo.start();
+      o.connect(g); g.connect(ganho); o.start();
+    });
+    /* respiro de ar (ruído filtrado) */
+    const buf = actx.createBuffer(1, actx.sampleRate*2, actx.sampleRate);
+    const d = buf.getChannelData(0);
+    for (let i=0;i<d.length;i++) d[i] = (Math.random()*2-1)*.25;
+    const ru = actx.createBufferSource(); ru.buffer = buf; ru.loop = true;
+    const filtro = actx.createBiquadFilter(); filtro.type='lowpass'; filtro.frequency.value=240;
+    const gr = actx.createGain(); gr.gain.value = .05;
+    ru.connect(filtro); filtro.connect(gr); gr.connect(ganho); ru.start();
+  }
+  if (btnSom.classList.toggle('on')) {
+    actx.resume(); ganho.gain.linearRampToValueAtTime(.8, actx.currentTime + 2);
+    btnSom.textContent = 'SOM · ON';
+  } else {
+    ganho.gain.linearRampToValueAtTime(0, actx.currentTime + 1);
+    btnSom.textContent = 'SOM · OFF';
+  }
+});
 </script>
 </body>
 </html>
