@@ -878,6 +878,7 @@ btnSom.addEventListener('click', () => {
 
   function montar(){
     const r = casa.getBoundingClientRect();
+    if (r.width < 120) { setTimeout(montar, 800); return; }   /* layout ainda não pronto: tenta de novo */
     const W = r.width + 40, H = r.height + 80;
     cv.width = W * DPR; cv.height = H * DPR;
     cx.setTransform(DPR, 0, 0, DPR, 0, 0);
@@ -908,6 +909,7 @@ btnSom.addEventListener('click', () => {
   }
 
   document.fonts.ready.then(() => setTimeout(montar, 2400));
+  addEventListener('load', () => setTimeout(montar, 2600));   /* rede de segurança se fonts.ready atrasar */
   addEventListener('resize', () => { clearTimeout(cv._rz); cv._rz = setTimeout(montar, 300); });
   addEventListener('mousemove', e => {
     const r = cv.getBoundingClientRect();
@@ -964,6 +966,7 @@ btnSom.addEventListener('click', () => {
   let E = [];
   function wSize(){
     const r = wc.parentElement.getBoundingClientRect();
+    if (r.width < 40) return;                                 /* viewport zerado: mantém o tamanho anterior */
     wc.width = r.width; wc.height = r.height;
     E = [];
     for (let i = 0; i < 170; i++) E.push({
@@ -973,6 +976,7 @@ btnSom.addEventListener('click', () => {
   }
   wSize(); addEventListener('resize', wSize);
   (function wLoop(){
+    if (!wc.width) { wSize(); requestAnimationFrame(wLoop); return; }
     const W = wc.width, H = wc.height, cxx = W/2, cyy = H/2;
     wx.fillStyle = 'rgba(7,7,10,.32)'; wx.fillRect(0, 0, W, H);
     wx.globalCompositeOperation = 'lighter';
