@@ -27,7 +27,7 @@ body{background:var(--preto);color:var(--osso);
 @media(hover:none),(max-width:900px){body{cursor:auto}}
 ::selection{background:var(--volt);color:#fff}
 .serif{font-family:"Instrument Serif",Georgia,serif;font-style:italic;font-weight:400}
-.wrap{max-width:1180px;margin:0 auto;padding:0 28px}
+.wrap{max-width:1280px;margin:0 auto;padding:0 28px}
 
 /* ===== PRELOADER: a cortina do cinema ===== */
 #telao{position:fixed;inset:0;z-index:200;background:var(--preto);
@@ -91,7 +91,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:90;backdrop-filter:blur(14px);
   font-size:.8rem;letter-spacing:.34em;text-transform:uppercase;margin-bottom:26px}
 .hero-kicker::before{content:"";width:34px;height:1px;background:var(--volt)}
 #palco{transform-style:preserve-3d;will-change:transform}
-.hero h1{font-size:clamp(3.4rem,12.5vw,10.5rem);font-weight:700;line-height:.92;
+.hero h1{font-size:clamp(3.5rem,13.5vw,12rem);font-weight:700;line-height:.92;
   letter-spacing:-.02em;text-transform:uppercase;display:flex;flex-wrap:wrap}
 .hero h1 i{font-style:normal;display:inline-block;transform:translateY(110%);opacity:0;
   background:linear-gradient(120deg,#fff 30%,var(--volt-claro) 75%,var(--volt) 100%);
@@ -324,8 +324,8 @@ footer a{color:var(--volt-claro);text-decoration:none}
   transition:transform 1.2s cubic-bezier(.77,0,.18,1) 1.4s}
 .barra-cine.topo{top:0;transform:translateY(0)}
 .barra-cine.base{bottom:0;transform:translateY(0)}
-.pronto .barra-cine.topo{transform:translateY(-86%)}
-.pronto .barra-cine.base{transform:translateY(86%)}
+.pronto .barra-cine.topo{transform:translateY(-100%)}   /* tela 100% livre depois da entrada */
+.pronto .barra-cine.base{transform:translateY(100%)}
 
 /* vinheta de lente */
 .vinheta{position:fixed;inset:0;z-index:95;pointer-events:none;
@@ -608,6 +608,44 @@ body.pronto #farol{opacity:1;transform:none;transition:opacity .6s ease 2s,trans
 /* ============================================================
    v8 CINEMA TOTAL — desintegração, 360, órbita, mundo 04
    ============================================================ */
+/* ===== MUNDO 05: automação de WhatsApp — a conversa que se atende ===== */
+.zapchat{width:min(370px,94vw);border:1px solid var(--linha);border-radius:22px;overflow:hidden;
+  background:#0a0f0c;box-shadow:0 30px 80px rgba(0,0,0,.55)}
+.zap-topo{display:flex;align-items:center;gap:10px;padding:13px 16px;background:#111b15;
+  border-bottom:1px solid rgba(255,255,255,.06)}
+.zap-av{width:36px;height:36px;border-radius:50%;flex:none;
+  background:radial-gradient(circle at 35% 30%,#3ddc84,#128c50);
+  display:flex;align-items:center;justify-content:center;font-size:1rem}
+.zap-topo b{font-size:.9rem;display:block;color:#e8efe9}
+.zap-topo small{color:#7ea88f;font-size:.68rem;display:block}
+.zap-corpo{padding:16px 14px 20px;display:flex;flex-direction:column;gap:10px;min-height:330px;
+  background:radial-gradient(ellipse 80% 50% at 80% 0%,rgba(61,220,132,.05),transparent 60%),#0a0f0c}
+.balao{max-width:84%;padding:10px 14px;border-radius:14px;font-size:.85rem;line-height:1.45;
+  opacity:0;transform:translateY(14px) scale(.96)}
+.balao.cli{align-self:flex-start;background:#16211b;color:#e8efe9;border-bottom-left-radius:4px}
+.balao.bot{align-self:flex-end;background:#0f3d27;color:#dff5e6;border-bottom-right-radius:4px}
+.balao.humano{align-self:flex-end;background:#33270e;color:#f3dfae;border-bottom-right-radius:4px}
+.selo-ia{display:block;font-size:.58rem;letter-spacing:.2em;color:#7be0a8;margin-bottom:4px;text-transform:uppercase}
+.selo-hum{display:block;font-size:.58rem;letter-spacing:.2em;color:var(--ouro);margin-bottom:4px;text-transform:uppercase}
+.zapchat .balao{animation:chegaBalao 17s ease infinite}
+.balao.b1{animation-delay:.6s}.balao.b2{animation-delay:2.8s}.balao.b3{animation-delay:5.6s}
+.balao.b4{animation-delay:8.2s}.balao.b5{animation-delay:11.2s}.balao.b6{animation-delay:13.4s}
+@keyframes chegaBalao{
+  0%{opacity:0;transform:translateY(14px) scale(.96)}
+  3.5%{opacity:1;transform:none}
+  86%{opacity:1;transform:none}
+  93%,100%{opacity:0;transform:translateY(-8px) scale(.98)}}
+/* fluxo em 4 passos no painel */
+.fluxo-zap{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:44px}
+@media(max-width:860px){.fluxo-zap{grid-template-columns:repeat(2,1fr)}}
+.passo-zap{border:1px solid var(--linha);border-radius:16px;padding:22px 18px;background:var(--carvao);position:relative}
+.passo-zap i{font-style:normal;font-size:1.6rem;display:block;margin-bottom:10px}
+.passo-zap b{display:block;font-size:.95rem;margin-bottom:6px}
+.passo-zap p{color:var(--cinza);font-size:.82rem}
+.passo-zap::after{content:"→";position:absolute;right:-15px;top:50%;transform:translateY(-50%);color:var(--ouro);z-index:2}
+.passo-zap:last-child::after{content:""}
+@media(max-width:860px){.passo-zap::after{content:""}}
+
 /* ===== v10: tipografia mobile arrumada + números vivos + 3D fundo ===== */
 @media(max-width:640px){
   h2{font-size:clamp(1.6rem,7.4vw,2.3rem);letter-spacing:0}
@@ -634,7 +672,10 @@ body.pronto #farol{opacity:1;transform:none;transition:opacity .6s ease 2s,trans
 .joia .j-nome{transform:translateZ(16px)}
 
 /* v9: o portal se DESINTEGRA na entrada + profundidade 3D */
-#portal.poof{opacity:0;transition:opacity .16s ease .1s}
+#portal.poof{opacity:0;transition:opacity 1.2s ease .35s}   /* o portal evapora devagar sob os grãos */
+body.pronto .hero .wrap{animation:chega 2s cubic-bezier(.2,.6,.2,1) .5s both}
+@keyframes chega{from{transform:scale(1.06) translateY(10px);filter:blur(10px);opacity:.4}
+  to{transform:scale(1) translateY(0);filter:blur(0);opacity:1}}
 .selo-v,.portal-in h2,.portal-in .tick,#btn-entrar{will-change:transform}
 .ofi-demo,.social-demo,.reel{perspective:1300px}
 .joia svg{animation:flutua 4.5s ease-in-out infinite}
@@ -732,8 +773,8 @@ body.pronto #farol{opacity:1;transform:none;transition:opacity .6s ease 2s,trans
 .orb-nota{color:var(--cinza);max-width:560px}
 .orb-nota b{color:var(--ouro)}
 .sistema-orbita{position:relative;width:min(600px,94vw);aspect-ratio:1;margin:50px auto 0;
-  --r1:120px;--r2:165px;--r3:210px;--r4:258px}
-@media(max-width:640px){.sistema-orbita{--r1:74px;--r2:104px;--r3:134px;--r4:164px}}
+  --r1:112px;--r2:152px;--r3:192px;--r4:236px;--r5:282px}
+@media(max-width:640px){.sistema-orbita{--r1:66px;--r2:94px;--r3:120px;--r4:148px;--r5:174px}}
 .orbitas{position:absolute;inset:0;width:100%;height:100%}
 .orbitas circle{fill:none;stroke:rgba(255,255,255,.08);stroke-dasharray:2 6}
 .sol{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:122px;height:122px;border-radius:50%;
@@ -753,6 +794,9 @@ body.pronto #farol{opacity:1;transform:none;transition:opacity .6s ease 2s,trans
 .pl2{animation:orb2 23s linear infinite}
 .pl3{animation:orb3 29s linear infinite}
 .pl4{animation:orb4 36s linear infinite}
+.pl5{animation:orb5 44s linear infinite}
+@keyframes orb5{from{transform:translate(-50%,-50%) rotate(40deg) translateX(var(--r5)) rotate(-40deg)}
+  to{transform:translate(-50%,-50%) rotate(400deg) translateX(var(--r5)) rotate(-400deg)}}
 @keyframes orb1{from{transform:translate(-50%,-50%) rotate(0deg) translateX(var(--r1)) rotate(0deg)}
   to{transform:translate(-50%,-50%) rotate(360deg) translateX(var(--r1)) rotate(-360deg)}}
 @keyframes orb2{from{transform:translate(-50%,-50%) rotate(100deg) translateX(var(--r2)) rotate(-100deg)}
@@ -859,8 +903,8 @@ body.pronto #farol{opacity:1;transform:none;transition:opacity .6s ease 2s,trans
 
 <div class="marquee" aria-hidden="true">
   <div class="marquee-trilho">
-    <span>Logo Design <b>◆</b> Brand Identity <b>◆</b> Social Media <b>◆</b> Criação de Sites <b>◆</b>&nbsp;</span>
-    <span>Logo Design <b>◆</b> Brand Identity <b>◆</b> Social Media <b>◆</b> Criação de Sites <b>◆</b>&nbsp;</span>
+    <span>Logo Design <b>◆</b> Brand Identity <b>◆</b> Social Media <b>◆</b> Criação de Sites <b>◆</b> Automação de WhatsApp <b>◆</b>&nbsp;</span>
+    <span>Logo Design <b>◆</b> Brand Identity <b>◆</b> Social Media <b>◆</b> Criação de Sites <b>◆</b> Automação de WhatsApp <b>◆</b>&nbsp;</span>
   </div>
 </div>
 
@@ -881,12 +925,13 @@ body.pronto #farol{opacity:1;transform:none;transition:opacity .6s ease 2s,trans
 <section id="servicos">
   <div class="wrap">
     <span class="rotulo rev">O que fazemos</span>
-    <h2 class="rev">Três ofícios. <span class="serif">Três mundos.</span></h2>
+    <h2 class="rev">Cinco ofícios. <span class="serif">Cinco mundos.</span></h2>
     <div class="abas-rail rev">
       <button class="aba" data-p="p-logo"><s>Mundo 01</s>Logo Design<small>O cofre de símbolos — 6 conceitos pra sentir o padrão.</small></button>
       <button class="aba" data-p="p-id"><s>Mundo 02</s>Brand Identity<small>Tipografia, cor e voz — o sistema que vira reputação.</small></button>
       <button class="aba" data-p="p-social"><s>Mundo 03</s>Social Media<small>O feed premium e os números que ele move.</small></button>
       <button class="aba" data-p="p-site"><s>Mundo 04</s>Criação de Sites<small>O palco digital — você está dentro de um agora.</small></button>
+      <button class="aba" data-p="p-zap"><s>Mundo 05</s>Automação de WhatsApp<small>Atendimento com IA que responde sozinho, 24/7.</small></button>
     </div>
   </div>
 
@@ -1003,12 +1048,38 @@ body.pronto #farol{opacity:1;transform:none;transition:opacity .6s ease 2s,trans
       </div>
     </div>
   </div>
+
+  <!-- ===== 05 · AUTOMAÇÃO DE WHATSAPP — O ATENDENTE QUE NUNCA DORME ===== -->
+  <div class="oficio">
+    <div class="wrap ofi-grid">
+      <div class="ofi-texto rev">
+        <span class="num">— 05</span>
+        <h3>Automação de WhatsApp</h3>
+        <p>O cliente escolhe no site, <b>cai direto no seu WhatsApp</b> — e uma IA treinada no seu negócio responde as dúvidas na hora, 24/7. Não resolveu? <b>Um humano assume em um toque.</b> Você só entra na conversa pra fechar.</p>
+        <div class="tags"><i>IA no WhatsApp</i><i>Respostas 24/7</i><i>Transbordo humano</i><i>Conectado ao site</i></div>
+        <button class="link-mundo" data-p="p-zap">Entrar no mundo 05 →</button>
+      </div>
+      <div class="ofi-demo rev">
+        <div class="zapchat">
+          <div class="zap-topo"><span class="zap-av">👗</span><div><b>Voga Urbana</b><small>online agora · atendida por IA Veltrix</small></div></div>
+          <div class="zap-corpo">
+            <div class="balao cli b1">Vi o vestido azul no site! Tem no M? 😍</div>
+            <div class="balao bot b2"><span class="selo-ia">✦ IA da loja</span>Tem sim! Restam 2 no M. Quer que eu separe um pra você?</div>
+            <div class="balao cli b3">Quero! E chega até sexta?</div>
+            <div class="balao bot b4"><span class="selo-ia">✦ IA da loja</span>Chega sim: pedidos até 15h saem no mesmo dia. 🚚 Te mando o link de pagamento?</div>
+            <div class="balao cli b5">Prefiro falar com alguém antes.</div>
+            <div class="balao humano b6"><span class="selo-hum">◆ humano assumiu</span>Oi! Aqui é a Ana, da Voga 💛 Pode deixar comigo…</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 
 <section id="numeros">
   <div class="wrap">
     <div class="nums">
-      <div class="num-chip rev"><b class="contador" data-fim="4">0</b><span>ofícios sob o mesmo teto</span></div>
+      <div class="num-chip rev"><b class="contador" data-fim="5">0</b><span>ofícios sob o mesmo teto</span></div>
       <div class="num-chip rev"><b class="contador" data-fim="6">0</b><span>conceitos no cofre</span></div>
       <div class="num-chip rev"><b class="contador" data-fim="24" data-suf="h">0h</b><span>pra devolver proposta</span></div>
       <div class="num-chip rev"><b class="contador" data-fim="100" data-suf="%">0%</b><span>feito à mão, zero template</span></div>
@@ -1054,19 +1125,21 @@ body.pronto #farol{opacity:1;transform:none;transition:opacity .6s ease 2s,trans
   <div class="wrap">
     <span class="rotulo rev">Tudo em um só estúdio</span>
     <h2 class="rev">Cuidamos do <span class="serif">perfil inteiro.</span></h2>
-    <p class="orb-nota rev">Símbolo, sistema, feed e site — <b>quatro ofícios girando em volta de uma coisa só: a sua marca.</b> Toca em qualquer planeta pra entrar no mundo dele.</p>
+    <p class="orb-nota rev">Símbolo, sistema, feed, site e atendimento — <b>cinco ofícios girando em volta de uma coisa só: a sua marca.</b> Toca em qualquer planeta pra entrar no mundo dele.</p>
     <div class="sistema-orbita rev">
       <svg class="orbitas" viewBox="0 0 600 600" aria-hidden="true">
         <circle cx="300" cy="300" r="120"/>
         <circle cx="300" cy="300" r="165"/>
         <circle cx="300" cy="300" r="210"/>
         <circle cx="300" cy="300" r="258"/>
+        <circle cx="300" cy="300" r="284"/>
       </svg>
       <div class="sol">SUA<br>MARCA</div>
       <button class="planeta pl1" data-p="p-logo"><i>◆</i>Logo Design</button>
       <button class="planeta pl2" data-p="p-id"><i>◆</i>Identidade</button>
       <button class="planeta pl3" data-p="p-social"><i>◆</i>Social Media</button>
       <button class="planeta pl4" data-p="p-site"><i>◆</i>Site</button>
+      <button class="planeta pl5" data-p="p-zap"><i>◆</i>WhatsApp IA</button>
     </div>
   </div>
 </section>
@@ -1096,6 +1169,10 @@ body.pronto #farol{opacity:1;transform:none;transition:opacity .6s ease 2s,trans
       <div class="duvida">
         <button class="pergunta">Em quanto tempo <span class="serif">fica pronto?</span></button>
         <div class="resposta"><div><p>Símbolos levam <b>dias</b>; sistemas completos de identidade levam <b>semanas</b> — o prazo exato vai junto com a proposta, e a gente cumpre. O que não fazemos é atropelar: <span class="ouro">marca boa não nasce com pressa, nasce com critério.</span></p></div></div>
+      </div>
+      <div class="duvida">
+        <button class="pergunta">Como funciona a <span class="serif">automação de WhatsApp?</span></button>
+        <div class="resposta"><div><p>O cliente escolhe o serviço ou produto no seu site e <b>a solicitação cai direto no seu WhatsApp</b>. De lá, uma <b>IA treinada no seu negócio</b> (catálogo, prazos, políticas) responde as dúvidas na hora — de madrugada, no domingo, no feriado. Se a conversa precisar de gente de verdade, <b>o cliente pede e um humano assume na mesma conversa</b>. Você só aparece pra fechar a venda. <span class="ouro">É como contratar um atendente que nunca dorme — sem folha de pagamento.</span></p></div></div>
       </div>
       <div class="duvida">
         <button class="pergunta">Vocês criam <span class="serif">o site também?</span></button>
@@ -1332,6 +1409,47 @@ body.pronto #farol{opacity:1;transform:none;transition:opacity .6s ease 2s,trans
     </ul>
     <div class="painel-cta p-rev" style="--d:.5s">
       <a class="btn btn-solid magnet" href="https://wa.me/5535999259372?text=Ol%C3%A1%2C%20Veltrix!%20Quero%20um%20site%20cinematogr%C3%A1fico%20pra%20minha%20marca." target="_blank" rel="noopener">Quero meu palco →</a>
+      <a class="btn btn-ghost magnet" href="https://www.instagram.com/veltrix__agency" target="_blank" rel="noopener">@veltrix__agency</a>
+    </div>
+  </div>
+</div>
+
+<!-- ===== MUNDO 05 · AUTOMAÇÃO DE WHATSAPP ===== -->
+<div class="painel" id="p-zap" role="dialog" aria-label="Mundo Automação de WhatsApp">
+  <div class="painel-in">
+    <span class="num-gig" aria-hidden="true">05</span>
+    <span class="rotulo p-rev">Mundo 05</span>
+    <h3 class="p-rev" style="--d:.08s">Automação de <span class="serif">WhatsApp.</span></h3>
+    <p class="lead p-rev" style="--d:.16s">Seu melhor vendedor é o que responde <b>em 5 segundos, às 2h da manhã, sem mau humor</b>. A Veltrix instala no seu WhatsApp uma IA treinada no seu negócio — e quando precisa de gente, <b>gente assume na mesma conversa</b>.</p>
+    <div class="fluxo-zap">
+      <div class="passo-zap p-rev" style="--d:.24s"><i>🛍️</i><b>1 · Cliente escolhe no site</b><p>Cada produto ou serviço selecionado vira uma mensagem automática.</p></div>
+      <div class="passo-zap p-rev" style="--d:.3s"><i>📲</i><b>2 · Cai no seu WhatsApp</b><p>A solicitação chega direto no número do dono, formatada e completa.</p></div>
+      <div class="passo-zap p-rev" style="--d:.36s"><i>✦</i><b>3 · A IA responde na hora</b><p>Dúvidas de preço, prazo, estoque e política — respondidas 24/7 com o tom da sua marca.</p></div>
+      <div class="passo-zap p-rev" style="--d:.42s"><i>🤝</i><b>4 · Humano em 1 toque</b><p>Não resolveu ou o cliente pediu? Um atendente humano assume a conversa na hora.</p></div>
+    </div>
+    <div class="social-demo" style="margin-top:44px">
+      <div class="zapchat p-rev" style="--d:.5s">
+        <div class="zap-topo"><span class="zap-av">👗</span><div><b>Voga Urbana</b><small>online agora · atendida por IA Veltrix</small></div></div>
+        <div class="zap-corpo">
+          <div class="balao cli b1">Vocês têm entrega hoje?</div>
+          <div class="balao bot b2"><span class="selo-ia">✦ IA da loja</span>Temos! Pedidos até 15h chegam hoje ainda. Quer ver o catálogo?</div>
+          <div class="balao cli b3">Quanto fica o conjunto linho?</div>
+          <div class="balao bot b4"><span class="selo-ia">✦ IA da loja</span>R$ 289 no PIX ou 3x sem juros. Sobrou P, M e G — separo qual? 😉</div>
+          <div class="balao cli b5">Chama um atendente por favor</div>
+          <div class="balao humano b6"><span class="selo-hum">◆ humano assumiu</span>Oi! Aqui é a Ana 💛 Vi que você quer o conjunto de linho…</div>
+        </div>
+      </div>
+      <ul class="entregas p-rev" style="--d:.56s;margin-top:0">
+        <li>Fluxo de automação instalado e rodando (n8n)</li>
+        <li>IA treinada no catálogo e nas regras do negócio</li>
+        <li>Transbordo pra humano em um toque</li>
+        <li>Site conectado: cada clique vira conversa</li>
+        <li>Funciona de madrugada, domingo e feriado</li>
+        <li>Relatório do que os clientes mais perguntam</li>
+      </ul>
+    </div>
+    <div class="painel-cta p-rev" style="--d:.62s">
+      <a class="btn btn-solid magnet" href="https://wa.me/5535999259372?text=Ol%C3%A1%2C%20Veltrix!%20Quero%20automatizar%20o%20atendimento%20do%20meu%20WhatsApp%20com%20IA." target="_blank" rel="noopener">Quero atender no automático →</a>
       <a class="btn btn-ghost magnet" href="https://www.instagram.com/veltrix__agency" target="_blank" rel="noopener">@veltrix__agency</a>
     </div>
   </div>
@@ -1685,7 +1803,7 @@ btnSom.addEventListener('click', () => {
 
 /* ============ DECODIFICAÇÃO: títulos se montam com glifos ============ */
 (function decode(){
-  const GLIFOS = '█▓▒░<>/\\|VELTRIX*#%&@01';
+  const GLIFOS = 'VELTRIXveltrix·';   /* decode elegante: só letras da casa */
   function scramble(el){
     const alvo = el.dataset.txt || (el.dataset.txt = el.textContent);
     let quadro = 0;
@@ -1783,7 +1901,7 @@ function Fogo(cv){
         ctx.fillRect(g.x, g.y, g.s, g.s);
         continue;
       }
-      g.x += g.vx; g.y += g.vy; g.vx *= .984; g.vy = g.vy * .984 + .14; g.vida -= .017;
+      g.x += g.vx; g.y += g.vy; g.vx *= .991; g.vy = g.vy * .991 + .055; g.vida -= .0105;
       if (g.vida <= 0){ G.splice(i, 1); continue; }
       ctx.globalAlpha = Math.min(g.vida, 1);
       ctx.fillStyle = g.cor;
@@ -1833,10 +1951,10 @@ function Fogo(cv){
       for (let x = 0; x < innerWidth + passo; x += passo){
         const d = Math.hypot(x - cx, y - cy);
         const ang = Math.atan2(y - cy, x - cx) + (Math.random() - .5) * .6;
-        const v = 3 + Math.random() * 9;
+        const v = 1.3 + Math.random() * 4.2;               /* lento, flutuante, de filme */
         G.push({ x, y, s: passo * (.6 + Math.random() * .45), cor: corPortal(x, y),
-          vx: Math.cos(ang) * v, vy: Math.sin(ang) * v - 1.6,
-          espera: d * 1.05, vida: 1.05 + Math.random() * .45 });
+          vx: Math.cos(ang) * v, vy: Math.sin(ang) * v - 1,
+          espera: d * 2.3, vida: 1.3 + Math.random() * .5 });
       }
     if (!vivo){ vivo = true; loop(); }
   };
@@ -1849,7 +1967,7 @@ const portal = document.getElementById('portal');
 const btnEntrar = document.getElementById('btn-entrar');
 const flashEl = document.getElementById('flash');
 document.body.classList.add('travado');
-const MAPA_HASH = { 'p-logo': '#logo-design', 'p-id': '#identidade', 'p-social': '#social-media', 'p-site': '#criacao-de-sites' };
+const MAPA_HASH = { 'p-logo': '#logo-design', 'p-id': '#identidade', 'p-social': '#social-media', 'p-site': '#criacao-de-sites', 'p-zap': '#automacao-whatsapp' };
 let entrou = false, autoGlide = null;
 function cancelaGlide(){ if (autoGlide){ clearTimeout(autoGlide); autoGlide = null; } }
 function entrada(){
@@ -1868,14 +1986,14 @@ function entrada(){
     document.body.classList.add('pronto');
     const alvoHash = Object.entries(MAPA_HASH).find(([,h]) => h === location.hash);
     if (alvoHash) setTimeout(() => abrePainel(alvoHash[0]), 900);
-  }, 300);
+  }, 950);                                             /* o estúdio chega junto com a onda */
   /* transição suave: das boas-vindas direto pra demonstração dos serviços */
   setTimeout(() => {
     ['wheel','touchstart','keydown'].forEach(ev => addEventListener(ev, cancelaGlide, { passive: true }));
   }, 800);
   autoGlide = setTimeout(() => {
     if (!painelAberto) document.getElementById('servicos').scrollIntoView({ behavior: 'smooth' });
-  }, 4600);
+  }, 6200);
 }
 btnEntrar.addEventListener('click', entrada);
 
@@ -2058,7 +2176,7 @@ document.querySelectorAll('section, .oficio').forEach(s => io4.observe(s));
 (function ticker(){
   const el = document.getElementById('tickb'); if (!el) return;
   const P = ['hipnotizam.', 'vendem sozinhas.', 'ficam na cabeça.', 'parecem caras.', 'são inevitáveis.'];
-  const G = '█▓▒░<>/*';
+  const G = 'veltrix·';
   let i = 0;
   setInterval(() => {
     if (entrou) return;
