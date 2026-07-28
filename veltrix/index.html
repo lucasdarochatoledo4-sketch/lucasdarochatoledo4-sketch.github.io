@@ -557,8 +557,9 @@ body.sem-scroll #fecharPainel{display:block}
   100%{box-shadow:0 0 0 0 rgba(232,196,124,0)}}
 .portal-sub{margin-top:20px;color:var(--cinza);font-size:.66rem;letter-spacing:.3em;text-transform:uppercase;opacity:.8}
 
-/* letras magnéticas: o texto reage à mão */
-.lm{display:inline-block;transition:transform .28s cubic-bezier(.2,.9,.2,1),color .28s;will-change:transform}
+/* letras magnéticas: o texto reage à mão — palavras nunca quebram no meio */
+.pal{display:inline-block;white-space:nowrap}
+.lm{display:inline-block;transition:transform .34s cubic-bezier(.2,.9,.2,1),color .34s;will-change:transform}
 .lm:hover{transform:translateY(-8px) rotate(5deg) scale(1.12);color:var(--ouro)}
 .lm.onda{animation:ondaLetra .7s cubic-bezier(.2,.9,.2,1)}
 @keyframes ondaLetra{35%{transform:translateY(-12px) rotate(4deg);color:var(--ouro)}}
@@ -607,6 +608,31 @@ body.pronto #farol{opacity:1;transform:none;transition:opacity .6s ease 2s,trans
 /* ============================================================
    v8 CINEMA TOTAL — desintegração, 360, órbita, mundo 04
    ============================================================ */
+/* ===== v10: tipografia mobile arrumada + números vivos + 3D fundo ===== */
+@media(max-width:640px){
+  h2{font-size:clamp(1.6rem,7.4vw,2.3rem);letter-spacing:0}
+  .painel h3{font-size:clamp(1.8rem,8.6vw,2.5rem)}
+  .portal-in h2{font-size:clamp(1.7rem,8vw,2.4rem)}
+  .pergunta{font-size:1rem;padding-right:44px}
+  .lead,.orb-nota,.faq-nota{font-size:.95rem}
+  .painel .num-gig{font-size:3.4rem;top:72px}
+  section{padding:78px 0}
+  .abas-rail{gap:10px}
+  .aba{padding:17px 20px;font-size:.94rem}
+  .hero .frase{font-size:1.02rem}
+}
+.nums{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+@media(max-width:760px){.nums{grid-template-columns:repeat(2,1fr)}}
+.num-chip{border:1px solid var(--linha);border-radius:16px;padding:26px 20px;background:rgba(14,14,19,.6);
+  text-align:center;transition:border-color .3s}
+.num-chip:hover{border-color:var(--ouro-linha)}
+.num-chip b{display:block;font-family:"Instrument Serif",serif;font-style:italic;font-weight:400;
+  font-size:clamp(2.2rem,6vw,3.2rem);color:var(--ouro);font-variant-numeric:tabular-nums;line-height:1.1}
+.num-chip span{color:var(--cinza);font-size:.76rem;letter-spacing:.14em;text-transform:uppercase;display:block;margin-top:8px}
+.tile.gira{animation:giroTile 1.6s cubic-bezier(.65,0,.35,1)}
+@keyframes giroTile{to{transform:rotateY(360deg)}}
+.joia .j-nome{transform:translateZ(16px)}
+
 /* v9: o portal se DESINTEGRA na entrada + profundidade 3D */
 #portal.poof{opacity:0;transition:opacity .16s ease .1s}
 .selo-v,.portal-in h2,.portal-in .tick,#btn-entrar{will-change:transform}
@@ -975,6 +1001,17 @@ body.pronto #farol{opacity:1;transform:none;transition:opacity .6s ease 2s,trans
           </div>
         </div>
       </div>
+    </div>
+  </div>
+</section>
+
+<section id="numeros">
+  <div class="wrap">
+    <div class="nums">
+      <div class="num-chip rev"><b class="contador" data-fim="4">0</b><span>ofícios sob o mesmo teto</span></div>
+      <div class="num-chip rev"><b class="contador" data-fim="6">0</b><span>conceitos no cofre</span></div>
+      <div class="num-chip rev"><b class="contador" data-fim="24" data-suf="h">0h</b><span>pra devolver proposta</span></div>
+      <div class="num-chip rev"><b class="contador" data-fim="100" data-suf="%">0%</b><span>feito à mão, zero template</span></div>
     </div>
   </div>
 </section>
@@ -1883,22 +1920,44 @@ function contaMetricas(p){
   });
 }
 
-/* ===== TOQUE 3D: as imagens se mexem na mão ===== */
+/* ===== TOQUE 3D v2: suave como seda — interpolado quadro a quadro ===== */
 function aplicaTilt(el, gx = 12, gy = 14){
-  function vira(cx, cy){
+  const alvo = { rx: 0, ry: 0, tx: 0, ty: 0, s: 1, ativo: false };
+  const cur = { rx: 0, ry: 0, tx: 0, ty: 0, s: 1 };
+  let rodando = false;
+  function mira(cx, cy){
     const r = el.getBoundingClientRect();
-    const rx = ((cy - r.top) / r.height - .5) * -gx;
-    const ry = ((cx - r.left) / r.width - .5) * gy;
-    el.style.transform = `translate(${(cx - r.left - r.width / 2) * .04}px, ${(cy - r.top - r.height / 2) * .05}px) rotateX(${rx}deg) rotateY(${ry}deg) scale(1.02)`;
+    alvo.rx = ((cy - r.top) / r.height - .5) * -gx;
+    alvo.ry = ((cx - r.left) / r.width - .5) * gy;
+    alvo.tx = (cx - r.left - r.width / 2) * .05;
+    alvo.ty = (cy - r.top - r.height / 2) * .06;
+    alvo.s = 1.025; alvo.ativo = true;
     el.style.setProperty('--gx', ((cx - r.left) / r.width * 100) + '%');
     el.style.setProperty('--gy', ((cy - r.top) / r.height * 100) + '%');
+    if (!rodando){ rodando = true; desliza(); }
   }
-  el.addEventListener('mousemove', e => vira(e.clientX, e.clientY));
-  el.addEventListener('mouseleave', () => el.style.transform = '');
+  function solta(){ alvo.ativo = false; alvo.rx = 0; alvo.ry = 0; alvo.tx = 0; alvo.ty = 0; alvo.s = 1; }
+  function desliza(){
+    cur.rx += (alvo.rx - cur.rx) * .14; cur.ry += (alvo.ry - cur.ry) * .14;
+    cur.tx += (alvo.tx - cur.tx) * .14; cur.ty += (alvo.ty - cur.ty) * .14;
+    cur.s += (alvo.s - cur.s) * .14;
+    const parado = !alvo.ativo && Math.abs(cur.rx) < .04 && Math.abs(cur.ry) < .04 && Math.abs(cur.tx) < .2;
+    if (parado){
+      rodando = false;
+      el.style.transform = ''; el.style.boxShadow = '';
+      cur.rx = cur.ry = cur.tx = cur.ty = 0; cur.s = 1;
+      return;
+    }
+    el.style.transform = `translate(${cur.tx.toFixed(2)}px, ${cur.ty.toFixed(2)}px) rotateX(${cur.rx.toFixed(2)}deg) rotateY(${cur.ry.toFixed(2)}deg) scale(${cur.s.toFixed(3)})`;
+    el.style.boxShadow = `${(-cur.ry * 2.2).toFixed(1)}px ${(cur.rx * 2.2 + 20).toFixed(1)}px 46px rgba(0,0,0,.45)`;
+    requestAnimationFrame(desliza);
+  }
+  el.addEventListener('mousemove', e => mira(e.clientX, e.clientY));
+  el.addEventListener('mouseleave', solta);
   el.addEventListener('touchmove', e => {
-    const t = e.touches[0]; if (t) vira(t.clientX, t.clientY);
+    const t = e.touches[0]; if (t) mira(t.clientX, t.clientY);
   }, { passive: true });
-  el.addEventListener('touchend', () => setTimeout(() => el.style.transform = '', 350));
+  el.addEventListener('touchend', () => setTimeout(solta, 120));
 }
 document.querySelectorAll('.t3d').forEach(el => aplicaTilt(el));
 document.querySelectorAll('.tile').forEach(el => {
@@ -2020,9 +2079,16 @@ function granula(el){
   [...el.childNodes].forEach(n => {
     if (n.nodeType === 3){
       const frag = document.createDocumentFragment();
-      for (const ch of n.textContent){
-        if (ch.trim() === '') frag.appendChild(document.createTextNode(ch));
-        else { const s = document.createElement('span'); s.className = 'lm'; s.textContent = ch; frag.appendChild(s); }
+      for (const parte of n.textContent.split(/(\s+)/)){
+        if (!parte) continue;
+        if (/^\s+$/.test(parte)){ frag.appendChild(document.createTextNode(parte)); continue; }
+        const w = document.createElement('span');   /* palavra inteira: nunca quebra no meio */
+        w.className = 'pal';
+        for (const ch of parte){
+          const s = document.createElement('span'); s.className = 'lm'; s.textContent = ch;
+          w.appendChild(s);
+        }
+        frag.appendChild(w);
       }
       n.replaceWith(frag);
     } else if (n.nodeType === 1) granula(n);
@@ -2222,6 +2288,59 @@ document.addEventListener('click', e => {
     }, 1400 + Math.random() * 2200);
   })();
 })();
+
+/* ============================================================
+   MOTORES v10 — números vivos, vitrine de tiles, toque total
+   ============================================================ */
+
+/* ===== NÚMEROS que contam quando entram em cena (nas 2 direções) ===== */
+const io6 = new IntersectionObserver(es => es.forEach(e => {
+  const b = e.target;
+  if (!e.isIntersecting){ b._contou = false; return; }
+  if (b._contou) return;
+  b._contou = true;
+  const fim = parseFloat(b.dataset.fim), suf = b.dataset.suf || '';
+  const t0 = performance.now();
+  (function conta(t){
+    if (!b._contou) return;
+    const k = Math.min((t - t0) / 1300, 1);
+    b.textContent = Math.round(fim * (1 - Math.pow(1 - k, 3))) + suf;
+    if (k < 1) requestAnimationFrame(conta);
+  })(t0);
+}), { threshold: .6 });
+document.querySelectorAll('.contador').forEach(b => io6.observe(b));
+
+/* ===== VITRINE DOS TILES: as explorações giram 360 sozinhas ===== */
+(function vitrineTiles(){
+  if (REDUZ) return;
+  const tiles = [...document.querySelectorAll('.tile')];
+  let ti2 = 0;
+  setInterval(() => {
+    if (!entrou || painelAberto) return;
+    const t = tiles[ti2 % tiles.length]; ti2++;
+    const r = t.getBoundingClientRect();
+    if (r.bottom < 0 || r.top > innerHeight) return;   /* só gira em cena */
+    t.classList.add('gira');
+    setTimeout(() => t.classList.remove('gira'), 1700);
+  }, 4200);
+})();
+
+/* ===== TOQUE TOTAL: qualquer toque na tela reage com partículas ===== */
+document.addEventListener('touchstart', e => {
+  if (!entrou || REDUZ) return;
+  const t = e.touches[0]; if (!t) return;
+  fogoTela.faisca(t.clientX, t.clientY, 16, 4);
+  fogoTela.anel(t.clientX, t.clientY, 'rgba(167,139,250,.45)');
+}, { passive: true });
+/* o dedo arrastando deixa rastro de poeira dourada */
+let ultTrilha = 0;
+document.addEventListener('touchmove', e => {
+  if (!entrou || REDUZ) return;
+  const agora = performance.now();
+  if (agora - ultTrilha < 90) return;
+  ultTrilha = agora;
+  const t = e.touches[0]; if (t) fogoTela.faisca(t.clientX, t.clientY, 3, 1.8);
+}, { passive: true });
 </script>
 </body>
 </html>
