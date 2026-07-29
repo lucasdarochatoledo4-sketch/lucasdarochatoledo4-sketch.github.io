@@ -407,6 +407,16 @@ body.travado{overflow:hidden}
   transition:opacity 1s ease .35s,visibility 1s ease .35s}
 #portal.foi{opacity:0;visibility:hidden;pointer-events:none}
 .portal-in{max-width:560px;display:flex;flex-direction:column;align-items:center}
+@keyframes flutuaPortal{50%{transform:translateY(-9px)}}
+/* moldura de convite: fios de ouro emoldurando a tela */
+.moldura{position:fixed;inset:16px;z-index:161;pointer-events:none;
+  border:1px solid rgba(232,196,124,.22);border-radius:6px;
+  transition:opacity 1.2s ease .3s}
+.moldura::before,.moldura::after{content:"";position:absolute;width:26px;height:26px;
+  border-color:rgba(232,196,124,.65);border-style:solid}
+.moldura::before{top:-1px;left:-1px;border-width:1px 0 0 1px}
+.moldura::after{bottom:-1px;right:-1px;border-width:0 1px 1px 0}
+#portal.foi ~ .moldura, body.pronto .moldura{opacity:0}
 .selo-v{width:112px;height:112px;margin-bottom:30px}
 .selo-v svg{width:100%;height:100%;overflow:visible}
 .selo-v .aro{fill:none;stroke:var(--ouro-linha);stroke-width:1;stroke-dasharray:600;stroke-dashoffset:600;
@@ -620,7 +630,6 @@ body.pronto #farol{opacity:1;transform:none;transition:opacity .6s ease 2s,trans
 @keyframes feedRola{to{transform:translateY(-50%)}}
 .feed{animation-duration:17s}
 .raios{opacity:.34}
-.portal-in{animation-duration:6.5s}
 .lead b,.ofi-texto p b{color:#f6f4ee}
 .resposta p{color:#b9b8c6}
 .balao.cli{color:#f0f5f1}
@@ -708,7 +717,7 @@ body.pronto .hero .wrap{animation:chega 2s cubic-bezier(.2,.6,.2,1) .5s both}
     rgba(232,196,124,.05) 26% 29%, transparent 31% 45%, rgba(124,92,255,.04) 47% 50%,
     transparent 52% 70%, rgba(232,196,124,.04) 72% 75%, transparent 77% 100%);
   animation:giraLento 70s linear infinite}
-.portal-in{animation:puxaCamera 5s cubic-bezier(.2,.6,.2,1) both}
+.portal-in{animation:puxaCamera 6.5s cubic-bezier(.2,.6,.2,1) both,flutuaPortal 9s ease-in-out 6.5s infinite}
 @keyframes puxaCamera{from{transform:scale(.93);opacity:.7}to{transform:scale(1);opacity:1}}
 .portal-in .assinado{animation:abreEspaco 2.4s ease .4s both}
 @keyframes abreEspaco{from{letter-spacing:.06em;opacity:0}to{letter-spacing:.42em;opacity:1}}
@@ -871,6 +880,7 @@ body.pronto .hero .wrap{animation:chega 2s cubic-bezier(.2,.6,.2,1) .5s both}
     <span class="portal-sub">90 segundos que mudam como você vê a sua marca</span>
   </div>
 </div>
+<div class="moldura" aria-hidden="true"></div>
 <canvas id="boom" aria-hidden="true"></canvas>
 <div id="flash" aria-hidden="true"></div>
 <canvas id="estouro" aria-hidden="true"></canvas>
@@ -1989,10 +1999,10 @@ const MAPA_HASH = { 'p-logo': '#logo-design', 'p-id': '#identidade', 'p-social':
 let entrou = false, autoGlide = null;
 function cancelaGlide(){ if (autoGlide){ clearTimeout(autoGlide); autoGlide = null; } }
 const vozBemVindo = new Audio('boas-vindas.mp3');
-vozBemVindo.preload = 'auto'; vozBemVindo.volume = .92;
+vozBemVindo.preload = 'auto'; vozBemVindo.volume = .85;
 function entrada(){
   if (entrou) return; entrou = true;
-  setTimeout(() => vozBemVindo.play().catch(() => {}), 700);   /* a casa dá as boas-vindas em voz */
+  setTimeout(() => vozBemVindo.play().catch(() => {}), 1200);  /* a voz chega depois do impacto, calma */
   const r = btnEntrar.getBoundingClientRect();
   const x = r.left + r.width/2, y = r.top + r.height/2;
   fogoBoom.desintegra(x, y);                       /* a tela vira grãos em onda de choque */
