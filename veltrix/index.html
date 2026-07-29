@@ -608,6 +608,24 @@ body.pronto #farol{opacity:1;transform:none;transition:opacity .6s ease 2s,trans
 /* ============================================================
    v8 CINEMA TOTAL — desintegração, 360, órbita, mundo 04
    ============================================================ */
+/* ===== v12: contraste elevado + transições de saborear ===== */
+:root{--cinza:#adacba;--linha:rgba(255,255,255,.115)}
+.rev{transition:opacity 1.15s cubic-bezier(.16,.84,.28,1),transform 1.15s cubic-bezier(.16,.84,.28,1),filter 1.15s cubic-bezier(.16,.84,.28,1)}
+.p-rev{transition:opacity .95s cubic-bezier(.16,.84,.28,1) var(--d,0s),transform .95s cubic-bezier(.16,.84,.28,1) var(--d,0s),filter .95s cubic-bezier(.16,.84,.28,1) var(--d,0s)}
+.painel{transition:clip-path 1.05s cubic-bezier(.72,0,.22,1),visibility 0s linear 1.05s}
+.painel.aberto{transition:clip-path 1.05s cubic-bezier(.72,0,.22,1)}
+.btn{transition:transform .35s cubic-bezier(.2,.9,.2,1),box-shadow .35s,background .35s}
+.aba{transition:transform .4s cubic-bezier(.2,.9,.2,1),border-color .4s,background .4s}
+.marquee-trilho{animation-duration:34s}
+@keyframes feedRola{to{transform:translateY(-50%)}}
+.feed{animation-duration:17s}
+.raios{opacity:.34}
+.portal-in{animation-duration:6.5s}
+.lead b,.ofi-texto p b{color:#f6f4ee}
+.resposta p{color:#b9b8c6}
+.balao.cli{color:#f0f5f1}
+.num-chip{background:rgba(16,16,22,.8)}
+
 /* ===== MUNDO 05: automação de WhatsApp — a conversa que se atende ===== */
 .zapchat{width:min(370px,94vw);border:1px solid var(--linha);border-radius:22px;overflow:hidden;
   background:#0a0f0c;box-shadow:0 30px 80px rgba(0,0,0,.55)}
@@ -1970,8 +1988,11 @@ document.body.classList.add('travado');
 const MAPA_HASH = { 'p-logo': '#logo-design', 'p-id': '#identidade', 'p-social': '#social-media', 'p-site': '#criacao-de-sites', 'p-zap': '#automacao-whatsapp' };
 let entrou = false, autoGlide = null;
 function cancelaGlide(){ if (autoGlide){ clearTimeout(autoGlide); autoGlide = null; } }
+const vozBemVindo = new Audio('boas-vindas.mp3');
+vozBemVindo.preload = 'auto'; vozBemVindo.volume = .92;
 function entrada(){
   if (entrou) return; entrou = true;
+  setTimeout(() => vozBemVindo.play().catch(() => {}), 700);   /* a casa dá as boas-vindas em voz */
   const r = btnEntrar.getBoundingClientRect();
   const x = r.left + r.width/2, y = r.top + r.height/2;
   fogoBoom.desintegra(x, y);                       /* a tela vira grãos em onda de choque */
@@ -2012,6 +2033,14 @@ function abrePainel(id, x, y){
   history.replaceState(null, '', MAPA_HASH[id] || location.pathname);
   if (id === 'p-social'){ contaMetricas(p); cresceInsta(); }
 }
+/* o número gigante do mundo flutua em parallax com o scroll do painel */
+document.querySelectorAll('.painel').forEach(pn => {
+  const gig = pn.querySelector('.num-gig');
+  if (gig) pn.addEventListener('scroll', () => {
+    gig.style.transform = `translateY(${pn.scrollTop * .35}px)`;
+    gig.style.opacity = Math.max(1 - pn.scrollTop / 900, .15);
+  }, { passive: true });
+});
 function fechaPainel(){
   if (!painelAberto) return;
   painelAberto.classList.remove('aberto');
@@ -2146,7 +2175,7 @@ document.querySelectorAll('section, .oficio').forEach(s => io4.observe(s));
   mede(); addEventListener('resize', mede);
   for (let i = 0; i < 64; i++) PP.push({
     x: Math.random() * innerWidth, y: Math.random() * innerHeight,
-    v: .12 + Math.random() * .4, s: .6 + Math.random() * 1.8,
+    v: .07 + Math.random() * .24, s: .6 + Math.random() * 1.8,
     a: .12 + Math.random() * .5, tw: Math.random() * 6.28,
     ouro: Math.random() < .55
   });
@@ -2189,7 +2218,7 @@ document.querySelectorAll('section, .oficio').forEach(s => io4.observe(s));
       el.textContent = s;
       if (q++ < tot) requestAnimationFrame(passo); else el.textContent = alvo;
     })();
-  }, 2400);
+  }, 3300);
 })();
 
 /* ===== LETRAS MAGNÉTICAS: os títulos reagem à mão ===== */
