@@ -1998,7 +1998,7 @@ document.body.classList.add('travado');
 const MAPA_HASH = { 'p-logo': '#logo-design', 'p-id': '#identidade', 'p-social': '#social-media', 'p-site': '#criacao-de-sites', 'p-zap': '#automacao-whatsapp' };
 let entrou = false, autoGlide = null;
 function cancelaGlide(){ if (autoGlide){ clearTimeout(autoGlide); autoGlide = null; } }
-const vozBemVindo = new Audio('boas-vindas.mp3');
+const vozBemVindo = new Audio('boas-vindas.mp3?v=rafael1');   /* versão na URL: troca de voz fura qualquer cache */
 vozBemVindo.preload = 'auto'; vozBemVindo.volume = .85;
 function entrada(){
   if (entrou) return; entrou = true;
