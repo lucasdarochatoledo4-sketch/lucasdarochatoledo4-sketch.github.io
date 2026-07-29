@@ -698,6 +698,24 @@ body.pronto #farol{opacity:1;transform:none;transition:opacity .6s ease 2s,trans
 @keyframes giroTile{to{transform:rotateY(360deg)}}
 .joia .j-nome{transform:translateZ(16px)}
 
+/* ===== CERIMÔNIA DO V: o símbolo se desenha enquanto a voz recebe ===== */
+#cerimonia{position:fixed;inset:0;z-index:163;display:flex;align-items:center;justify-content:center;
+  pointer-events:none;opacity:0;transition:opacity .6s ease}
+#cerimonia.rodando{opacity:1}
+#cerimonia svg{width:min(52vh,72vw);overflow:visible;
+  filter:drop-shadow(0 0 34px rgba(124,92,255,.5))}
+#cerimonia .cv-aro{fill:none;stroke:rgba(232,196,124,.55);stroke-width:.9;
+  stroke-dasharray:600;stroke-dashoffset:600}
+#cerimonia .cv-aro2{fill:none;stroke:rgba(167,139,250,.4);stroke-width:.7;
+  stroke-dasharray:600;stroke-dashoffset:600}
+#cerimonia .cv-v{fill:none;stroke:url(#gradV2);stroke-width:7.5;stroke-linecap:round;stroke-linejoin:round;
+  stroke-dasharray:220;stroke-dashoffset:220}
+#cerimonia.rodando .cv-aro{animation:desenha 2.8s ease .2s forwards}
+#cerimonia.rodando .cv-aro2{animation:desenha 2.8s ease .6s forwards}
+#cerimonia.rodando .cv-v{animation:desenha 2.2s cubic-bezier(.6,0,.2,1) .8s forwards,brilhaV 1.8s ease-in-out 3s infinite}
+@keyframes brilhaV{50%{filter:drop-shadow(0 0 30px rgba(232,196,124,.95))}}
+.portal-in.cede{opacity:0!important;transition:opacity .7s ease;animation-play-state:paused}
+
 /* v9: o portal se DESINTEGRA na entrada + profundidade 3D */
 #portal.poof{opacity:0;transition:opacity 1.2s ease .35s}   /* o portal evapora devagar sob os grãos */
 body.pronto .hero .wrap{animation:chega 2s cubic-bezier(.2,.6,.2,1) .5s both}
@@ -879,6 +897,18 @@ body.pronto .hero .wrap{animation:chega 2s cubic-bezier(.2,.6,.2,1) .5s both}
     <button id="btn-entrar">Entrar no estúdio</button>
     <span class="portal-sub">90 segundos que mudam como você vê a sua marca</span>
   </div>
+</div>
+<div id="cerimonia" aria-hidden="true">
+  <svg viewBox="0 0 120 120">
+    <defs>
+      <linearGradient id="gradV2" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#e8c47c"/><stop offset=".5" stop-color="#a78bfa"/><stop offset="1" stop-color="#7c5cff"/>
+      </linearGradient>
+    </defs>
+    <circle class="cv-aro" cx="60" cy="60" r="55"/>
+    <circle class="cv-aro2" cx="60" cy="60" r="46"/>
+    <path class="cv-v" d="M 37 41 L 60 86 L 83 41"/>
+  </svg>
 </div>
 <div class="moldura" aria-hidden="true"></div>
 <canvas id="boom" aria-hidden="true"></canvas>
@@ -1998,13 +2028,30 @@ document.body.classList.add('travado');
 const MAPA_HASH = { 'p-logo': '#logo-design', 'p-id': '#identidade', 'p-social': '#social-media', 'p-site': '#criacao-de-sites', 'p-zap': '#automacao-whatsapp' };
 let entrou = false, autoGlide = null;
 function cancelaGlide(){ if (autoGlide){ clearTimeout(autoGlide); autoGlide = null; } }
-const vozBemVindo = new Audio('boas-vindas.mp3?v=rafael1');   /* versão na URL: troca de voz fura qualquer cache */
-vozBemVindo.preload = 'auto'; vozBemVindo.volume = .85;
+const vozBemVindo = new Audio('boas-vindas.mp3?v=ola1');   /* versão na URL: troca de voz fura qualquer cache */
+vozBemVindo.preload = 'auto'; vozBemVindo.volume = .9;
 function entrada(){
   if (entrou) return; entrou = true;
-  setTimeout(() => vozBemVindo.play().catch(() => {}), 1200);  /* a voz chega depois do impacto, calma */
-  const r = btnEntrar.getBoundingClientRect();
-  const x = r.left + r.width/2, y = r.top + r.height/2;
+  if (REDUZ){ vozBemVindo.play().catch(() => {}); abreEstudio(); return; }
+  /* ATO 1 — a cerimônia: o V se desenha enquanto a voz recebe */
+  document.querySelector('.portal-in').classList.add('cede');
+  document.getElementById('cerimonia').classList.add('rodando');
+  setTimeout(() => vozBemVindo.play().catch(() => {}), 500);
+  const cx0 = innerWidth / 2, cy0 = innerHeight / 2;
+  const esc = Math.min(innerHeight * .52, innerWidth * .72) / 120;
+  setTimeout(() => fogoBoom.faisca(cx0 - 23 * esc, cy0 - 19 * esc, 26, 5), 1100);
+  setTimeout(() => fogoBoom.faisca(cx0, cy0 + 26 * esc, 34, 6), 2000);
+  setTimeout(() => { fogoBoom.faisca(cx0 + 23 * esc, cy0 - 19 * esc, 26, 5);
+    fogoBoom.anel(cx0, cy0, 'rgba(232,196,124,.7)'); }, 3000);
+  /* ATO 2 — quando a voz termina (ou 7s de segurança), o estúdio abre */
+  let abriu = false;
+  const abre = () => { if (abriu) return; abriu = true; setTimeout(abreEstudio, 500); };
+  vozBemVindo.addEventListener('ended', abre, { once: true });
+  setTimeout(abre, 7000);
+}
+function abreEstudio(){
+  const x = innerWidth / 2, y = innerHeight / 2;
+  document.getElementById('cerimonia').classList.remove('rodando');
   fogoBoom.desintegra(x, y);                       /* a tela vira grãos em onda de choque */
   fogoBoom.faisca(x, y, 420, 16);
   fogoBoom.anel(x, y, 'rgba(232,196,124,.9)');
