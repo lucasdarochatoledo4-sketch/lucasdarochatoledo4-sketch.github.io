@@ -321,7 +321,7 @@ footer a{color:var(--volt-claro);text-decoration:none}
 /* ===== TRATAMENTO DE CINEMA ===== */
 /* letterbox: as barras do filme */
 .barra-cine{position:fixed;left:0;right:0;height:8vh;background:#000;z-index:140;pointer-events:none;
-  transition:transform 1.2s cubic-bezier(.77,0,.18,1) 1.4s}
+  transition:transform 2.2s cubic-bezier(.25,.8,.25,1) 1.6s}
 .barra-cine.topo{top:0;transform:translateY(0)}
 .barra-cine.base{bottom:0;transform:translateY(0)}
 .pronto .barra-cine.topo{transform:translateY(-100%)}   /* tela 100% livre depois da entrada */
@@ -700,7 +700,9 @@ body.pronto #farol{opacity:1;transform:none;transition:opacity .6s ease 2s,trans
 
 /* ===== CERIMÔNIA DO V: o símbolo se desenha enquanto a voz recebe ===== */
 #cerimonia{position:fixed;inset:0;z-index:163;display:flex;flex-direction:column;gap:28px;
-  align-items:center;justify-content:center;pointer-events:none;opacity:0;transition:opacity .8s ease}
+  align-items:center;justify-content:center;pointer-events:none;opacity:0;
+  transition:opacity 1.5s ease,transform 1.5s ease}
+#cerimonia:not(.rodando){transform:translateY(-30px) scale(.99)}   /* sai flutuando pra cima, de leve */
 #cerimonia.rodando{opacity:1}
 #cerimonia::before{content:"";position:absolute;inset:0;
   background:radial-gradient(ellipse 62% 52% at 50% 50%,transparent 38%,rgba(0,0,0,.6) 100%);
@@ -727,8 +729,8 @@ body.pronto #farol{opacity:1;transform:none;transition:opacity .6s ease 2s,trans
 
 /* v9: o portal se DESINTEGRA na entrada + profundidade 3D */
 #portal.poof{opacity:0;transition:opacity 1.2s ease .35s}   /* o portal evapora devagar sob os grãos */
-body.pronto .hero .wrap{animation:chega 2s cubic-bezier(.2,.6,.2,1) .5s both}
-@keyframes chega{from{transform:scale(1.06) translateY(10px);filter:blur(10px);opacity:.4}
+body.pronto .hero .wrap{animation:chega 2.8s cubic-bezier(.22,.7,.25,1) .5s both}
+@keyframes chega{from{transform:scale(1.07) translateY(14px);filter:blur(14px);opacity:.3}
   to{transform:scale(1) translateY(0);filter:blur(0);opacity:1}}
 .selo-v,.portal-in h2,.portal-in .tick,#btn-entrar{will-change:transform}
 .ofi-demo,.social-demo,.reel{perspective:1300px}
@@ -1969,7 +1971,7 @@ function Fogo(cv){
         ctx.fillRect(g.x, g.y, g.s, g.s);
         continue;
       }
-      g.x += g.vx; g.y += g.vy; g.vx *= .991; g.vy = g.vy * .991 + .055; g.vida -= .0105;
+      g.x += g.vx; g.y += g.vy; g.vx *= .991; g.vy = g.vy * .991 + .05; g.vida -= .0088;
       if (g.vida <= 0){ G.splice(i, 1); continue; }
       ctx.globalAlpha = Math.min(g.vida, 1);
       ctx.fillStyle = g.cor;
@@ -2022,7 +2024,7 @@ function Fogo(cv){
         const v = 1.3 + Math.random() * 4.2;               /* lento, flutuante, de filme */
         G.push({ x, y, s: passo * (.6 + Math.random() * .45), cor: corPortal(x, y),
           vx: Math.cos(ang) * v, vy: Math.sin(ang) * v - 1,
-          espera: d * 2.3, vida: 1.3 + Math.random() * .5 });
+          espera: d * 2.55, vida: 1.35 + Math.random() * .5 });
       }
     if (!vivo){ vivo = true; loop(); }
   };
@@ -2038,7 +2040,7 @@ document.body.classList.add('travado');
 const MAPA_HASH = { 'p-logo': '#logo-design', 'p-id': '#identidade', 'p-social': '#social-media', 'p-site': '#criacao-de-sites', 'p-zap': '#automacao-whatsapp' };
 let entrou = false, autoGlide = null;
 function cancelaGlide(){ if (autoGlide){ clearTimeout(autoGlide); autoGlide = null; } }
-const vozBemVindo = new Audio('boas-vindas.mp3?v=ola2');   /* versão na URL: troca de voz fura qualquer cache */
+const vozBemVindo = new Audio('boas-vindas.mp3?v=ola3');   /* versão na URL: troca de voz fura qualquer cache */
 vozBemVindo.preload = 'auto'; vozBemVindo.volume = .9;
 function entrada(){
   if (entrou) return; entrou = true;
@@ -2085,6 +2087,13 @@ function abreEstudio(){
   setTimeout(() => {
     ['wheel','touchstart','keydown'].forEach(ev => addEventListener(ev, cancelaGlide, { passive: true }));
   }, 800);
+  /* a trilha ambiente entra sozinha, discreta, como lounge */
+  setTimeout(() => {
+    if (!REDUZ && !btnSom.classList.contains('on')){
+      btnSom.click();
+      if (ganho) ganho.gain.linearRampToValueAtTime(.3, actx.currentTime + 4);
+    }
+  }, 2600);
   autoGlide = setTimeout(() => {
     if (!painelAberto) document.getElementById('servicos').scrollIntoView({ behavior: 'smooth' });
   }, 6200);
