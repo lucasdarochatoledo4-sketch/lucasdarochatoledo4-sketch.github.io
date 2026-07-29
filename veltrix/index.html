@@ -699,20 +699,29 @@ body.pronto #farol{opacity:1;transform:none;transition:opacity .6s ease 2s,trans
 .joia .j-nome{transform:translateZ(16px)}
 
 /* ===== CERIMÔNIA DO V: o símbolo se desenha enquanto a voz recebe ===== */
-#cerimonia{position:fixed;inset:0;z-index:163;display:flex;align-items:center;justify-content:center;
-  pointer-events:none;opacity:0;transition:opacity .6s ease}
+#cerimonia{position:fixed;inset:0;z-index:163;display:flex;flex-direction:column;gap:28px;
+  align-items:center;justify-content:center;pointer-events:none;opacity:0;transition:opacity .8s ease}
 #cerimonia.rodando{opacity:1}
-#cerimonia svg{width:min(52vh,72vw);overflow:visible;
+#cerimonia::before{content:"";position:absolute;inset:0;
+  background:radial-gradient(ellipse 62% 52% at 50% 50%,transparent 38%,rgba(0,0,0,.6) 100%);
+  opacity:0;transition:opacity 1.6s ease}
+#cerimonia.rodando::before{opacity:1}
+#cerimonia svg{width:min(48vh,68vw);overflow:visible;position:relative;
   filter:drop-shadow(0 0 34px rgba(124,92,255,.5))}
+#cerimonia.rodando svg{animation:vPuxa 7.5s cubic-bezier(.2,.6,.2,1) forwards}
+@keyframes vPuxa{from{transform:scale(.88)}to{transform:scale(1.06)}}
+.cv-nome{font-size:.82rem;letter-spacing:.6em;text-transform:uppercase;color:var(--ouro);
+  opacity:0;position:relative;padding-left:.6em}
+#cerimonia.rodando .cv-nome{animation:abreEspaco 2.6s ease 3s both}
 #cerimonia .cv-aro{fill:none;stroke:rgba(232,196,124,.55);stroke-width:.9;
   stroke-dasharray:600;stroke-dashoffset:600}
 #cerimonia .cv-aro2{fill:none;stroke:rgba(167,139,250,.4);stroke-width:.7;
   stroke-dasharray:600;stroke-dashoffset:600}
 #cerimonia .cv-v{fill:none;stroke:url(#gradV2);stroke-width:7.5;stroke-linecap:round;stroke-linejoin:round;
   stroke-dasharray:220;stroke-dashoffset:220}
-#cerimonia.rodando .cv-aro{animation:desenha 2.8s ease .2s forwards}
-#cerimonia.rodando .cv-aro2{animation:desenha 2.8s ease .6s forwards}
-#cerimonia.rodando .cv-v{animation:desenha 2.2s cubic-bezier(.6,0,.2,1) .8s forwards,brilhaV 1.8s ease-in-out 3s infinite}
+#cerimonia.rodando .cv-aro{animation:desenha 3.8s ease .3s forwards}
+#cerimonia.rodando .cv-aro2{animation:desenha 3.8s ease .9s forwards}
+#cerimonia.rodando .cv-v{animation:desenha 3.2s cubic-bezier(.6,0,.2,1) 1s forwards,brilhaV 2.2s ease-in-out 4.2s infinite}
 @keyframes brilhaV{50%{filter:drop-shadow(0 0 30px rgba(232,196,124,.95))}}
 .portal-in.cede{opacity:0!important;transition:opacity .7s ease;animation-play-state:paused}
 
@@ -909,6 +918,7 @@ body.pronto .hero .wrap{animation:chega 2s cubic-bezier(.2,.6,.2,1) .5s both}
     <circle class="cv-aro2" cx="60" cy="60" r="46"/>
     <path class="cv-v" d="M 37 41 L 60 86 L 83 41"/>
   </svg>
+  <span class="cv-nome">Veltrix Estúdio</span>
 </div>
 <div class="moldura" aria-hidden="true"></div>
 <canvas id="boom" aria-hidden="true"></canvas>
@@ -2028,7 +2038,7 @@ document.body.classList.add('travado');
 const MAPA_HASH = { 'p-logo': '#logo-design', 'p-id': '#identidade', 'p-social': '#social-media', 'p-site': '#criacao-de-sites', 'p-zap': '#automacao-whatsapp' };
 let entrou = false, autoGlide = null;
 function cancelaGlide(){ if (autoGlide){ clearTimeout(autoGlide); autoGlide = null; } }
-const vozBemVindo = new Audio('boas-vindas.mp3?v=ola1');   /* versão na URL: troca de voz fura qualquer cache */
+const vozBemVindo = new Audio('boas-vindas.mp3?v=ola2');   /* versão na URL: troca de voz fura qualquer cache */
 vozBemVindo.preload = 'auto'; vozBemVindo.volume = .9;
 function entrada(){
   if (entrou) return; entrou = true;
@@ -2036,18 +2046,24 @@ function entrada(){
   /* ATO 1 — a cerimônia: o V se desenha enquanto a voz recebe */
   document.querySelector('.portal-in').classList.add('cede');
   document.getElementById('cerimonia').classList.add('rodando');
-  setTimeout(() => vozBemVindo.play().catch(() => {}), 500);
+  setTimeout(() => vozBemVindo.play().catch(() => {}), 600);
+  leak.classList.remove('vaza'); void leak.offsetWidth; leak.classList.add('vaza');
   const cx0 = innerWidth / 2, cy0 = innerHeight / 2;
-  const esc = Math.min(innerHeight * .52, innerWidth * .72) / 120;
-  setTimeout(() => fogoBoom.faisca(cx0 - 23 * esc, cy0 - 19 * esc, 26, 5), 1100);
-  setTimeout(() => fogoBoom.faisca(cx0, cy0 + 26 * esc, 34, 6), 2000);
-  setTimeout(() => { fogoBoom.faisca(cx0 + 23 * esc, cy0 - 19 * esc, 26, 5);
-    fogoBoom.anel(cx0, cy0, 'rgba(232,196,124,.7)'); }, 3000);
-  /* ATO 2 — quando a voz termina (ou 7s de segurança), o estúdio abre */
+  const esc = Math.min(innerHeight * .48, innerWidth * .68) / 120;
+  setTimeout(() => fogoBoom.faisca(cx0 - 23 * esc, cy0 - 19 * esc, 24, 4.5), 1500);
+  setTimeout(() => fogoBoom.faisca(cx0, cy0 + 26 * esc, 32, 5.5), 2800);
+  setTimeout(() => { fogoBoom.faisca(cx0 + 23 * esc, cy0 - 19 * esc, 24, 4.5);
+    fogoBoom.anel(cx0, cy0, 'rgba(232,196,124,.7)'); }, 4100);
+  /* ATO 2 — quando a voz termina (ou 9,5s de segurança), o estúdio abre */
   let abriu = false;
-  const abre = () => { if (abriu) return; abriu = true; setTimeout(abreEstudio, 500); };
+  const abre = () => { if (abriu) return; abriu = true; setTimeout(abreEstudio, 600); };
   vozBemVindo.addEventListener('ended', abre, { once: true });
-  setTimeout(abre, 7000);
+  setTimeout(abre, 9500);
+  /* brasas de ouro sobem ao redor do símbolo durante a cerimônia */
+  const brasas = setInterval(() => {
+    if (abriu){ clearInterval(brasas); return; }
+    fogoBoom.faisca(cx0 + (Math.random() - .5) * esc * 105, cy0 + esc * 40 + Math.random() * 50, 3, 1.5);
+  }, 240);
 }
 function abreEstudio(){
   const x = innerWidth / 2, y = innerHeight / 2;
